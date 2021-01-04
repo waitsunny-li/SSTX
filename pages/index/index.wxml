@@ -1,0 +1,35 @@
+<!-- logo begin -->
+<view>
+  <image class="" src="" />
+</view>
+  
+<!-- logo end -->
+
+<!-- index banner begin -->
+<swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
+  <swiper-item class="index-swiper-item">
+    <navigator class="index-swiper-navigator">
+      <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false"/>
+    </navigator>
+  </swiper-item>
+  <swiper-item class="index-swiper-item">
+    <navigator class="index-swiper-navigator">
+      <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false"/>
+    </navigator>
+  </swiper-item>
+</swiper>
+<!-- index banner end -->
+
+  
+<!-- 公告 -->
+<swiper-title titleList="{{titleList}}" />
+
+<!-- 各界支持 begin -->
+<swiper-pane />
+<!-- 各界支持 end -->
+
+
+<view style="height: 500rpx">
+  
+</view>
+  

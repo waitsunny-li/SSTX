@@ -1,0 +1,7 @@
+<view class="movable_wrap">
+  <movable-area class="scroll_wrap" style="height: {{height}}rpx">
+    <movable-view direction="horizontal" class="click_image_group" out-of-bounds="{{true}}" inertia="{{true}}" friction="{{1}}" style="width: {{width}}rpx;">
+      <slot></slot>
+    </movable-view>
+  </movable-area>
+</view>

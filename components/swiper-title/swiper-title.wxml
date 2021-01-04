@@ -1,0 +1,19 @@
+<!-- 头部title轮播begin -->
+<view class="title_wrap_swiper">
+  <view class="title_img_wrap">
+    <view class="title_text">动态：</view>
+  </view>
+  <view class="swiper_wrap">
+    <swiper class="swiper" autoplay="{{true}}" vertical="{{true}}" circular="{{true}}">
+      <block wx:for="{{titleList}}" wx:key="id">
+        <swiper-item class="swiper_item">
+          <view class="title">{{item.title}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="right_wrap">
+      客服：010-81811111
+    </view>
+</view>
+<!-- 头部title轮播end -->

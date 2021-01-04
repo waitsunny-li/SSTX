@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "swiper-title": "/components/swiper-title/swiper-title",
+    "swiper-pane": "/components/swiper-pane/swiper-pane"
+  }
+}

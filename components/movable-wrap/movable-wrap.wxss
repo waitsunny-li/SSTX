@@ -1,0 +1,14 @@
+.movable_wrap {
+  padding-top: 40rpx;
+  width: 100vw;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.movable_wrap .scroll_wrap {
+  width: 100%;
+  overflow: hidden;
+}
+.movable_wrap .scroll_wrap .click_image_group {
+  display: flex;
+  height: 100%;
+}
