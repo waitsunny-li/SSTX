@@ -5,26 +5,23 @@
   <view class="title-text">弘扬正能量</view>
 </view>
 <!-- logo end -->
-
 <!-- index banner begin -->
 <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
   <swiper-item class="index-swiper-item">
     <navigator class="index-swiper-navigator">
-      <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false"/>
+      <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false" />
     </navigator>
   </swiper-item>
   <swiper-item class="index-swiper-item">
     <navigator class="index-swiper-navigator">
-      <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false"/>
+      <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
     </navigator>
   </swiper-item>
 </swiper>
 <!-- index banner end -->
-
-<!-- dynamic beign-->
+<!-- dynamic beign -->
 <swiper-title titleList="{{titleList}}" />
-<!-- dynamic end-->
-
+<!-- dynamic end -->
 <!-- publish begin -->
 <view class="publish-support">
   <view class="item-wrap">
@@ -39,26 +36,36 @@
   </view>
 </view>
 <!-- publish end -->
-
+<!-- connection begin -->
+<swiper-pane />
+<!-- connection end -->
 <!-- location begin -->
 <view class="location-wrap">
   <view class="left-location">
     <text class="iconfont icon-dingwei"></text>
     <view class="head-title">地区：</view>
     <view class="select-wrap">
-      
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{objectMultiArray}}" range-key="name" >
+        <view class="picker">{{province}}
+          <text class="iconfont icon-jiantou12"></text>
+        </view>
+        <view class="picker">{{city}}
+          <text class="iconfont icon-jiantou12"></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <!-- register number -->
+  <view class="register-number">
+    <view class="on-line number-wrap">
+      在线人数：
+      <text class="number">255</text>
+    </view>
+    <view class="on-line number-wrap">
+      注册人数：
+      <text class="number">755</text>
     </view>
   </view>
 </view>
 <!-- location end -->
-
-
-<!-- connection begin -->
-<swiper-pane />
-<!-- connection end -->
-
-
-<view style="height: 500rpx">
-  
-</view>
-  
+<view style="height: 500rpx"></view>

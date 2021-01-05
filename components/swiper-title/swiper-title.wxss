@@ -5,7 +5,7 @@
   display: flex;
   height: 80rpx;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #f7f7f7;
 }
 .title_wrap_swiper .title_img_wrap {
   width: 80rpx;

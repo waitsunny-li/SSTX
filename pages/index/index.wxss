@@ -34,7 +34,7 @@
 }
 .publish-support {
   width: 100vw;
-  height: 170rpx;
+  padding: 30rpx 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -62,4 +62,8 @@
 .publish-support .item-wrap .desc {
   color: #ffffff;
   font-size: 22rpx;
+}
+.location-wrap {
+  width: 100vw;
+  padding: 0 20px;
 }
