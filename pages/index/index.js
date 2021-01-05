@@ -9,8 +9,7 @@ const app = getApp()
 //Page Object
 Page({
   data: {
-    titleList: [
-      {
+    titleList: [{
         title: 'jjjdddDdddfsdfsdfsdfsdfssdfsdfjjj'
       },
       {
@@ -22,36 +21,40 @@ Page({
     ]
   },
   //options(Object)
-  onLoad: function(options) {
-    
-  },
-  onReady: function() {
-    
-  },
-  onShow: function() {
-    
-  },
-  onHide: function() {
+  onLoad: function (options) {
 
   },
-  onUnload: function() {
+  onReady: function () {
 
   },
-  onPullDownRefresh: function() {
+  onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+  },
+  onHide: function () {
 
   },
-  onReachBottom: function() {
+  onUnload: function () {
 
   },
-  onShareAppMessage: function() {
+  onPullDownRefresh: function () {
 
   },
-  onPageScroll: function() {
+  onReachBottom: function () {
+
+  },
+  onShareAppMessage: function () {
+
+  },
+  onPageScroll: function () {
 
   },
   //item(index,pagePath,text)
-  onTabItemTap:function(item) {
+  onTabItemTap: function (item) {
 
   }
 });
-  

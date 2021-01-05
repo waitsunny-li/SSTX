@@ -1,8 +1,9 @@
 <!-- logo begin -->
-<view>
-  <image class="" src="" />
+<view class="top-logo">
+  <view class="title-text">礼义仁智信</view>
+  <image class="" mode="aspectFill" src="/icons/logo.png" />
+  <view class="title-text">弘扬正能量</view>
 </view>
-  
 <!-- logo end -->
 
 <!-- index banner begin -->
@@ -20,13 +21,41 @@
 </swiper>
 <!-- index banner end -->
 
-  
-<!-- 公告 -->
+<!-- dynamic beign-->
 <swiper-title titleList="{{titleList}}" />
+<!-- dynamic end-->
 
-<!-- 各界支持 begin -->
+<!-- publish begin -->
+<view class="publish-support">
+  <view class="item-wrap">
+    <text class="iconfont icon-fabu"></text>
+    <view class="title">发布需求</view>
+    <view class="desc">(寻求帮助)</view>
+  </view>
+  <view class="item-wrap">
+    <text class="iconfont icon-ai-connection"></text>
+    <view class="title">提供人脉</view>
+    <view class="desc">(为家乡建设做贡献)</view>
+  </view>
+</view>
+<!-- publish end -->
+
+<!-- location begin -->
+<view class="location-wrap">
+  <view class="left-location">
+    <text class="iconfont icon-dingwei"></text>
+    <view class="head-title">地区：</view>
+    <view class="select-wrap">
+      
+    </view>
+  </view>
+</view>
+<!-- location end -->
+
+
+<!-- connection begin -->
 <swiper-pane />
-<!-- 各界支持 end -->
+<!-- connection end -->
 
 
 <view style="height: 500rpx">

@@ -3,9 +3,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 96rpx;
-  background: #f4f4f4;
+  height: 120rpx;
+  background: #ffffff;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding-bottom: env(safe-area-inset-bottom);
 }
 .tab-bar-border {
@@ -18,12 +20,25 @@
   transform: scaleY(0.5);
 }
 .tab-bar-item {
-  flex: 1;
+  width: 100rpx;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 120rpx;
+}
+.center {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #aa0100;
+  border-radius: 50%;
+}
+.center cover-view {
+  color: #ffffff !important;
+}
+.text-center {
+  color: #ffffff;
 }
 .tab-bar-item cover-image {
   width: 54rpx;

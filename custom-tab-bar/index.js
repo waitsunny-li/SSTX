@@ -5,31 +5,37 @@
 Component({
   data: {
     selected: 0,
-    color: "#9595ba",
-    selectedColor: "#1a243c",
-    list:  [
-      {
+    color: "#333333",
+    selectedColor: "#aa0100",
+    list: [{
         "pagePath": "/pages/index/index",
-        "iconPath": "/icons/home.png",
-        "selectedIconPath": "/icons/home_active.png",
+        "iconPath": "/icons/index.png",
+        "selectedIconPath": "/icons/index-active.png",
         "text": "首页"
       },
       {
-        "pagePath": "/pages/choiceness/choiceness",
-        "iconPath": "/icons/jingxuan.png",
-        "selectedIconPath": "/icons/jingxuan_active.png",
-        "text": "精选"
+        "pagePath": "/pages/support/support",
+        "iconPath": "/icons/dianzan.png",
+        "selectedIconPath": "/icons/dianzan-active.png",
+        "text": "各界支持"
+      },
+
+      {
+        "pagePath": "/pages/publish/publish",
+        "iconPath": "/icons/fabu.png",
+        "selectedIconPath": "/icons/fabu.png",
+        "text": "发布"
       },
       {
-        "pagePath": "/pages/weal/weal",
-        "iconPath": "/icons/liwu.png",
-        "selectedIconPath": "/icons/liwu_active.png",
-        "text": "福利社"
+        "pagePath": "/pages/proconnection/proconnection",
+        "iconPath": "/icons/renmai.png",
+        "selectedIconPath": "/icons/renmai-active.png",
+        "text": "项目人才库"
       },
       {
         "pagePath": "/pages/profile/profile",
-        "iconPath": "/icons/mine.png",
-        "selectedIconPath": "/icons/mine_active.png",
+        "iconPath": "/icons/profile.png",
+        "selectedIconPath": "/icons/profile-active.png",
         "text": "我的"
       }
     ]
@@ -39,7 +45,13 @@ Component({
       const data = e.currentTarget.dataset
       const url = data.path
       console.log(data.index);
-      wx.switchTab({url})
+      if (data.index == 2) {
+
+      } else {
+        wx.switchTab({
+          url
+        })
+      }
     }
   }
 })
