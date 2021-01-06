@@ -1,0 +1,5 @@
+<view class="title-tab default" style="width: {{width}}rpx">
+  <block wx:for="{{tabList}}" wx:key="id">
+    <view class="title-item {{currentIndex == index ? 'active' : ''}}" bind:tap="handleTitleTab" data-index="{{index}}">{{item.name}}</view>
+  </block>
+</view>

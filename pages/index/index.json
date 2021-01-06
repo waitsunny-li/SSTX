@@ -1,6 +1,10 @@
 {
   "usingComponents": {
     "swiper-title": "/components/swiper-title/swiper-title",
-    "swiper-pane": "/components/swiper-pane/swiper-pane"
-  }
+    "swiper-pane": "/components/swiper-pane/swiper-pane",
+    "province-city": "/components/province-city/province-city",
+    "title-tab": "/components/title-tab/title-tab",
+    "project-item": "/components/project-item/project-item"
+  },
+  "navigationBarTitleText": "首页"
 }

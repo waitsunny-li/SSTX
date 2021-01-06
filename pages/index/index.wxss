@@ -63,7 +63,53 @@
   color: #ffffff;
   font-size: 22rpx;
 }
-.location-wrap {
+.register-number {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.register-number .number-wrap {
+  width: 100%;
+  display: flex;
+  font-size: 26rpx;
+}
+.register-number .number-wrap .number {
+  color: #e1211f;
+  font-size: 25rpx;
+}
+.title-tab-wrap {
   width: 100vw;
-  padding: 0 20px;
+  height: 110rpx;
+  padding: 0 20rpx 0 0;
+  border-bottom: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.title-tab-wrap .project-connection {
+  flex: 1;
+  margin-left: 20rpx;
+  padding: 10rpx 10rpx;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8rpx 8rpx 0 0;
+}
+.title-tab-wrap .project-connection .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #bbbbbb;
+}
+.title-tab-wrap .project-connection .item .iconfont {
+  color: #434343;
+  font-size: 35rpx;
+}
+.title-tab-wrap .project-connection .item .text {
+  color: #434343;
+  font-size: 24rpx;
 }

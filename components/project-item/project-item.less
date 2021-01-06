@@ -1,0 +1,82 @@
+@import '../../styles/iconfont.wxss';
+
+.project-item {
+  width: 100vw;
+  height: 220rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px dashed #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .left-item {
+    width: 130rpx;
+    height: 130rpx;
+    position: relative;
+
+    .top-icon {
+      width: 100%;
+      height: 35rpx;
+      top: -35rpx;
+      position: absolute;
+      background-color: #efbf00;
+      border-radius: 8rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .text {
+        color: #000000;
+        font-size: 25rpx;
+        font-weight: 700;
+        margin-right: 25rpx;
+      }
+
+      .iconfont {
+        position: absolute;
+        top: -15rpx;
+        right: 10rpx;
+        font-size: 48rpx;
+        color: var(--themeColor);
+      }
+    }
+
+    .default-img {
+      width: 100%;
+      height: 100%;
+      background-color: red;
+      border-radius: 8rpx;
+
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .right-item {
+    flex: 1;
+    height: 100%;
+    padding: 20rpx;
+    box-sizing: border-box;
+
+    .title-section {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        width: 60%;
+        color: #000000;
+        font-size: 32rpx;
+      }
+
+      .time {
+        width: 40%;
+        color: #a4a4a4;
+        font-size: 24rpx;
+      }
+    }
+  }
+}

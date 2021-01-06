@@ -40,32 +40,40 @@
 <swiper-pane />
 <!-- connection end -->
 <!-- location begin -->
-<view class="location-wrap">
-  <view class="left-location">
-    <text class="iconfont icon-dingwei"></text>
-    <view class="head-title">地区：</view>
-    <view class="select-wrap">
-      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{objectMultiArray}}" range-key="name" >
-        <view class="picker">{{province}}
-          <text class="iconfont icon-jiantou12"></text>
-        </view>
-        <view class="picker">{{city}}
-          <text class="iconfont icon-jiantou12"></text>
-        </view>
-      </picker>
-    </view>
-  </view>
-  <!-- register number -->
-  <view class="register-number">
+<province-city bind:locationEvent="listenLocation">
+  <view class="register-number" slot="right">
     <view class="on-line number-wrap">
       在线人数：
-      <text class="number">255</text>
+      <text class="number">25995</text>
     </view>
-    <view class="on-line number-wrap">
+    <view class="number-wrap">
       注册人数：
-      <text class="number">755</text>
+      <text class="number">75995</text>
     </view>
   </view>
-</view>
+</province-city>
 <!-- location end -->
+
+<!-- title tab begin -->
+<view class="title-tab-wrap">
+  <title-tab width="{{480}}"></title-tab>
+  <view class="project-connection">
+    <navigator class="item">
+      <text class="iconfont icon-xiangmu"></text>
+      <view class="text">项目库</view>
+    </navigator>
+    |
+    <navigator class="item">
+      <text class="iconfont icon-ai-connection"></text>
+      <view class="text">人脉库</view>
+    </navigator>
+  </view>
+</view>
+<!-- title tab end -->
+
+<!-- project / connection item begin -->
+<view class="project-connection-wrap">
+  <project-item />
+</view>
+
 <view style="height: 500rpx"></view>

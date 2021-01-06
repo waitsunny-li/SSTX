@@ -1,0 +1,34 @@
+<view class="project-item">
+  <view class="left-item">
+    <view class="top-icon">
+      <text class="text">置顶</text>
+      <text class="iconfont icon-icon--"></text>
+    </view>
+    <view class="default-img">
+      <image class="" src="" mode="aspectFill" lazy-load="true"/>
+    </view>
+  </view>
+  <view class="right-item">
+    <!-- 标题 -->
+    <view class="title-section">
+      <view class="title">公路建设公路建设公路</view>
+      <view class="time">
+        倒计时：12天08:56
+      </view>
+    </view>
+    <!-- desc -->
+    <view class="desc">
+      海南省公路11.8亿，需求合作，需要央企参与的凭证等等
+    </view>
+    <!-- bottom  -->
+    <view class="bottom-section">
+      <view class="location">
+        <text class="iconfont icon-dingwei"></text>
+        <text class="text">海南省海口市</text>
+      </view>
+      <view class="detail">
+        详情>>
+      </view>
+    </view>
+  </view>
+</view>

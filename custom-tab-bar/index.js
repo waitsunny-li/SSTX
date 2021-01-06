@@ -29,7 +29,7 @@ Component({
       {
         "pagePath": "/pages/proconnection/proconnection",
         "iconPath": "/icons/renmai.png",
-        "selectedIconPath": "/icons/renmai-active.png",
+        "selectedIconPath": "/icons/renmai.png",
         "text": "项目人才库"
       },
       {
