@@ -1,4 +1,5 @@
 .title-tab {
+  position: relative;
   height: 90rpx;
   display: flex;
   align-items: center;
@@ -12,10 +13,14 @@
   box-sizing: border-box;
   font-weight: 700;
   color: #ffffff;
-  border-bottom: 3px solid transparent;
 }
-.title-tab .active {
-  border-bottom: 3px solid #ffffff;
+.title-tab .line {
+  position: absolute;
+  height: 3px;
+  width: 140rpx;
+  background-color: #ffffff;
+  bottom: 10rpx;
+  transition: all 0.3s;
 }
 .default {
   border-radius: 0 80rpx 0 0;

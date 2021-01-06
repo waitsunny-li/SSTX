@@ -23,6 +23,10 @@ Component({
     width: {
       type: Number,
       value: 500
+    },
+    initLeft: {
+      type: String,
+      value: "54rpx"
     }
   },
 
@@ -30,7 +34,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    currentIndex: 0
+    currentIndex: 0,
+    left: ""
   },
 
   /**
@@ -39,10 +44,10 @@ Component({
   methods: {
     handleTitleTab(e) {
       console.log(e);
-      let {index} = e.currentTarget.dataset
-      
+      // let {index} = e.currentTarget.dataset
+      let left = e.currentTarget.offsetLeft + 'px'
       this.setData({
-        currentIndex: index
+        left
       })
     }
   }

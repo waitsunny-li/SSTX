@@ -36,7 +36,7 @@
 .project-item {
   width: 100vw;
   height: 220rpx;
-  padding: 20rpx;
+  padding: 20rpx 20rpx 10rpx 20rpx;
   box-sizing: border-box;
   border-bottom: 1px dashed #e8e8e8;
   display: flex;
@@ -83,23 +83,63 @@
   height: 100%;
 }
 .project-item .right-item {
-  flex: 1;
-  height: 100%;
-  padding: 20rpx;
+  width: 575rpx;
+  height: 130rpx;
+  padding: 0 0 0 20rpx;
   box-sizing: border-box;
 }
 .project-item .right-item .title-section {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .project-item .right-item .title-section .title {
   width: 60%;
   color: #000000;
   font-size: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .project-item .right-item .title-section .time {
   width: 40%;
   color: #a4a4a4;
   font-size: 24rpx;
+}
+.project-item .right-item .desc {
+  width: 100%;
+  margin-top: 5rpx;
+  color: #a4a4a4;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.project-item .right-item .bottom-section {
+  width: 100%;
+  margin-top: 15rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.project-item .right-item .bottom-section .location {
+  display: flex;
+  align-items: center;
+  color: #a4a4a4;
+}
+.project-item .right-item .bottom-section .location .iconfont {
+  font-size: 25rpx;
+}
+.project-item .right-item .bottom-section .location .text {
+  font-size: 24rpx;
+}
+.project-item .right-item .bottom-section .detail {
+  width: 100rpx;
+  border: 1px solid #e8e8e8;
+  color: #a4a4a4;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5rpx;
 }

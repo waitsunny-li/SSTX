@@ -1,3 +1,7 @@
+.indexscroll {
+  width: 100vw;
+  height: 100vh;
+}
 .top-logo {
   width: 100vw;
   display: flex;
@@ -63,7 +67,10 @@
   color: #ffffff;
   font-size: 22rpx;
 }
-.register-number {
+.top-cate-wrap {
+  width: 100vw;
+}
+.top-cate-wrap .register-number {
   width: 30%;
   height: 100%;
   display: flex;
@@ -71,16 +78,16 @@
   align-items: center;
   justify-content: space-between;
 }
-.register-number .number-wrap {
+.top-cate-wrap .register-number .number-wrap {
   width: 100%;
   display: flex;
   font-size: 26rpx;
 }
-.register-number .number-wrap .number {
+.top-cate-wrap .register-number .number-wrap .number {
   color: #e1211f;
   font-size: 25rpx;
 }
-.title-tab-wrap {
+.top-cate-wrap .title-tab-wrap {
   width: 100vw;
   height: 110rpx;
   padding: 0 20rpx 0 0;
@@ -89,7 +96,7 @@
   display: flex;
   align-items: center;
 }
-.title-tab-wrap .project-connection {
+.top-cate-wrap .title-tab-wrap .project-connection {
   flex: 1;
   margin-left: 20rpx;
   padding: 10rpx 10rpx;
@@ -99,17 +106,25 @@
   justify-content: space-between;
   border-radius: 8rpx 8rpx 0 0;
 }
-.title-tab-wrap .project-connection .item {
+.top-cate-wrap .title-tab-wrap .project-connection .item {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #bbbbbb;
 }
-.title-tab-wrap .project-connection .item .iconfont {
+.top-cate-wrap .title-tab-wrap .project-connection .item .iconfont {
   color: #434343;
   font-size: 35rpx;
 }
-.title-tab-wrap .project-connection .item .text {
+.top-cate-wrap .title-tab-wrap .project-connection .item .text {
   color: #434343;
   font-size: 24rpx;
+}
+.catefixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  z-index: 1000;
+  box-shadow: 0 0 3px rgba(4, 4, 4, 0.3);
 }

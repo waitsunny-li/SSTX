@@ -1,79 +1,88 @@
-<!-- logo begin -->
-<view class="top-logo">
-  <view class="title-text">礼义仁智信</view>
-  <image class="" mode="aspectFill" src="/icons/logo.png" />
-  <view class="title-text">弘扬正能量</view>
-</view>
-<!-- logo end -->
-<!-- index banner begin -->
-<swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
-  <swiper-item class="index-swiper-item">
-    <navigator class="index-swiper-navigator">
-      <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false" />
-    </navigator>
-  </swiper-item>
-  <swiper-item class="index-swiper-item">
-    <navigator class="index-swiper-navigator">
-      <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-    </navigator>
-  </swiper-item>
-</swiper>
-<!-- index banner end -->
-<!-- dynamic beign -->
-<swiper-title titleList="{{titleList}}" />
-<!-- dynamic end -->
-<!-- publish begin -->
-<view class="publish-support">
-  <view class="item-wrap">
-    <text class="iconfont icon-fabu"></text>
-    <view class="title">发布需求</view>
-    <view class="desc">(寻求帮助)</view>
+<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
+  <!-- logo begin -->
+  <view class="top-logo">
+    <view class="title-text">礼义仁智信</view>
+    <image class="" mode="aspectFill" src="/icons/logo.png" />
+    <view class="title-text">弘扬正能量</view>
   </view>
-  <view class="item-wrap">
-    <text class="iconfont icon-ai-connection"></text>
-    <view class="title">提供人脉</view>
-    <view class="desc">(为家乡建设做贡献)</view>
-  </view>
-</view>
-<!-- publish end -->
-<!-- connection begin -->
-<swiper-pane />
-<!-- connection end -->
-<!-- location begin -->
-<province-city bind:locationEvent="listenLocation">
-  <view class="register-number" slot="right">
-    <view class="on-line number-wrap">
-      在线人数：
-      <text class="number">25995</text>
+  <!-- logo end -->
+  <!-- index banner begin -->
+  <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
+    <swiper-item class="index-swiper-item">
+      <navigator class="index-swiper-navigator">
+        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false" />
+      </navigator>
+    </swiper-item>
+    <swiper-item class="index-swiper-item">
+      <navigator class="index-swiper-navigator">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
+      </navigator>
+    </swiper-item>
+  </swiper>
+  <!-- index banner end -->
+  <!-- dynamic beign -->
+  <swiper-title titleList="{{titleList}}" />
+  <!-- dynamic end -->
+  <!-- publish begin -->
+  <view class="publish-support">
+    <view class="item-wrap">
+      <text class="iconfont icon-fabu"></text>
+      <view class="title">发布需求</view>
+      <view class="desc">(寻求帮助)</view>
     </view>
-    <view class="number-wrap">
-      注册人数：
-      <text class="number">75995</text>
-    </view>
-  </view>
-</province-city>
-<!-- location end -->
-
-<!-- title tab begin -->
-<view class="title-tab-wrap">
-  <title-tab width="{{480}}"></title-tab>
-  <view class="project-connection">
-    <navigator class="item">
-      <text class="iconfont icon-xiangmu"></text>
-      <view class="text">项目库</view>
-    </navigator>
-    |
-    <navigator class="item">
+    <view class="item-wrap">
       <text class="iconfont icon-ai-connection"></text>
-      <view class="text">人脉库</view>
-    </navigator>
+      <view class="title">提供人脉</view>
+      <view class="desc">(为家乡建设做贡献)</view>
+    </view>
   </view>
-</view>
-<!-- title tab end -->
-
-<!-- project / connection item begin -->
-<view class="project-connection-wrap">
-  <project-item />
-</view>
-
-<view style="height: 500rpx"></view>
+  <!-- publish end -->
+  <!-- connection begin -->
+  <swiper-pane />
+  <!-- connection end -->
+  <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
+    <!-- location begin -->
+    <province-city bind:locationEvent="listenLocation">
+      <view class="register-number" slot="right">
+        <view class="on-line number-wrap">
+          在线人数：
+          <text class="number">25995</text>
+        </view>
+        <view class="number-wrap">
+          注册人数：
+          <text class="number">75995</text>
+        </view>
+      </view>
+    </province-city>
+    <!-- location end -->
+    <!-- title tab begin -->
+    <view class="title-tab-wrap">
+      <title-tab width="{{480}}" initLeft="54rpx"></title-tab>
+      <view class="project-connection">
+        <navigator class="item">
+          <text class="iconfont icon-xiangmu"></text>
+          <view class="text">项目库</view>
+        </navigator>
+        |
+        <navigator class="item">
+          <text class="iconfont icon-ai-connection"></text>
+          <view class="text">人脉库</view>
+        </navigator>
+      </view>
+    </view>
+    <!-- title tab end -->
+  </view>
+  <!-- project / connection item begin -->
+  <view class="project-connection-wrap">
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+    <project-item />
+  </view>
+</scroll-view>
