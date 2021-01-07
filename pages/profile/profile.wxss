@@ -1,1 +1,242 @@
-/* pages/profile/profile.wxss */
+.profile-header {
+  position: relative;
+  width: 100vw;
+  height: 340rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--themeColor);
+}
+.profile-header .ava-wrap {
+  width: 70vw;
+  margin-left: 30rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.profile-header .ava-wrap .ara-image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-header .ava-wrap .ara-image image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-header .ava-wrap .name-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-header .ava-wrap .name-wrap .name {
+  color: #ffffff;
+  display: flex;
+}
+.profile-header .ava-wrap .name-wrap .name .n {
+  font-size: 30rpx;
+  color: #ffffff;
+}
+.profile-header .ava-wrap .name-wrap .name .iconfont {
+  margin-left: 20rpx;
+  font-size: 35rpx;
+}
+.profile-header .ava-wrap .name-wrap .auth-wrap {
+  display: flex;
+  margin-top: 20rpx;
+}
+.profile-header .ava-wrap .name-wrap .auth-wrap .t {
+  border: 1px solid #ffffff;
+  border-radius: 30rpx;
+  padding: 6rpx 30rpx;
+  color: #ffffff;
+  font-size: 26rpx;
+}
+.profile-header .ava-wrap .name-wrap .auth-wrap .iconfont {
+  margin-left: 26rpx;
+  font-size: 35rpx;
+  color: #ffffff;
+}
+.profile-header .cread-wrap {
+  width: 70vw;
+  padding: 20rpx 0;
+  display: flex;
+  margin: 0 auto;
+}
+.profile-header .cread-wrap .text {
+  color: #ffffff;
+  font-size: 30rpx;
+}
+.profile-header .auth-bottom-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 550rpx;
+  display: flex;
+  justify-content: center;
+}
+.profile-header .auth-bottom-wrap .auth {
+  width: 550rpx;
+  background-color: #171717;
+  height: 70rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-header .auth-bottom-wrap .auth .title-left {
+  color: #bcbcbc;
+  font-size: 25rpx;
+  padding-right: 20rpx;
+  border-right: 1px solid #bcbcbc;
+}
+.profile-header .auth-bottom-wrap .auth .right-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 20rpx;
+}
+.profile-header .auth-bottom-wrap .auth .right-info .info {
+  color: #bcbcbc;
+  font-size: 22rpx;
+}
+.profile-header .auth-bottom-wrap .auth .right-info .go-cread {
+  width: 150rpx;
+  height: 40rpx;
+  background-color: #ffffff;
+  display: flex;
+  border-radius: 20rpx;
+  justify-content: center;
+  align-items: center;
+}
+.profile-header .auth-bottom-wrap .auth .right-info .go-cread .go-text {
+  font-size: 25rpx;
+  text-align: center;
+  color: var(--themeColor);
+}
+.profile-header .auth-bottom-wrap .auth .right-info .go-cread .iconfont {
+  transform: rotate(-90deg);
+}
+.pub-check {
+  padding: 30rpx;
+  display: flex;
+  border-bottom: 1px solid #ececed;
+}
+.pub-check .left-pub {
+  width: 30%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pub-check .left-pub .number {
+  color: var(--themeColor);
+  font-size: 40rpx;
+  font-weight: 600;
+}
+.pub-check .left-pub .text-bo {
+  margin-top: 26rpx;
+  font-size: 28rpx;
+  color: #000000;
+}
+.pub-check .line {
+  width: 1px;
+  height: 90rpx;
+  background-color: #bcbcbc;
+}
+.pub-check .right-check {
+  flex: 1;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.pub-check .right-check .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pub-check .right-check .item .icon {
+  width: 70rpx;
+  height: 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--themeColor);
+}
+.pub-check .right-check .item .icon .iconfont {
+  color: #ffffff;
+  font-size: 35rpx;
+}
+.pub-check .right-check .item .icon .icon-stop {
+  font-size: 45rpx;
+}
+.pub-check .right-check .item .text {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+}
+.mine-wrap {
+  width: 100vw;
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  border-bottom: 1px solid #ececed;
+  align-items: center;
+}
+.mine-wrap .mine-item {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mine-wrap .mine-item .iconfont {
+  font-size: 40rpx;
+  color: #aa0100;
+}
+.mine-wrap .mine-item .b-text {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #000000;
+}
+.mine-function {
+  width: 100vw;
+  height: 720rpx;
+}
+.mine-function .my-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 40rpx;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ececed;
+}
+.mine-function .my-item .left-icon {
+  display: flex;
+  align-items: center;
+}
+.mine-function .my-item .left-icon .iconfont {
+  color: #aa0100;
+  font-size: 40rpx;
+}
+.mine-function .my-item .left-icon .title {
+  color: #000000;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+.mine-function .my-item .right-arror {
+  transform: rotate(-90deg);
+}
+.mine-function .my-item .right-arror .iconfont {
+  font-size: 50rpx;
+  color: #000000;
+}

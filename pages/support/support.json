@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "tab": "/components/tab/tab",
+    "video-item": "/components/video-item/video-item"
+  },
+  "navigationBarTitleText": "各界支持",
+  "navigationBarBackgroundColor": "#970d0d",
+  "navigationBarTextStyle": "white"
 }

@@ -1,6 +1,7 @@
 @import '../../styles/iconfont.wxss';
 
 .project-item {
+  position: relative;
   width: 100vw;
   height: 220rpx;
   padding: 20rpx 20rpx 10rpx 20rpx;
@@ -9,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fffff;
+  background-color: #ffffff;
 
   .left-item {
     width: 130rpx;
@@ -38,7 +39,7 @@
         position: absolute;
         top: -15rpx;
         right: 10rpx;
-        font-size: 48rpx;
+        font-size: 45rpx;
         color: var(--themeColor);
       }
     }
@@ -65,7 +66,6 @@
     .title-section {
       width: 100%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
 
       .title {
@@ -75,44 +75,35 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        margin-left: 8rpx;
       }
 
-      .time {
-        width: 40%;
-        color: #a4a4a4;
-        font-size: 24rpx;
+      .title-1 {
+        color: var(--themeColor);
+        font-size: 20rpx;
+        font-weight: 600;
       }
     }
 
     .desc {
       width: 100%;
       margin-top: 5rpx;
-      color: #a4a4a4;
+      text-indent: 40rpx;
+      color: #525151;
       font-size: 24rpx;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
     }
 
     .bottom-section {
       width: 100%;
       margin-top: 15rpx;
       display: flex;
-      justify-content: space-between;
-
-      .location {
-        display: flex;
-        align-items: center;
-        color: #a4a4a4;
-
-        .iconfont {
-          font-size: 25rpx;
-        }
-
-        .text {
-          font-size: 24rpx;
-        }
-      }
+      flex-direction: row-reverse;
+      align-items: center;
 
       .detail {
         width: 100rpx;
@@ -125,5 +116,11 @@
         border-radius: 5rpx;
       }
     }
+  }
+
+  .star-position {
+    position: absolute;
+    right: 20rpx;
+    top: 10rpx;
   }
 }

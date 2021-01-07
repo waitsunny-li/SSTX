@@ -1,0 +1,11 @@
+<view class="star-wrap" style="width:{{width}}rpx">
+  <view class="cread">
+    <image class="" src="/icons/cread-active.png" wx:if="{{number != 0}}" />
+    <image class="" src="/icons/cread.png" wx:else />
+  </view>
+  <view class="star">
+    <block wx:for="{{total}}" wx:key="index">
+      <text class="iconfont icon-xingxing" style="color: {{number >= index + 1 ? color : ''}}; font-size: {{size}}"></text>
+    </block>
+  </view>
+</view>

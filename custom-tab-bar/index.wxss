@@ -10,6 +10,26 @@
   align-items: center;
   padding-bottom: env(safe-area-inset-bottom);
 }
+.tab-bar .pub-wrap {
+  position: fixed;
+  bottom: 130rpx;
+  width: 340rpx;
+  clear: both;
+  z-index: 1000;
+}
+.tab-bar .pub-wrap .pub-item {
+  float: left;
+  margin-right: 10rpx;
+  width: 160rpx;
+  height: 80rpx;
+  background-color: #970d0d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 28rpx;
+  border-radius: 20rpx;
+}
 .tab-bar-border {
   background-color: #e5e5e5;
   position: absolute;

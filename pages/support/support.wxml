@@ -1,2 +1,31 @@
-<!--pages/support/support.wxml-->
-<text>pages/support/support.wxml</text>
+<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
+  <!-- top begin -->
+  <view class="header-top">
+    <view class="left-top">
+      <image class="img" src="/icons/logo.png"></image>
+      <image class="header-text" src="/icons/logo-text.png"></image>
+    </view>
+    <view class="right-text">各界支持</view>
+  </view>
+  <!-- top end -->
+  <!-- tab begin -->
+  <view class="tab {{ishowtabs ? 'tabposition' : ''}}">
+    <tab tabList="{{tabList}}" />
+  </view>
+  <!-- tab end -->
+  <!-- video content begin -->
+  <view class="video-content-wrap">
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+    <video-item />
+  </view>
+  <!-- video content end -->
+</scroll-view>

@@ -9,7 +9,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    tabList: [{
+        id: 0,
+        name: '艺术家祝福',
+        icon: ''
+      },
+      {
+        id: 1,
+        name: '企业家支持',
+        icon: ''
+      },
+      {
+        id: 2,
+        name: '领导关怀',
+        icon: ''
+      },
+    ],
+    tabTop: 0,
+    ishowtabs: false
   },
 
   /**
@@ -23,7 +40,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    this.queryMultipleNodes()
+  },
 
+  //声明节点查询的方法
+  queryMultipleNodes: function () {
+    const query = wx.createSelectorQuery() // 创建节点查询器 query
+    query.select('.tab').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
+    query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
+    query.exec((res) => {
+      console.log(res[0].top);
+      this.setData({
+        tabTop: res[0].top
+      })
+    })
   },
 
   /**
@@ -38,38 +68,24 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  handletolower(e) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handlescroll(e) {
+    let {
+      scrollTop
+    } = e.detail
+    if (scrollTop > this.data.tabTop) {
+      this.setData({
+        ishowtabs: true
+      })
+    } else {
+      this.setData({
+        ishowtabs: false
+      })
+    }
   }
+
+
 })

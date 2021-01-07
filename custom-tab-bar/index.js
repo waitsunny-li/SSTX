@@ -38,20 +38,15 @@ Component({
         "selectedIconPath": "/icons/profile-active.png",
         "text": "我的"
       }
-    ]
+    ],
   },
   methods: {
     switchTab(e) {
       const data = e.currentTarget.dataset
       const url = data.path
-      console.log(data.index);
-      if (data.index == 2) {
-
-      } else {
-        wx.switchTab({
-          url
-        })
-      }
+      wx.switchTab({
+        url
+      })
     }
   }
 })

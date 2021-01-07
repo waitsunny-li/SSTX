@@ -1,2 +1,12 @@
-<!--pages/publish/publish.wxml-->
-<text>pages/publish/publish.wxml</text>
+<view class="publish-top">
+  <view class="publish-support">
+    发布需求
+  </view>
+  <view class="logo">
+    <image class="img" src="/icons/logo.png"></image>
+    <image class="boimg" src="/icons/logo-text.png"></image>
+  </view>
+  <view class="publish-support">
+    发布人脉
+  </view>
+</view>

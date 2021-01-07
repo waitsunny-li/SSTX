@@ -1,0 +1,15 @@
+<view class="video-item">
+  <view class="left-item">
+    <image class="video-thumb" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1175737380,1533684937&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="{{true}}"></image>
+    <view class="time">4:29</view>
+  </view>
+  <view class="right-item">
+    <view class="title">儒家文化视频</view>
+    <view class="desc">
+      思想的发展-纪录片-完整版
+    </view>
+    <view class="looked-number">
+      8万次观看
+    </view>
+  </view>
+</view>

@@ -1,1 +1,43 @@
-/* pages/support/support.wxss */
+.indexscroll {
+  width: 100vw;
+  height: calc(100vh - 120rpx);
+}
+.indexscroll .header-top {
+  width: 100vw;
+  height: 160rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #970d0d;
+}
+.indexscroll .header-top .left-top {
+  width: 100rpx;
+  height: 130rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.indexscroll .header-top .left-top .img {
+  width: 80rpx;
+  height: 80rpx;
+}
+.indexscroll .header-top .left-top .header-text {
+  width: 100rpx;
+  height: 37rpx;
+}
+.indexscroll .header-top .right-text {
+  margin-left: 50rpx;
+  color: #ffffff;
+  font-size: 35rpx;
+  font-weight: 700;
+}
+.indexscroll .tab {
+  width: 100vw;
+  background-color: #ffffff;
+}
+.indexscroll .tabposition {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}

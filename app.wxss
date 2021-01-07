@@ -11,5 +11,6 @@
 } 
 
 page {
-  --themeColor: #e1211f
+  --themeColor: #e1211f;
+  --assColor: #970d0d;
 }

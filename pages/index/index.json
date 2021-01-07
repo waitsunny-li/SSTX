@@ -4,7 +4,8 @@
     "swiper-pane": "/components/swiper-pane/swiper-pane",
     "province-city": "/components/province-city/province-city",
     "title-tab": "/components/title-tab/title-tab",
-    "project-item": "/components/project-item/project-item"
+    "project-item": "/components/project-item/project-item",
+    "connection-item": "/components/connection-item/connection-item"
   },
   "navigationBarTitleText": "首页"
 }

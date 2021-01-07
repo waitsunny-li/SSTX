@@ -74,15 +74,14 @@
   </view>
   <!-- project / connection item begin -->
   <view class="project-connection-wrap">
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
-    <project-item />
+    <connection-item number="{{2}}" />
+    <connection-item number="{{4}}" />
+    <connection-item number="{{4}}" />
+    <connection-item number="{{4}}" />
+    <connection-item number="{{4}}" />
+    <connection-item number="{{4}}" />
+    <connection-item number="{{0}}" />
+    <connection-item number="{{0}}" />
+
   </view>
 </scroll-view>
