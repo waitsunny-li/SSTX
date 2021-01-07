@@ -1,12 +1,37 @@
 <view class="publish-top">
-  <view class="publish-support">
+  <view class="publish-support-con left active">
     发布需求
   </view>
   <view class="logo">
     <image class="img" src="/icons/logo.png"></image>
     <image class="boimg" src="/icons/logo-text.png"></image>
   </view>
-  <view class="publish-support">
+  <view class="publish-support-con right">
     发布人脉
   </view>
 </view>
+
+<!-- form begin -->
+<view class="publish-need">
+  <form class="need-form" bindsubmit="needsubmit">
+    <view class="name-input">
+      <view class="label">
+        需求名称：<text class="iconfont"></text>
+      </view>
+      <input type="text" name="needname" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx"/>
+    </view>
+    <view class="name-input">
+      <view class="label">
+        需求类别：<text class="iconfont"></text>
+      </view>
+      <radio-group bindchange="needCateRadioChange">
+        <radio class="" value="" checked="true" color="">
+          高端人脉协助
+        </radio>
+      </radio-group>
+        
+        
+    </view>
+  </form>
+</view>
+<!-- form end -->
