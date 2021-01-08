@@ -39,7 +39,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isShowIcon: {
+      type: Boolean,
+      value: true
+    }
   },
 
   /**

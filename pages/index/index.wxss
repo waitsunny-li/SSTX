@@ -1,7 +1,4 @@
-.indexscroll {
-  width: 100vw;
-  height: calc(100vh - 120rpx);
-}
+
 .top-logo {
   width: 100vw;
   display: flex;

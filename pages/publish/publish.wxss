@@ -86,6 +86,13 @@ page {
   margin-right: 20rpx;
   margin-bottom: 20rpx;
 }
+.publish-need .need-form .radio-input .radio-group .other {
+  width: 280rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  height: 50rpx;
+  border-bottom: 1px solid #bbbbbb;
+}
 .publish-need .need-form .need-content .label {
   width: 100%;
   display: flex;
@@ -124,6 +131,7 @@ page {
   display: flex;
   align-items: center;
   margin-top: 20rpx;
+  margin-bottom: 30rpx;
 }
 .publish-need .need-form .report-back input {
   width: 300rpx;
@@ -136,6 +144,7 @@ page {
   margin-right: 20rpx;
 }
 .publish-need .need-form .user-infomation {
+  margin-top: 50rpx;
   width: 90vw;
   padding: 20rpx 30rpx;
   box-sizing: border-box;

@@ -1,7 +1,9 @@
 <view class="location-wrap">
   <view class="left-location">
-    <text class="iconfont icon-dingwei"></text>
-    <view class="head-title">地区：</view>
+    <block wx:if="{{isShowIcon}}">
+      <text class="iconfont icon-dingwei"></text>
+      <view class="head-title">地区：</view>
+    </block>
     <view class="select-wrap">
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{objectCityArray}}" range-key="name" class="picker-wrap">
         <view class="picker">

@@ -12,7 +12,6 @@ Page({
     needCates: [{
         id: 0,
         name: '高端人脉协助',
-        checked: true
       },
       {
         id: 1,
@@ -23,7 +22,8 @@ Page({
         name: '其他'
       }
     ],
-    needdate: ""
+    needdate: "",
+    needcate: ""
   },
 
   /**
@@ -42,15 +42,14 @@ Page({
 
   needCateRadioChange(e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
-    let dataId = e.detail.value
-
+    let dataName = e.detail.value
     const needCates = this.data.needCates
-    needCates.some((v, index) => {
-      if (v.id == dataId) {
-        v.checked = true
-        return true
-      }
+    needCates.forEach((v, index) => {
+      console.log(v);
       v.checked = false
+      if (v.name == dataName) {
+        v.checked = true
+      }
     })
     this.setData({
       needCates
