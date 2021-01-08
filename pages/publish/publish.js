@@ -1,66 +1,73 @@
+/*
+ * @Author: liweilong
+ * @Date: 2021-01-05 13:45:17
+ */
 // pages/publish/publish.js
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    needCates: [{
+        id: 0,
+        name: '高端人脉协助',
+        checked: true
+      },
+      {
+        id: 1,
+        name: '项目合作'
+      },
+      {
+        id: 2,
+        name: '其他'
+      }
+    ],
+    needdate: ""
+  },
 
-    },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
+  },
 
-    },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
+  },
 
-    },
+  needCateRadioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    let dataId = e.detail.value
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
+    const needCates = this.data.needCates
+    needCates.some((v, index) => {
+      if (v.id == dataId) {
+        v.checked = true
+        return true
+      }
+      v.checked = false
+    })
+    this.setData({
+      needCates
+    })
+  },
 
-    },
+  // 表单提交
+  needsubmit(e) {
+    console.log(e);
+  },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
+  // need date 
+  handleNeedDateChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      needdate: e.detail.value
+    })
+  } 
 
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

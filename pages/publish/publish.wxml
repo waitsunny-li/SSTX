@@ -1,37 +1,100 @@
 <view class="publish-top">
-  <view class="publish-support-con left active">
-    发布需求
-  </view>
+  <view class="publish-support-con left active">发布需求</view>
   <view class="logo">
     <image class="img" src="/icons/logo.png"></image>
     <image class="boimg" src="/icons/logo-text.png"></image>
   </view>
-  <view class="publish-support-con right">
-    发布人脉
-  </view>
+  <view class="publish-support-con right">发布人脉</view>
 </view>
-
 <!-- form begin -->
 <view class="publish-need">
   <form class="need-form" bindsubmit="needsubmit">
     <view class="name-input">
       <view class="label">
-        需求名称：<text class="iconfont"></text>
+        需求名称：
+        <text class="iconfont icon-required"></text>
       </view>
-      <input type="text" name="needname" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx"/>
+      <input type="text" name="needname" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx" />
     </view>
-    <view class="name-input">
+    <view class="radio-input">
       <view class="label">
-        需求类别：<text class="iconfont"></text>
+        需求类别：
+        <text class="iconfont icon-required"></text>
       </view>
-      <radio-group bindchange="needCateRadioChange">
-        <radio class="" value="" checked="true" color="">
-          高端人脉协助
-        </radio>
+      <radio-group bindchange="needCateRadioChange" class="radio-group" name="needcate">
+        <block wx:for="{{needCates}}" wx:key="id">
+          <radio class="need-cate-radio" value="{{item.id}}" checked="{{item.checked}}" color="#970d0d">
+            {{item.name}}
+          </radio>
+        </block>
       </radio-group>
-        
-        
     </view>
+    <!-- need content detail -->
+    <view class="need-content">
+      <view class="label">
+        需求详情内容：
+        <text class="iconfont icon-required"></text>
+        <view class="info">请按照真实情况填写，审核通过后将在平台发布</view>
+      </view>
+      <view class="need-content-textarea">
+        <textarea name="needcontent" id="" placeholder="例：我在海南省有15亿公路建设项目，已进入初期，距离结束时间30天。寻求高端人脉给予咨询协助对接。" placeholder-style="color: #cfcfcf"></textarea>
+      </view>
+    </view>
+    <!-- date -->
+    <view class="need-date-wrap">
+      <view class="label">
+        项目截止日：
+        <text class="iconfont icon-required"></text>
+      </view>
+      <picker class="need-date" mode="date" value="" name="needdate" bindchange="handleNeedDateChange">
+        <view class="picker">
+          <input type="date" value="{{needdate}}" name="needdate" placeholder="请选择项目截止时间" />
+        </view>
+      </picker>
+    </view>
+    <!-- report back -->
+    <view class="report-back">
+      <view class="label">
+        居间回报：
+        <text class="iconfont icon-required"></text>
+      </view>
+      <input type="text" name="report" placeholder="输入最低回报" />
+      万
+    </view>
+    <!-- user info begin -->
+    <view class="user-infomation">
+      <view class="user-item">
+        <view class="label">
+          姓名：
+          <text class="iconfont icon-required"></text>
+        </view>
+         <input type="text" name="username" value="" placeholder="请填写您的姓名" placeholder-style="font-size:26rpx" />
+      </view>
+      <view class="user-item">
+        <view class="label">
+          电话：
+          <text class="iconfont icon-required"></text>
+        </view>
+         <input type="text" name="tel" value="" placeholder="请输入手机号" placeholder-style="font-size:26rpx" />
+      </view>
+      <view class="user-item">
+        <view class="label">
+          行业：
+          <text class="iconfont icon-required"></text>
+        </view>
+         <input type="text" name="profession" value="" placeholder="请填写所属行业" placeholder-style="font-size:26rpx" />
+      </view>
+      <view class="user-item">
+        <view class="label">
+          地区：
+          <text class="iconfont icon-required"></text>
+        </view>
+         <input type="text" name="username" value="" placeholder="请填写您的姓名" placeholder-style="font-size:26rpx" />
+      </view>
+    </view>
+    <!-- user info end -->
+    <!-- btn -->
+    <button class="submit" type="primary" formType="submit">提交</button>
   </form>
 </view>
 <!-- form end -->
