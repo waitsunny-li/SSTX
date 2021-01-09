@@ -1,103 +1,290 @@
-<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}">
-  <view class="publish-top">
-    <view class="publish-support-con left active">发布需求</view>
-    <view class="logo">
-      <image class="img" src="/icons/logo.png"></image>
-      <image class="boimg" src="/icons/logo-text.png"></image>
-    </view>
-    <view class="publish-support-con right">发布人脉</view>
+<view class="publish-top">
+  <view class="publish-support-con left active">发布需求</view>
+  <view class="logo">
+    <image class="img" src="/icons/logo.png"></image>
+    <image class="boimg" src="/icons/logo-text.png"></image>
   </view>
-  <!-- form begin -->
-  <view class="publish-need">
-    <form class="need-form" bindsubmit="needsubmit">
-      <view class="name-input">
-        <view class="label">
-          需求名称：
-          <text class="iconfont icon-required"></text>
-        </view>
-        <input type="text" name="needname" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx" />
-      </view>
-      <view class="radio-input">
-        <view class="label">
-          需求类别：
-          <text class="iconfont icon-required"></text>
-        </view>
-        <radio-group bindchange="needCateRadioChange" class="radio-group" name="needcate">
-          <block wx:for="{{needCates}}" wx:key="id">
-            <radio class="need-cate-radio" value="{{item.name}}" checked="{{item.checked}}" color="#970d0d">
-              {{item.name}}
-            </radio>
-          </block>
-          <input type="text" class="other"/>
-        </radio-group>
-      </view>
-      <!-- need content detail -->
-      <view class="need-content">
-        <view class="label">
-          需求详情内容：
-          <text class="iconfont icon-required"></text>
-          <view class="info">请按照真实情况填写，审核通过后将在平台发布</view>
-        </view>
-        <view class="need-content-textarea">
-          <textarea name="needcontent" id="" placeholder="例：我在海南省有15亿公路建设项目，已进入初期，距离结束时间30天。寻求高端人脉给予咨询协助对接。" placeholder-style="color: #cfcfcf"></textarea>
-        </view>
-      </view>
-      <!-- date -->
-      <view class="need-date-wrap">
-        <view class="label">
-          项目截止日：
-          <text class="iconfont icon-required"></text>
-        </view>
-        <picker class="need-date" mode="date" value="" bindchange="handleNeedDateChange">
-          <view class="picker">
-            <input type="text" value="{{needdate}}" name="needdate" placeholder="请选择项目截止时间" />
+  <view class="publish-support-con right">发布人脉</view>
+</view>
+<!-- form begin -->
+<swiper class="swiper_art" current="{{currentIndex}}" bindchange="handleSwiperChange">
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="publish-need-con" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <view class="form-wrap">
+        <form class="need-form" bindsubmit="needsubmit">
+          <view class="name-input">
+            <view class="label">
+              需求名称：
+              <text class="iconfont icon-required"></text>
+            </view>
+            <input type="text" name="needname" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx" />
           </view>
-        </picker>
+          <view class="radio-input">
+            <view class="label">
+              需求类别：
+              <text class="iconfont icon-required"></text>
+            </view>
+            <radio-group bindchange="needCateRadioChange" class="radio-group" name="needcate">
+              <block wx:for="{{needCates}}" wx:key="id">
+                <radio class="need-cate-radio" value="{{item.name}}" checked="{{item.checked}}" color="#970d0d">
+                  {{item.name}}
+                </radio>
+              </block>
+              <input type="text" class="other" />
+            </radio-group>
+          </view>
+          <!-- need content detail -->
+          <view class="need-content">
+            <view class="label">
+              需求详情内容：
+              <text class="iconfont icon-required"></text>
+              <view class="info">请按照真实情况填写，审核通过后将在平台发布</view>
+            </view>
+            <view class="need-content-textarea">
+              <textarea name="needcontent" id="" placeholder="例：我在海南省有15亿公路建设项目，已进入初期，距离结束时间30天。寻求高端人脉给予咨询协助对接。" placeholder-style="color: #cfcfcf"></textarea>
+            </view>
+          </view>
+          <!-- date -->
+          <view class="need-date-wrap">
+            <view class="label">
+              项目截止日：
+              <text class="iconfont icon-required"></text>
+            </view>
+            <picker class="need-date" mode="date" value="" bindchange="handleNeedDateChange">
+              <view class="picker">
+                <input type="text" value="{{needdate}}" name="needdate" placeholder="请选择项目截止时间" />
+              </view>
+            </picker>
+          </view>
+          <!-- report back -->
+          <view class="report-back">
+            <view class="label">
+              居间回报：
+              <text class="iconfont icon-required"></text>
+            </view>
+            <input type="text" name="report" placeholder="输入最低回报" />
+            万
+          </view>
+          <!-- user info begin -->
+          <view class="user-infomation">
+            <view class="user-item">
+              <view class="label">
+                <text space="nbsp">姓  名：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <input type="text" name="username" value="" placeholder="请填写您的姓名" placeholder-style="font-size:26rpx" />
+            </view>
+            <view class="user-item">
+              <view class="label">
+                <text space="nbsp">电  话：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <input type="text" name="tel" value="" placeholder="请输入手机号" placeholder-style="font-size:26rpx" />
+            </view>
+            <view class="user-item">
+              <view class="label">
+                <text space="nbsp">行  业：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <input type="text" name="profession" value="" placeholder="请填写所属行业" placeholder-style="font-size:26rpx" />
+            </view>
+            <view class="user-item">
+              <view class="label">
+                <text space="nbsp">地  区：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <province-city isShowIcon="{{false}}" />
+            </view>
+          </view>
+          <!-- user info end -->
+          <!-- btn -->
+          <button class="submit" type="primary" formType="submit">提交</button>
+        </form>
       </view>
-      <!-- report back -->
-      <view class="report-back">
-        <view class="label">
-          居间回报：
-          <text class="iconfont icon-required"></text>
-        </view>
-        <input type="text" name="report" placeholder="输入最低回报" />
-        万
+    </scroll-view>
+  </swiper-item>
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="publish-need-con" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <view class="form-wrap-connec">
+        <form class="connection-form" bindsubmit="connecsubmit">
+          <!-- display -->
+          <view class="display-front">
+            <vie class="header-title">前台展示简要信息：</vie>
+            <view class="content">
+              <view class="text">我有</view>
+              <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
+              <view class="text">优秀领导朋友，可以为</view>
+              <input type="text" name="frontposition" class="front-city" placeholder="请填写行业" />
+              <view class="text">行业符合政策规定的招商引资项目做引荐，欢迎洽谈，来为我们</view>
+              <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
+              <view class="text">做贡献。</view>
+            </view>
+          </view>
+          <!-- no display -->
+          <view class="connec-fo">
+            <view class="head-title">后台详细信息： （加密不展示 仅供内部参考）</view>
+            <view class="name-input">
+              <view class="label">
+                <text space="nbsp">人脉所在单位：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <input type="text" name="needname" value="" placeholder="请填写人脉所在单位" placeholder-style="font-size:26rpx" />
+            </view>
+            <view class="name-input">
+              <view class="label">
+                <text space="emsp">具体职务：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <input type="text" name="position" value="" placeholder="职务平台不展示" placeholder-style="font-size:26rpx" />
+            </view>
+            <!-- location -->
+            <view class="name-input">
+              <view class="label">
+                <text space="emsp">所在地区：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <province-city isShowIcon="{{false}}" style="width: 180rpx" />
+            </view>
+            <!-- cate -->
+            <view class="radio-cate-input">
+              <view class="label">
+                可提供哪类帮助：
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="needcate">
+                <block wx:for="{{conCates}}" wx:key="id">
+                  <radio class="need-cate-radio" value="{{item.name}}" checked="{{item.checked}}" color="#970d0d">
+                    {{item.name}}
+                  </radio>
+                </block>
+                <text class="ti">其他：</text>
+                <input type="text" class="other" />
+              </radio-group>
+            </view>
+            <!-- report -->
+            <view class="radio-report-input">
+              <view class="label">
+                选对方回报方式：
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">面谈</radio>
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">项目一定比例</radio>
+              </radio-group>
+            </view>
+            <!-- thanks -->
+            <view class="radio-thanks-input">
+              <view class="label">
+                <text space="emsp">怎样感谢平台：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group class="radio-group" name="thanks">
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">一定比例佣金</radio>
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">为平台贡献资源</radio>
+              </radio-group>
+            </view>
+            <!-- relation -->
+            <view class="radio-relation-input">
+              <view class="label">
+                与人脉关系程度：
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">一般</radio>
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">好</radio>
+                <radio class="need-cate-radio" value="2" checked="" color="#970d0d">非常好</radio>
+              </radio-group>
+            </view>
+            <!-- photo -->
+            <view class="radio-photo-input">
+              <view class="label">
+                <text space="emsp">有无合影：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
+              </radio-group>
+              <!-- upload -->
+              <view class="upload_wrap">
+                <view class="button">
+                  <text class="iconfont icon-shangchuan"></text>
+                  上传
+                </view>
+                <view class="info">给予保密</view>
+              </view>
+            </view>
+            <!-- tel -->
+            <view class="radio-tel-input">
+              <view class="label">
+                <text space="emsp">有无电话：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
+              </radio-group>
+            </view>
+            <!-- weixin -->
+            <view class="radio-tel-input">
+              <view class="label">
+                <text space="emsp">有无微信：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
+              </radio-group>
+            </view>
+            <!-- auth -->
+            <view class="radio-tel-input">
+              <view class="label">
+                <text space="emsp">是否信誉认证：</text>
+                <text class="iconfont icon-required"></text>
+              </view>
+              <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">
+                <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
+                <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
+              </radio-group>
+            </view>
+            <!-- date -->
+            <view class="con-date-wrap">
+              <view class="label">
+                预约实地认证：
+                <text class="iconfont icon-required"></text>
+              </view>
+              <picker class="need-date" mode="date" value="" bindchange="handleNeedDateChange">
+                <view class="picker">
+                  <input type="text" value="{{needdate}}" name="needdate" placeholder="请选择项目截止时间" />
+                </view>
+              </picker>
+            </view>
+          </view>
+          <!-- info text begin -->
+          <view class="info-text-wrap">
+            <view class="info-top">提示：信誉认证后可拥有“诚信勋章”以及信誉五星等级展示权限，将优先获得全平台高端对接机会。</view>
+            <view class="star-info">
+              <view class="top-icon">
+                <text class="text">会</text>
+                <text class="iconfont icon-chengxin"></text>
+              </view>
+              +
+              <view class="top-icon">
+                <text class="text">置</text>
+                <text class="iconfont icon-hot"></text>
+              </view>
+              +
+              <star class="star" color="#ffd52e" size="38rpx" number="{{5}}" width="{{240}}" />
+            </view>
+            <view class="bo-info">不认证，将不显示以上信誉权限，可能会错失一些优质合作机会。</view>
+            <view class="tel-info">选择信誉认证  请致电：400 001 6988</view>
+          </view>
+          <!-- info text end -->
+          <!-- btn -->
+          <button class="submit" type="primary" formType="submit">提交审核</button>
+        </form>
       </view>
-      <!-- user info begin -->
-      <view class="user-infomation">
-        <view class="user-item">
-          <view class="label">
-            <text space="nbsp">姓  名：</text>
-            <text class="iconfont icon-required"></text>
-          </view>
-          <input type="text" name="username" value="" placeholder="请填写您的姓名" placeholder-style="font-size:26rpx" />
-        </view>
-        <view class="user-item">
-          <view class="label">
-            <text space="nbsp">电  话：</text>
-            <text class="iconfont icon-required"></text>
-          </view>
-          <input type="text" name="tel" value="" placeholder="请输入手机号" placeholder-style="font-size:26rpx" />
-        </view>
-        <view class="user-item">
-          <view class="label">
-            <text space="nbsp">行  业：</text>
-            <text class="iconfont icon-required"></text>
-          </view>
-          <input type="text" name="profession" value="" placeholder="请填写所属行业" placeholder-style="font-size:26rpx" />
-        </view>
-        <view class="user-item">
-          <view class="label">
-            <text space="nbsp">地  区：</text>
-            <text class="iconfont icon-required"></text>
-          </view>
-          <province-city isShowIcon="{{false}}"/>
-        </view>
-      </view>
-      <!-- user info end -->
-      <!-- btn -->
-      <button class="submit" type="primary" formType="submit">提交</button>
-    </form>
-  </view>
-  <!-- form end -->
-</scroll-view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+<!-- form end -->

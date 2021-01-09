@@ -74,6 +74,7 @@
   </view>
   <!-- project / connection item begin -->
   <view class="project-connection-wrap">
+    <project-item />
     <connection-item number="{{2}}" />
     <connection-item number="{{4}}" />
     <connection-item number="{{4}}" />
@@ -85,3 +86,4 @@
 
   </view>
 </scroll-view>
+

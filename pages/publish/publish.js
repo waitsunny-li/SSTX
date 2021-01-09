@@ -23,7 +23,19 @@ Page({
       }
     ],
     needdate: "",
-    needcate: ""
+    needcate: "",
+
+    // pub connection
+    conCates: [{
+        id: 0,
+        name: '工程类',
+      },
+      {
+        id: 1,
+        name: '招商类'
+      },
+    ],
+    currentIndex: 1
   },
 
   /**
@@ -36,8 +48,13 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
+  onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+    }
   },
 
   needCateRadioChange(e) {
@@ -67,6 +84,6 @@ Page({
     this.setData({
       needdate: e.detail.value
     })
-  } 
+  }
 
 })

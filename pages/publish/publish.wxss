@@ -7,6 +7,7 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #ffffff;
 }
 .publish-top .publish-support-con {
   width: 200rpx;
@@ -38,27 +39,42 @@ page {
   width: 70rpx;
   height: 30rpx;
 }
-.publish-need {
+.swiper_art {
   width: 100vw;
+  height: calc(100vh - 220rpx);
+}
+.swiper_art .swiper_art_item {
+  width: 100vw;
+  height: 100%;
+}
+.publish-need-con {
+  width: 100vw;
+  height: calc(100vh - 220rpx);
+}
+.publish-need-con .form-wrap {
+  width: 100%;
   padding: 30rpx;
   box-sizing: border-box;
 }
-.publish-need .need-form .iconfont {
+.publish-need-con .need-form .iconfont {
   color: var(--themeColor);
   margin-right: 20rpx;
 }
-.publish-need .need-form .label {
+.publish-need-con .need-form .label {
   font-size: 30rpx;
   color: #000000;
 }
-.publish-need .need-form .name-input {
+.publish-need-con .need-form .name-input {
   width: 100%;
   height: 90rpx;
   display: flex;
   align-items: center;
   margin-top: 20rpx;
 }
-.publish-need .need-form .name-input input {
+.publish-need-con .need-form .name-input text {
+  font-size: 30rpx;
+}
+.publish-need-con .need-form .name-input input {
   width: 400rpx;
   height: 60rpx;
   padding: 10rpx 20rpx;
@@ -67,45 +83,67 @@ page {
   font-size: 28rpx;
   border-radius: 10rpx;
 }
-.publish-need .need-form .radio-input {
+.publish-need-con .need-form .radio-input {
   width: 100%;
   height: 130rpx;
   display: flex;
   margin-top: 20rpx;
 }
-.publish-need .need-form .radio-input .label {
+.publish-need-con .need-form .radio-input .label {
   font-size: 30rpx;
   color: #000000;
 }
-.publish-need .need-form .radio-input .radio-group {
+.publish-need-con .need-form .radio-input .radio-group {
   width: 70%;
   display: flex;
   flex-wrap: wrap;
 }
-.publish-need .need-form .radio-input .radio-group .need-cate-radio {
+.publish-need-con .need-form .radio-input .radio-group .need-cate-radio {
   margin-right: 20rpx;
   margin-bottom: 20rpx;
 }
-.publish-need .need-form .radio-input .radio-group .other {
+.publish-need-con .need-form .radio-input .radio-group .other {
   width: 280rpx;
   padding: 0 10rpx;
   box-sizing: border-box;
   height: 50rpx;
   border-bottom: 1px solid #bbbbbb;
 }
-.publish-need .need-form .need-content .label {
+.publish-need-con .need-form .radio-input .upload_wrap {
+  width: 320rpx;
+  display: flex;
+}
+.publish-need-con .need-form .radio-input .upload_wrap .button {
+  width: 150rpx;
+  border: 1px solid #bbbbbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  background-color: #dfdddd;
+  font-size: 26rpx;
+}
+.publish-need-con .need-form .radio-input .upload_wrap .iconfont {
+  color: #acacac;
+  margin-right: 0;
+}
+.publish-need-con .need-form .radio-input .upload_wrap .info {
+  color: #bbbbbb;
+  font-size: 24rpx;
+}
+.publish-need-con .need-form .need-content .label {
   width: 100%;
   display: flex;
   align-items: center;
 }
-.publish-need .need-form .need-content .label .info {
+.publish-need-con .need-form .need-content .label .info {
   color: #cfcfcf;
   font-size: 20rpx;
 }
-.publish-need .need-form .need-content .need-content-textarea {
+.publish-need-con .need-form .need-content .need-content-textarea {
   margin-top: 10rpx;
 }
-.publish-need .need-form .need-content .need-content-textarea textarea {
+.publish-need-con .need-form .need-content .need-content-textarea textarea {
   width: 100%;
   height: 200rpx;
   border: 1px solid #acacac;
@@ -113,19 +151,19 @@ page {
   padding: 20rpx;
   box-sizing: border-box;
 }
-.publish-need .need-form .need-date-wrap {
+.publish-need-con .need-form .need-date-wrap {
   margin-top: 20rpx;
   width: 100%;
   height: 90rpx;
   display: flex;
   align-items: center;
 }
-.publish-need .need-form .need-date-wrap .need-date {
+.publish-need-con .need-form .need-date-wrap .need-date {
   width: 60%;
   display: flex;
   align-items: center;
 }
-.publish-need .need-form .report-back {
+.publish-need-con .need-form .report-back {
   width: 100%;
   height: 90rpx;
   display: flex;
@@ -133,7 +171,7 @@ page {
   margin-top: 20rpx;
   margin-bottom: 30rpx;
 }
-.publish-need .need-form .report-back input {
+.publish-need-con .need-form .report-back input {
   width: 300rpx;
   height: 60rpx;
   padding: 10rpx 20rpx;
@@ -143,7 +181,7 @@ page {
   border-radius: 10rpx;
   margin-right: 20rpx;
 }
-.publish-need .need-form .user-infomation {
+.publish-need-con .need-form .user-infomation {
   margin-top: 50rpx;
   width: 90vw;
   padding: 20rpx 30rpx;
@@ -152,13 +190,13 @@ page {
   background-color: #f4f4f4;
   border-radius: 20rpx;
 }
-.publish-need .need-form .user-infomation .user-item {
+.publish-need-con .need-form .user-infomation .user-item {
   width: 100%;
   height: 90rpx;
   display: flex;
   align-items: center;
 }
-.publish-need .need-form .user-infomation .user-item input {
+.publish-need-con .need-form .user-infomation .user-item input {
   width: 400rpx;
   height: 60rpx;
   padding: 10rpx 20rpx;
@@ -167,7 +205,346 @@ page {
   font-size: 28rpx;
   border-radius: 10rpx;
 }
-.publish-need .need-form .submit {
+.publish-need-con .need-form .submit {
+  margin-top: 50rpx;
+  width: 100%;
+  height: 80rpx;
+  background-color: var(--assColor);
+}
+.publish-need-con .form-wrap-connec {
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.publish-need-con .form-wrap-connec .connec-fo {
+  width: 100%;
+  padding: 0 20rpx 20rpx 20rpx;
+  box-sizing: border-box;
+  border: 1px solid #bbbbbb;
+  border-radius: 10rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front {
+  width: 100%;
+  padding: 0 20rpx 20rpx 20rpx;
+  box-sizing: border-box;
+  border: 1px solid #bbbbbb;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front .header-title {
+  width: 100%;
+  padding-top: 20rpx;
+  display: flex;
+  align-items: center;
+  color: var(--assColor);
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front .content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front .content .front-city {
+  width: 160rpx;
+  border-bottom: 1px solid #bbbbbb;
+}
+.publish-need-con .form-wrap-connec .connection-form .head-title {
+  width: 100%;
+  padding-top: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--assColor);
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .iconfont {
+  color: var(--themeColor);
+  margin-right: 20rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .label {
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .name-input {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .name-input text {
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .name-input input {
+  width: 350rpx;
+  height: 60rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border: 1px solid #bbbbbb;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-cate-input {
+  width: 100%;
+  height: 130rpx;
+  display: flex;
+  margin-top: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-cate-input .label {
+  width: 360rpx;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-cate-input .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-cate-input .radio-group {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-cate-input .radio-group .need-cate-radio {
+  margin-right: 10rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  width: 160rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-cate-input .radio-group .other {
+  width: 220rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  height: 50rpx;
+  border-bottom: 1px solid #bbbbbb;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-report-input {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 130rpx;
+  display: flex;
+  margin-top: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-report-input .label {
+  width: 360rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-report-input .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-report-input .radio-group {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-report-input .radio-group .need-cate-radio {
+  margin-right: 10rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-thanks-input {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 130rpx;
+  display: flex;
+  margin-top: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-thanks-input .label {
+  width: 360rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-thanks-input .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-thanks-input .radio-group {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-thanks-input .radio-group .need-cate-radio {
+  margin-right: 10rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-relation-input {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 130rpx;
+  display: flex;
+  margin-top: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-relation-input .label {
+  width: 360rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-relation-input .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-relation-input .radio-group {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-relation-input .radio-group .need-cate-radio {
+  margin-right: 50rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 60rpx;
+  display: flex;
+  margin-top: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .label {
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .radio-group {
+  width: 300rpx;
+  display: flex;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .radio-group .need-cate-radio {
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .upload_wrap {
+  width: 350rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .upload_wrap .button {
+  width: 120rpx;
+  height: 50rpx;
+  border: 1px solid #bbbbbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  background-color: #dfdddd;
+  font-size: 26rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .upload_wrap .iconfont {
+  color: #acacac;
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-photo-input .upload_wrap .info {
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #bbbbbb;
+  font-size: 26rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-tel-input {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 60rpx;
+  display: flex;
+  margin-top: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-tel-input .label {
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-tel-input .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-tel-input .radio-group {
+  width: 250rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.publish-need-con .form-wrap-connec .connection-form .radio-tel-input .radio-group .need-cate-radio {
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .con-date-wrap {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+}
+.publish-need-con .form-wrap-connec .connection-form .con-date-wrap .label {
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .con-date-wrap .label .iconfont {
+  margin-right: 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .con-date-wrap .need-date {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap {
+  width: 100%;
+  padding: 20rpx 0;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .info-top {
+  color: #000000;
+  font-size: 30rpx;
+  text-indent: 40rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .star-info {
+  width: 500rpx;
+  margin: 0 auto;
+  display: flex;
+  color: #bbbbbb;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .star-info .top-icon {
+  position: relative;
+  width: 120rpx;
+  background-color: #efbf00;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .star-info .top-icon .text {
+  color: #000000;
+  font-size: 25rpx;
+  font-weight: 700;
+  margin-right: 25rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .star-info .top-icon .iconfont {
+  position: absolute;
+  top: -15rpx;
+  right: -10rpx;
+  font-size: 40rpx;
+  color: var(--themeColor);
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .bo-info {
+  padding: 20rpx 0;
+  text-indent: 40rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .info-text-wrap .tel-info {
+  text-indent: 40rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .submit {
   margin-top: 50rpx;
   width: 100%;
   height: 80rpx;

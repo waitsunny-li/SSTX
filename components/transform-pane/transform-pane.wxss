@@ -1,0 +1,13 @@
+.swiper_art {
+  width: 100vw;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+  height: 830rpx;
+}
+.swiper_art .swiper_art_item {
+  width: 100%;
+}
+.swiper_art .swiper_art_item .swiper-scroll {
+  width: 100%;
+  height: 100%;
+}

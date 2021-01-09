@@ -19,24 +19,27 @@ Component({
     point: {
       type: Number,
       value: 4
+    },
+    currentIndex: {
+      type: Number,
+      value: 0
     }
   },
 
   /**
    * 组件的初始数据
    */
-  data: {
-    currentIndex: 0
-  },
+  data: {},
 
   /**
    * 组件的方法列表
    */
   methods: {
     handleTab(e) {
-      console.log(e);
-      let {index} = e.currentTarget.dataset
-      this.setData({
+      let {
+        index
+      } = e.currentTarget.dataset
+      this.triggerEvent("listhenTapCurrent", {
         currentIndex: index
       })
     }

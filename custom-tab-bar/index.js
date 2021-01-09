@@ -2,6 +2,9 @@
  * @Author: liweilong
  * @Date: 2020-11-18 10:37:47
  */
+import {
+  Event
+} from '../utils/event';
 Component({
   data: {
     selected: 0,
@@ -42,10 +45,12 @@ Component({
   },
   methods: {
     switchTab(e) {
-      const data = e.currentTarget.dataset
-      const url = data.path
+      const {
+        path,
+        index
+      } = e.currentTarget.dataset
       wx.switchTab({
-        url
+        url: path
       })
     }
   }

@@ -5,7 +5,8 @@
     "province-city": "/components/province-city/province-city",
     "title-tab": "/components/title-tab/title-tab",
     "project-item": "/components/project-item/project-item",
-    "connection-item": "/components/connection-item/connection-item"
+    "connection-item": "/components/connection-item/connection-item",
+    "custom-tab-bar": "/custom-tab-bar/index"
   },
   "navigationBarTitleText": "首页"
 }

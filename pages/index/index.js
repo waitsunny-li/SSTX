@@ -95,6 +95,10 @@ Page({
   // scroll bottom
   handletolower(e) {
 
+  },
+
+  handleClickPub(e) {
+    console.log('点击发布');
   }
 
 });
