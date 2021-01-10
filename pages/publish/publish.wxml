@@ -1,10 +1,10 @@
 <view class="publish-top">
-  <view class="publish-support-con left active">发布需求</view>
+  <view class="publish-support-con left {{currentIndex == 0 ? 'active' : ''}}" bind:tap="handleTapNeed" data-cate="{{pubCatesList[0]}}">{{pubCatesList[0].name}}</view>
   <view class="logo">
     <image class="img" src="/icons/logo.png"></image>
     <image class="boimg" src="/icons/logo-text.png"></image>
   </view>
-  <view class="publish-support-con right">发布人脉</view>
+  <view class="publish-support-con right {{currentIndex == 1 ? 'active' : ''}}" bind:tap="handleTapConnection" data-cate="{{pubCatesList[1]}}">{{pubCatesList[1].name}}</view>
 </view>
 <!-- form begin -->
 <swiper class="swiper_art" current="{{currentIndex}}" bindchange="handleSwiperChange">
@@ -111,11 +111,11 @@
           <view class="display-front">
             <vie class="header-title">前台展示简要信息：</vie>
             <view class="content">
-              <view class="text">我有</view>
+              <view class="text line-1">我有</view>
               <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
               <view class="text">优秀领导朋友，可以为</view>
-              <input type="text" name="frontposition" class="front-city" placeholder="请填写行业" />
-              <view class="text">行业符合政策规定的招商引资项目做引荐，欢迎洽谈，来为我们</view>
+              <input type="text" name="frontposition" class="front-position" placeholder="请填写行业" />
+              行业符合政策规定的招商引资项目做<view class="text">引荐，欢迎洽谈，来为我们</view>
               <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
               <view class="text">做贡献。</view>
             </view>

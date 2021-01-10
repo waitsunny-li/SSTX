@@ -1,0 +1,37 @@
+.top-tips {
+  // display: none;
+  position: fixed;
+  transform: translateZ(0);
+  transition: 0.3s;
+  top: -80rpx;
+  left: 16rpx;
+  right: 16rpx;
+  padding: 20rpx;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  z-index: 500;
+}
+
+.toptips_show {
+  display: block;
+  top: 16rpx;
+  left: 16rpx;
+  right: 16rpx;
+  -webkit-transform: translateZ(0) translateY(0);
+  transform: translateZ(0) translateY(0);
+  opacity: 1;
+}
+
+.success {
+  background-color: rgb(25, 178, 10);
+}
+
+.error {
+  background-color: rgb(242, 74, 77);
+}
+
+.info {
+  background-color: rgb(24, 156, 254);
+}

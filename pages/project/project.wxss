@@ -1,1 +1,24 @@
-/* pages/project/project.wxss */
+.top-header {
+  width: 100vw;
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+.top-header .top-wrap {
+  width: 70rpx;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.top-header .top-wrap .logo {
+  width: 100%;
+  height: 70rpx;
+}
+.top-header .top-wrap .bo-logo {
+  width: 100%;
+  height: 30rpx;
+}

@@ -3,6 +3,7 @@ page {
 }
 .publish-top {
   width: 100vw;
+  height: 120rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -11,18 +12,19 @@ page {
 }
 .publish-top .publish-support-con {
   width: 200rpx;
-  height: 80rpx;
+  height: 100rpx;
   color: #ffffff;
   display: flex;
   background-color: #c2bfbf;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
 }
 .publish-top .left {
-  border-radius: 0 40rpx 40rpx 0;
+  border-radius: 0 50rpx 50rpx 0;
 }
 .publish-top .right {
-  border-radius: 40rpx 0 0 40rpx;
+  border-radius: 50rpx 0 0 50rpx;
 }
 .publish-top .active {
   background-color: var(--themeColor);
@@ -234,6 +236,7 @@ page {
 .publish-need-con .form-wrap-connec .connection-form .display-front .header-title {
   width: 100%;
   padding-top: 20rpx;
+  padding-bottom: 20rpx;
   display: flex;
   align-items: center;
   color: var(--assColor);
@@ -242,9 +245,23 @@ page {
 .publish-need-con .form-wrap-connec .connection-form .display-front .content {
   display: flex;
   flex-wrap: wrap;
+  font-size: 30rpx;
 }
 .publish-need-con .form-wrap-connec .connection-form .display-front .content .front-city {
   width: 160rpx;
+  text-align: center;
+  border-bottom: 1px solid #bbbbbb;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front .content .line-1 {
+  text-indent: 100rpx;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front .content .text {
+  font-size: 30rpx;
+  color: #000000;
+}
+.publish-need-con .form-wrap-connec .connection-form .display-front .content .front-position {
+  width: 160rpx;
+  text-align: center;
   border-bottom: 1px solid #bbbbbb;
 }
 .publish-need-con .form-wrap-connec .connection-form .head-title {

@@ -3,7 +3,7 @@
     "province-city": "/components/province-city/province-city",
     "star": "/components/star/star"
   },
-  "navigationBarTitleText": "发布",
+  "navigationBarTitleText": "发布需求",
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black"
 }

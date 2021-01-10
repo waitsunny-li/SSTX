@@ -1,2 +1,10 @@
-<!--pages/project/project.wxml-->
-<text>pages/project/project.wxml</text>
+<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
+  <view class="top-header">
+    <view class="top-wrap">
+      <image class="logo" src="/icons/logo.png"></image>
+      <image class="bo-logo" src="/icons/logo-text.png"></image>
+    </view>
+  </view>
+
+  <title-tab />
+</scroll-view>

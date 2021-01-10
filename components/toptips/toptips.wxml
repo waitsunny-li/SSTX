@@ -1,0 +1,3 @@
+<view class="top-tips {{className}} {{show ? 'toptips_show' : ''}}">
+  {{msg}}
+</view>

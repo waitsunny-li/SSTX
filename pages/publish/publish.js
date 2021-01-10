@@ -9,6 +9,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentIndex: 0,
+    pubCatesList: [
+      {
+        index: 0,
+        name: '发布需求'
+      },
+      {
+        index: 1,
+        name: '发布人脉'
+      },
+    ],
     needCates: [{
         id: 0,
         name: '高端人脉协助',
@@ -34,8 +45,7 @@ Page({
         id: 1,
         name: '招商类'
       },
-    ],
-    currentIndex: 1
+    ]
   },
 
   /**
@@ -83,6 +93,43 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       needdate: e.detail.value
+    })
+  },
+
+  // swiper change 
+  handleSwiperChange(e) {
+    let currentIndex = e.detail.current
+    if (currentIndex == 0) {
+      wx.setNavigationBarTitle({
+        title: '发布需求',
+      });
+    } else {
+      wx.setNavigationBarTitle({
+        title: '发布人脉',
+      });
+    }
+    this.setData({
+      currentIndex
+    })
+  },
+  // top cates tap
+  handleTapNeed(e) {
+    let {index, name} = e.currentTarget.dataset.cate
+    wx.setNavigationBarTitle({
+      title: name,
+    });
+      
+    this.setData({
+      currentIndex: index
+    })
+  },
+  handleTapConnection(e) {
+    let {index, name} = e.currentTarget.dataset.cate
+    wx.setNavigationBarTitle({
+      title: name,
+    });
+    this.setData({
+      currentIndex: index
     })
   }
 
