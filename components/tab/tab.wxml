@@ -1,8 +1,8 @@
 <view class="tab-wrap">
   <block wx:for="{{tabList}}" wx:key="id">
     <view class="tab-item {{currentIndex == index ? 'active' : ''}}" style="width:{{100 / tabList.length}}vw;height:{{height}}rpx" bind:tap="handleTab" data-index="{{index}}">
-      <text class="iconfont {{item.icon ? item.icon : ''}}"></text>
-      <view class="tab-text {{index == point ? 'point' : ''}}">{{item.name}}</view>
+      <text class="iconfont {{item.icon ? item.icon : ''}} text-class"></text>
+      <view class="tab-text {{index == point ? 'point' : ''}} text-class">{{item.name}}</view>
     </view>
   </block>
 </view>

@@ -1,1 +1,70 @@
-/* pages/good/good.wxss */
+.header-top {
+  width: 100vw;
+  height: 160rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #970d0d;
+}
+.header-top .left-top {
+  width: 100rpx;
+  height: 130rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-top .left-top .img {
+  width: 80rpx;
+  height: 80rpx;
+}
+.header-top .left-top .header-text {
+  width: 100rpx;
+  height: 37rpx;
+}
+.header-top .right-text {
+  margin-left: 50rpx;
+  color: #ffffff;
+  font-size: 35rpx;
+  font-weight: 700;
+}
+.tab {
+  width: 100vw;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+.tab .tab-text {
+  font-weight: 800 !important;
+}
+.swiper_art {
+  width: 100vw;
+  box-sizing: border-box;
+  height: calc(100vh - 280rpx);
+}
+.swiper_art .swiper_art_item {
+  width: 100%;
+}
+.swiper_art .swiper_art_item .swiper-scroll {
+  width: 100%;
+  height: 100%;
+}
+.swiper_art .swiper_art_item .swiper-scroll .good_business {
+  width: 100vw;
+}
+.swiper_art .swiper_art_item .swiper-scroll .good_business .good-swiper {
+  width: 100%;
+  height: 300rpx;
+}
+.swiper_art .swiper_art_item .swiper-scroll .good_business .good-swiper .good-swiper-item {
+  width: 100%;
+  height: 300rpx;
+}
+.swiper_art .swiper_art_item .swiper-scroll .good_business .good-swiper .good-swiper-item .good-swiper-navigator {
+  width: 100%;
+  height: 100%;
+}
+.swiper_art .swiper_art_item .swiper-scroll .good_business .good-swiper .good-swiper-item .good-swiper-navigator image {
+  width: 100%;
+  height: 100%;
+}

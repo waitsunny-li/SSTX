@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "title-tab": "/components/title-tab/title-tab"
-  },
-  "navigationBarTitleText": "项目库",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
-}

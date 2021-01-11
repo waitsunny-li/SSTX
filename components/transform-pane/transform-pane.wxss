@@ -1,8 +1,7 @@
 .swiper_art {
   width: 100vw;
-  padding-top: 20rpx;
   box-sizing: border-box;
-  height: 830rpx;
+  height: calc(100vh - 400rpx);
 }
 .swiper_art .swiper_art_item {
   width: 100%;

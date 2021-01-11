@@ -7,6 +7,7 @@ Component({
   /**
    * 组件的属性列表
    */
+  externalClasses: ['ext-class'],
   properties: {
     tabList: {
       type: Array,
@@ -16,13 +17,13 @@ Component({
         },
         {
           id: 1,
-          name: '高端项目'
+          name: '高端人脉'
         }
       ]
     },
     width: {
-      type: Number,
-      value: 500
+      type: String,
+      value: "500rpx"
     },
     initLeft: {
       type: String,
@@ -38,14 +39,26 @@ Component({
     left: ""
   },
 
+  attached() {
+    const data = this.data.tabList
+    this.setData({
+      tabList: data
+    })
+  },
+
   /**
    * 组件的方法列表
    */
   methods: {
     handleTitleTab(e) {
-      console.log(e);
       // let {index} = e.currentTarget.dataset
       let left = e.currentTarget.offsetLeft + 'px'
+      let index = e.currentTarget.dataset.index
+      console.log(this.data.tabList);
+      this.triggerEvent('cateChange', {
+        index: index,
+        cate: this.data.tabList[index].name
+      })
       this.setData({
         left
       })

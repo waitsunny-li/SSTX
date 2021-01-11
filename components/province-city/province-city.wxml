@@ -1,4 +1,4 @@
-<view class="location-wrap">
+<view class="location-wrap ext-class">
   <view class="left-location">
     <block wx:if="{{isShowIcon}}">
       <text class="iconfont icon-dingwei"></text>

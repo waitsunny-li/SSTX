@@ -57,7 +57,7 @@
     <!-- location end -->
     <!-- title tab begin -->
     <view class="title-tab-wrap">
-      <title-tab width="{{480}}" initLeft="54rpx"></title-tab>
+      <title-tab width="480rpx" initLeft="54rpx" ext-class="default"></title-tab>
       <view class="project-connection">
         <navigator class="item">
           <text class="iconfont icon-xiangmu"></text>

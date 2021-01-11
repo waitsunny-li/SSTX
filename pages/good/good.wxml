@@ -1,2 +1,75 @@
-<!--pages/good/good.wxml-->
-<text>pages/good/good.wxml</text>
+<!-- top begin -->
+<view class="header-top">
+  <view class="left-top">
+    <image class="img" src="/icons/logo.png"></image>
+    <image class="header-text" src="/icons/logo-text.png"></image>
+  </view>
+  <view class="right-text">善学堂</view>
+</view>
+<!-- top end -->
+<!-- tab begin -->
+<view class="tab {{ishowtabs ? 'tabposition' : ''}}">
+  <tab tabList="{{tabList}}" bind:listhenTapCurrent="handleChangeCurrent" currentIndex="{{currentIndex}}" text-class="tab-text" />
+</view>
+<!-- tab end -->
+<!-- content begin -->
+<swiper class="swiper_art" current="{{currentIndex}}" bindchange="handleSwiperChange">
+  <!-- 儒家文化 -->
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <view style="padding-bottom:60rpx">
+        <block wx:for="{{videoList}}" wx:key="index">
+          <video-item />
+        </block>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 善商会 -->
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <view class="good_business">
+        <!-- index banner begin -->
+        <swiper class="good-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
+          <swiper-item class="good-swiper-item">
+            <navigator class="good-swiper-navigator">
+              <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false" />
+            </navigator>
+          </swiper-item>
+          <swiper-item class="good-swiper-item">
+            <navigator class="good-swiper-navigator">
+              <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
+            </navigator>
+          </swiper-item>
+        </swiper>
+        <!-- index banner end -->
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 励志人生 -->
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <view style="padding-bottom:60rpx">
+        <block wx:for="{{videoList}}" wx:key="index">
+          <video-item />
+        </block>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 精选文章 -->
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <view style="padding-bottom:60rpx">
+        <block wx:for="{{videoList}}" wx:key="index">
+          <video-item />
+        </block>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 善商榜 -->
+  <swiper-item class="swiper_art_item">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      善商榜
+    </scroll-view>
+  </swiper-item>
+</swiper>
+<!-- content end -->

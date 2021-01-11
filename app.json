@@ -2,9 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/support/support",
-    "pages/project/project",
     "pages/publish/publish",
-    "pages/connection/connection",
     "pages/proconnection/proconnection",
     "pages/good/good",
     "pages/profile/profile" ,

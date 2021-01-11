@@ -4,6 +4,7 @@
  */
 // components/tab/tab.js
 Component({
+  externalClasses: ['text-class'],
   /**
    * 组件的属性列表
    */

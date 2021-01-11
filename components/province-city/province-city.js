@@ -6,6 +6,7 @@ import {
   request
 } from '../../request/index';
 Component({
+  externalClasses: ['ext-class'],
   // 生命周期
   lifetimes: {
     async attached() {
