@@ -79,6 +79,136 @@
             }
           }
         }
+
+        .join-wrap {
+          width: 100vw;
+          height: 120rpx;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .join {
+            width: 340rpx;
+            height: 60rpx;
+            background-color: var(--assColor);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 40rpx;
+            font-size: 26rpx;
+            color: #ffffff;
+          }
+        }
+
+        // location city
+        .top-cate-wrap {
+          width: 100vw;
+
+          // location begin
+          .register-number {
+            width: 33%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .number-wrap {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              font-size: 25rpx;
+              color: #555555;
+
+              .number {
+                color: #e1211f;
+                font-size: 25rpx;
+              }
+            }
+          }
+        }
+
+        .catefixed {
+          position: fixed;
+          width: 100vw;
+          top: 0;
+          left: 0;
+          background-color: #ffffff;
+          z-index: 1000;
+        }
+
+        // location content
+        .location-content {
+          width: 100vw;
+          padding: 40rpx;
+          box-sizing: border-box;
+
+          .location-item {
+            width: 100%;
+            padding: 30rpx 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .left-item {
+              margin-right: 20rpx;
+
+              .iconfont {
+                font-size: 40rpx;
+                color: rgb(166, 166, 166);
+              }
+            }
+
+            .right-item {
+              .title {
+                font-size: 30rpx;
+                color: #000000;
+              }
+
+              .detail {
+                margin-top: 10rpx;
+                color: #999999;
+                font-size: 24rpx;
+              }
+            }
+          }
+        }
+      }
+
+      // 善商榜
+      .good-example {
+        width: 100%;
+
+        .title-tab {
+          width: 100vw;
+          padding: 30rpx;
+          box-sizing: border-box;
+          display: flex;
+
+          .active {
+            color: var(--assColor) !important;
+
+            .line {
+              background-color: var(--assColor) !important;
+            }
+          }
+
+          .title-item {
+            margin-right: 50rpx;
+            color: rgba(45, 45, 45, 1);
+            font-size: 28rpx;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .line {
+              width: 20rpx;
+              height: 6rpx;
+              border-radius: 10rpx;
+              background-color: transparent;
+            }
+          }
+        }
       }
     }
   }

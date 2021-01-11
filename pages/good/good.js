@@ -35,8 +35,19 @@ Page({
         icon: 'icon-huangguan'
       },
     ],
-    currentIndex: 1,
-    videoList: [
+    currentIndex: 4,
+    videoList: [{},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+    ],
+
+    // 善商会
+    locationList: [{},
       {},
       {},
       {},
@@ -45,6 +56,30 @@ Page({
       {},
       {},
       {},
+      {},
+      {},
+      {},
+    ],
+    cateTop: 0,
+
+    // 善商榜
+    goodTitleCateList: [{
+        id: 0,
+        name: '善商榜'
+      },
+      {
+        id: 1,
+        name: '善商人物周刊'
+      }
+    ],
+    currentCateIndex: 0,
+    goodVideoList: [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
     ]
   },
 
@@ -53,6 +88,22 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  onReady: function () {
+    this.queryMultipleNodes()
+  },
+
+  //声明节点查询的方法
+  queryMultipleNodes: function () {
+    const query = wx.createSelectorQuery() // 创建节点查询器 query
+    query.select('.top-cate-wrap').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
+    query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
+    query.exec((res) => {
+      this.setData({
+        cateTop: res[0].top
+      })
+    })
   },
 
   // handle swiper change
@@ -65,11 +116,19 @@ Page({
 
   // handle tap click
   handleChangeCurrent(e) {
-    const {currentIndex} = e.detail
+    const {
+      currentIndex
+    } = e.detail
     this.setData({
       currentIndex
     })
-  }
-  
+  },
 
+  // 善商会
+  handleGoodExampleCate(e) {
+    const currentCateIndex = e.currentTarget.dataset.index
+    this.setData({
+      currentCateIndex
+    })
+  }
 })

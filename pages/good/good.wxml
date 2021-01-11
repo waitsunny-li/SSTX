@@ -26,7 +26,7 @@
   </swiper-item>
   <!-- 善商会 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" bindscroll="handleGoodJoinscroll" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" scroll-anchoring="{{true}}">
       <view class="good_business">
         <!-- index banner begin -->
         <swiper class="good-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
@@ -42,6 +42,43 @@
           </swiper-item>
         </swiper>
         <!-- index banner end -->
+        <!-- join begin -->
+        <view class="join-wrap">
+          <view class="join">申请加入商会</view>
+        </view>
+        <!-- join end -->
+        <!-- location city -->
+        <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
+          <!-- location begin -->
+          <province-city bind:locationEvent="listenLocation">
+            <view class="register-number" slot="right">
+              <view class="on-line number-wrap">
+                已分布城市：
+                <text class="number">25995</text>
+              </view>
+              <view class="number-wrap">
+                暂缺席位：
+                <text class="number">75995</text>
+              </view>
+            </view>
+          </province-city>
+          <!-- location end -->
+        </view>
+        <!-- location content begin -->
+        <view class="location-content">
+          <block wx:for="{{locationList}}" wx:key="index">
+            <view class="location-item">
+              <view class="left-item">
+                <text class="iconfont icon-dingwei1"></text>
+              </view>
+              <view class="right-item">
+                <view class="title">广东惠州市</view>
+                <view class="detail">广东省惠州市，天河大道，15号楼东1806</view>
+              </view>
+            </view>
+          </block>
+        </view>
+        <!-- location content end -->
       </view>
     </scroll-view>
   </swiper-item>
@@ -68,7 +105,26 @@
   <!-- 善商榜 -->
   <swiper-item class="swiper_art_item">
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
-      善商榜
+      <view class="good-example">
+        <!-- cate good begin -->
+        <view class="title-tab">
+          <block wx:for="{{goodTitleCateList}}" wx:key="id">
+            <view class="title-item {{currentCateIndex == index ? 'active' : ''}}" bind:tap="handleGoodExampleCate" data-index="{{index}}">
+              {{item.name}}
+              <text class="line"></text>
+            </view>
+          </block>
+        </view>
+        <!-- video or person content -->
+        <view class="vidwo-person-wrap">
+          <block wx:if="{{currentCateIndex === 0}}" wx:for="{{goodVideoList}}" wx:key="index">
+            <video-item />
+          </block>
+          <block wx:if="{{currentCateIndex === 1}}" >
+            
+          </block>
+        </view>
+      </view>
     </scroll-view>
   </swiper-item>
 </swiper>
