@@ -1,0 +1,32 @@
+<view class="persondetail-wrap">
+  <view class="header-title">
+    <view class="title">本期人物 张景鑫</view>
+    <view class="share">
+      <text class="iconfont icon-fenxiang1"></text>
+      <view class="text">分享</view>
+    </view>
+  </view>
+  <!-- content -->
+  <view class="conversation-content">
+    <view class="title">善商人物张景鑫</view>
+    <view class="posion">善天下商友会 副秘书长</view>
+    <view class="img-wrap">
+      <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F03%2F22%2F270d685d0e2c3186fb5ed7551f788b93.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613009071&t=3ba810d0fb2ea6ae4e1b0a1d9d1f6a73"></image>
+    </view>
+    <block wx:for="{{askAnswer}}">
+      <view class="conversation-item">
+        <viwe class="ask item">
+          <view class="i">问：</view>
+          <view class="con">懂的询问懂的询问懂的询问懂的询问懂的询问</view>
+        </viwe>
+        <viwe class="answer item">
+          <viwe class="i">答：</viwe>
+          <view class="con">我不方便回答我不方便回答我不方便回答我不方便回答我不方便回答我不方便回答</view>
+        </viwe>
+      </view>
+    </block>
+    <viwe class="bottom-content">
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </viwe>
+  </view>
+</view>

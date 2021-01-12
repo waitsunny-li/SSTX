@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "province-city" : "/components/province-city/province-city"
+  },
+  "navigationBarTitleText": "我的基本信息",
+  "navigationBarBackgroundColor": "#e1211f",
+  "navigationBarTextStyle": "white"
+}

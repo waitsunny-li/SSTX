@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "project-item": "/components/project-item/project-item",
+    "connection-item": "/components/connection-item/connection-item"
+  }
+}

@@ -1,6 +1,6 @@
 <navigator class="project-item" url="/pages/projectdetail/projectdetail">
   <view class="left-item">
-    <view class="top-icon">
+    <view class="top-icon" wx:if="{{isShowIcon}}">
       <text class="text">置顶</text>
       <text class="iconfont icon-icon--"></text>
     </view>

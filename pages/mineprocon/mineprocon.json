@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "title-tab": "/components/title-tab/title-tab",
+    "project-item": "/components/project-item/project-item",
+    "connection-item": "/components/connection-item/connection-item"
+  },
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

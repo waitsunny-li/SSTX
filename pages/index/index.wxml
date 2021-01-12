@@ -42,18 +42,20 @@
   <!-- connection end -->
   <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
     <!-- location begin -->
-    <province-city bind:locationEvent="listenLocation">
-      <view class="register-number" slot="right">
-        <view class="on-line number-wrap">
-          在线人数：
-          <text class="number">25995</text>
+    <view class="pro-city">
+      <province-city bind:locationEvent="listenLocation">
+        <view class="register-number" slot="right">
+          <view class="on-line number-wrap">
+            在线人数：
+            <text class="number">25995</text>
+          </view>
+          <view class="number-wrap">
+            注册人数：
+            <text class="number">75995</text>
+          </view>
         </view>
-        <view class="number-wrap">
-          注册人数：
-          <text class="number">75995</text>
-        </view>
-      </view>
-    </province-city>
+      </province-city>
+    </view>
     <!-- location end -->
     <!-- title tab begin -->
     <view class="title-tab-wrap">
@@ -83,7 +85,5 @@
     <connection-item number="{{4}}" />
     <connection-item number="{{0}}" />
     <connection-item number="{{0}}" />
-
   </view>
 </scroll-view>
-

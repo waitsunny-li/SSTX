@@ -1,9 +1,8 @@
 // location begin
 @import '../../styles/iconfont.wxss';
 .location-wrap {
-  width: 100vw;
+  width: 100%;
   height: 75rpx;
-  padding: 0 20px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -15,18 +14,18 @@
     align-items: center;
 
     .head-title {
-      width: 90rpx;
+      width: 120rpx;
       font-size: 28rpx;
-      margin-left: 10rpx;
+      margin-left: 5rpx;
     }
 
     .select-wrap {
-      width: 70%;
+      width: 100%;
       margin-left: 10rpx;
 
       .picker-wrap {
         width: 100%;
-        clear: both;
+        overflow: hidden;
 
         .picker {
           width: 140rpx;
@@ -36,8 +35,8 @@
           padding: 0 10rpx;
           box-sizing: border-box;
           border-radius: 5rpx;
-          float: left;
           font-size: 28rpx;
+          float: left;
           background-color: rgb(247, 247, 247);
           color: #666666;
           display: flex;

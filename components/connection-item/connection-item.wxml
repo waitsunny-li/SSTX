@@ -1,13 +1,15 @@
 <view class="project-item">
   <view class="left-item">
-    <view class="top-icon" wx:if="{{false}}">
-      <text class="text">置顶</text>
-      <text class="iconfont icon-icon--"></text>
-    </view>
-    <view class="top-icon" wx:elif="{{true}}">
-      <text class="text">会员</text>
-      <text class="iconfont icon-chengxin"></text>
-    </view>
+    <block wx:if="{{isShowIcon}}">
+      <view class="top-icon" wx:if="{{false}}">
+        <text class="text">置顶</text>
+        <text class="iconfont icon-icon--"></text>
+      </view>
+      <view class="top-icon" wx:elif="{{true}}">
+        <text class="text">会员</text>
+        <text class="iconfont icon-chengxin"></text>
+      </view>
+    </block>
     <view class="default-img">
       <image class="" src="" mode="aspectFill" lazy-load="true" />
     </view>
@@ -26,5 +28,5 @@
     </view>
   </view>
   <!-- cread star -->
-  <star number="{{number}}" class="star-position"/> 
+  <star number="{{number}}" class="star-position" />
 </view>

@@ -72,7 +72,7 @@ Page({
         name: '善商人物周刊'
       }
     ],
-    currentCateIndex: 0,
+    currentCateIndex: 1,
     goodVideoList: [
       {},
       {},
@@ -80,6 +80,16 @@ Page({
       {},
       {},
       {}
+    ],
+    persionList: [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
     ]
   },
 

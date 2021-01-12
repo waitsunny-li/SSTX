@@ -1,0 +1,42 @@
+<view class="basicinfo-wrap">
+  <view class="hade-ava-wrap">
+    <view class="hade-ava">
+      <text class="iconfont icon-camera"></text>
+      <image class="ava" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+    </view>
+  </view>
+  <view class="form-content">
+    <form class="form" bindreset="">
+      <view class="input-wrap">
+        <text class="label" space="emsp">昵 称</text>
+        <input type="text" name="idcard" value="" placeholder="神经蛙" />
+      </view>
+      <!-- tel -->
+      <view class="input-wrap">
+        <text class="label" space="nbsp">手机号</text>
+        <view class="verify-code">
+          <input class="" type="number" placeholder="请输入验证码" name="newtel" />
+          <view class="send {{isSend ? 'sended' : ''}}" bind:tap="handleSendCode">{{times}}</view>
+        </view>
+      </view>
+      <!-- sex -->
+      <view class="input-wrap">
+        <text class="label" space="emsp">性 别</text>
+        <picker bindchange="PickerSexChange" value="{{sexIndex}}" range="{{sexList}}">
+          <view class="picker">
+            {{sexList[sexIndex]}}
+            <text class="iconfont icon-jiantou12"></text>
+          </view>
+        </picker>
+      </view>
+      <!-- location -->
+      <view class="location">
+        <text class="label" space="emsp">地 区</text>
+        <province-city isShowIcon="{{false}}"/>
+      </view>
+
+      <!-- btn -->
+      <button class="submit" type="primary" formType="submit">保存</button>
+    </form>
+  </view>
+</view>

@@ -73,6 +73,11 @@
 .top-cate-wrap {
   width: 100vw;
 }
+.top-cate-wrap .pro-city {
+  width: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
 .top-cate-wrap .register-number {
   width: 30%;
   height: 100%;

@@ -1,0 +1,85 @@
+.persondetail-wrap {
+  width: 100vw;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.persondetail-wrap .header-title {
+  width: 100%;
+  height: 50rpx;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.persondetail-wrap .header-title .title {
+  color: var(--assColor);
+  font-size: 34rpx;
+}
+.persondetail-wrap .header-title .share {
+  width: 120rpx;
+  height: 50rpx;
+  border: 1px solid #dddbdb;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--themeColor);
+}
+.persondetail-wrap .header-title .share .iconfont {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.persondetail-wrap .header-title .share .text {
+  margin-left: 5rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.persondetail-wrap .conversation-content {
+  width: 100%;
+  border: 1px solid #000000;
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+}
+.persondetail-wrap .conversation-content .title,
+.persondetail-wrap .conversation-content .posion {
+  color: #999999;
+  font-size: 28rpx;
+  margin-bottom: 5rpx;
+}
+.persondetail-wrap .conversation-content .img-wrap {
+  width: 100%;
+  height: 320rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.persondetail-wrap .conversation-content .img-wrap .img {
+  width: 80%;
+  height: 260rpx;
+}
+.persondetail-wrap .conversation-content .conversation-item {
+  width: 100%;
+  display: flex;
+  padding: 20rpx 0;
+  flex-direction: column;
+}
+.persondetail-wrap .conversation-content .conversation-item .item {
+  width: 100%;
+  display: flex;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.persondetail-wrap .conversation-content .conversation-item .item .i {
+  color: #000000;
+}
+.persondetail-wrap .conversation-content .conversation-item .item .con {
+  color: #000000;
+}
+.persondetail-wrap .conversation-content .bottom-content {
+  padding-top: 30rpx;
+  width: 100%;
+  color: #000000;
+  font-size: 28rpx;
+  text-indent: 40rpx;
+}

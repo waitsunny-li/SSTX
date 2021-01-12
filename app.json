@@ -6,7 +6,13 @@
     "pages/proconnection/proconnection",
     "pages/good/good",
     "pages/profile/profile" ,
-    "pages/projectdetail/projectdetail" 
+    "pages/projectdetail/projectdetail" ,
+    "pages/persondetail/persondetail" ,
+    "pages/join/join" ,
+    "pages/modifytel/modifytel" ,
+    "pages/mineprocon/mineprocon" ,
+    "pages/basicinfo/basicinfo" ,
+    "pages/mypublish/mypublish" 
   ],
   "tabBar": {
     "custom": true,

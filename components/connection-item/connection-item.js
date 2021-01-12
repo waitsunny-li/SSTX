@@ -11,6 +11,10 @@ Component({
     number: {
       type: Number,
       value: 0
+    },
+    isShowIcon: {
+      type: Boolean,
+      value: true
     }
   },
 
