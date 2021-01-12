@@ -12,7 +12,8 @@
     "pages/modifytel/modifytel" ,
     "pages/mineprocon/mineprocon" ,
     "pages/basicinfo/basicinfo" ,
-    "pages/mypublish/mypublish" 
+    "pages/mypublish/mypublish" ,
+    "pages/feedback/feedback" 
   ],
   "tabBar": {
     "custom": true,

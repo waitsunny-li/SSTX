@@ -1,152 +1,149 @@
-<view class="profile-header">
-  <view class="ava-wrap">
-    <view class="ara-image">
-      <image class="" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872" />
-    </view>
-    <view class="name-wrap">
-      <view class="name">
-        <text class="n">昵称：逃跑的沸沸</text>
-        <text class="iconfont icon-bianji"></text>
+<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+  <view class="profile-header">
+    <view class="ava-wrap">
+      <view class="ara-image">
+        <image class="" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872" />
       </view>
-      <view class="auth-wrap" wx:if="{{true}}">
-        <view class="t">我的实名认证</view>
-        <text class="iconfont icon-bianji"></text>
+      <view class="name-wrap">
+        <view class="name">
+          <text class="n">昵称：逃跑的沸沸</text>
+          <text class="iconfont icon-bianji"></text>
+        </view>
+        <view class="auth-wrap" wx:if="{{true}}">
+          <view class="t">我的实名认证</view>
+          <text class="iconfont icon-bianji"></text>
+        </view>
       </view>
     </view>
-  </view>
-  <!-- 信用 -->
-  <view class="cread-wrap">
-    <text class="text">信誉等级：</text>
-    <star class="star" color="#ffd52e" size="38rpx" number="{{2}}" width="{{240}}" />
-  </view>
-  <view class="auth-bottom-wrap">
-    <view class="auth">
-      <view class="title-left">实名认证</view>
-      <view class="right-info">
-        <view class="info">您暂未实名认证</view>
-        <view class="go-cread">
-          <view class="go-text">立即认证</view>
-          <text class="iconfont icon-jiantou12"></text>
+    <!-- 信用 -->
+    <view class="cread-wrap">
+      <text class="text">信誉等级：</text>
+      <star class="star" color="#ffd52e" size="38rpx" number="{{2}}" width="{{240}}" />
+    </view>
+    <view class="auth-bottom-wrap">
+      <view class="auth">
+        <view class="title-left">实名认证</view>
+        <view class="right-info">
+          <view class="info">您暂未实名认证</view>
+          <view class="go-cread">
+            <view class="go-text">立即认证</view>
+            <text class="iconfont icon-jiantou12"></text>
+          </view>
         </view>
       </view>
     </view>
   </view>
-</view>
-
-<!-- publish number begin -->
-<view class="pub-check">
-  <navigator url="/pages/mineprocon/mineprocon?status={{1}}&cb=pubsuccess&title=发布成功" hover-class="none" class="left-pub">
-    <view class="number">12</view>
-    <view class="text-bo">发布成功</view>
-  </navigator>
-  <view class="line"></view>
-  <view class="right-check">
-    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=check&title=审核中" hover-class="none" class="item">
-      <view class="icon">
-        <text class="iconfont icon-shenhe1"></text>
-      </view>
-      <view class="text">审核中</view>
+  <!-- publish number begin -->
+  <view class="pub-check">
+    <navigator url="/pages/mineprocon/mineprocon?status={{1}}&cb=pubsuccess&title=发布成功" hover-class="none" class="left-pub">
+      <view class="number">12</view>
+      <view class="text-bo">发布成功</view>
     </navigator>
-
-    <navigator url="/pages/mineprocon/mineprocon?status={{2}}&cb=check&title=未通过审核" hover-class="none" class="item">
-      <view class="icon">
-        <text class="iconfont icon-stop"></text>
-      </view>
-      <view class="text">未通过审核</view>
+    <view class="line"></view>
+    <view class="right-check">
+      <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=check&title=审核中" hover-class="none" class="item">
+        <view class="icon">
+          <text class="iconfont icon-shenhe1"></text>
+        </view>
+        <view class="text">审核中</view>
+      </navigator>
+      <navigator url="/pages/mineprocon/mineprocon?status={{2}}&cb=check&title=未通过审核" hover-class="none" class="item">
+        <view class="icon">
+          <text class="iconfont icon-stop"></text>
+        </view>
+        <view class="text">未通过审核</view>
+      </navigator>
+    </view>
+  </view>
+  <!-- publish number end -->
+  <!-- mine begin -->
+  <view class="mine-wrap">
+    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=collect&title=我的关注" hover-class="none" class="mine-item">
+      <text class="iconfont icon-shoucang"></text>
+      <view class="b-text">我的关注</view>
+    </navigator>
+    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=track&title=我的足迹" hover-class="none" class="mine-item">
+      <text class="iconfont icon-zuji"></text>
+      <view class="b-text">我的足迹</view>
+    </navigator>
+    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=share&title=我的分享" hover-class="none" class="mine-item">
+      <text class="iconfont icon-fenxiang"></text>
+      <view class="b-text">我的分享</view>
     </navigator>
   </view>
-</view>
-<!-- publish number end -->
-
-<!-- mine begin -->
-<view class="mine-wrap">
-  <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=collect&title=我的关注" hover-class="none" class="mine-item">
-    <text class="iconfont icon-shoucang"></text>
-    <view class="b-text">我的关注</view>
-  </navigator>
-  <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=track&title=我的足迹" hover-class="none" class="mine-item">
-    <text class="iconfont icon-zuji"></text>
-    <view class="b-text">我的足迹</view>
-  </navigator>
-  <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=share&title=我的分享" hover-class="none" class="mine-item">
-    <text class="iconfont icon-fenxiang"></text>
-    <view class="b-text">我的分享</view>
-  </navigator>
-</view>
-<!-- mine end -->
-
-<!-- mine function begin -->
-<view class="mine-function">
-  <!-- my support -->
-  <navigator class="my-item" hover-class="none" url="/pages/basicinfo/basicinfo">
-    <view class="left-icon">
-      <text class="iconfont icon-weibiaoti2fuzhi12"></text>
-      <view class="title">我的基本信息</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-  <!-- my project -->
-  <navigator url="/pages/mypublish/mypublish?title=我的需求发布&cate={{0}}" class="my-item" hover-class="none">
-    <view class="left-icon">
-      <text class="iconfont icon-xiangmu" style="font-size:38rpx;font-weight:600"></text>
-      <view class="title">我的需求发布</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-  <!-- my connection -->
-  <navigator url="/pages/mypublish/mypublish?title=我的人脉发布&cate={{1}}" class="my-item" hover-class="none">
-    <view class="left-icon">
-      <text class="iconfont icon-renyuan" style="font-size:50rpx"></text>
-      <view class="title">我的人脉发布</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-  <!-- my good -->
-  <navigator class="my-item" hover-class="none" url="/pages/good/good">
-    <view class="left-icon">
-      <text class="iconfont icon-xueshimao" style="font-weight:700;font-size:50rpx"></text>
-      <view class="title">我的善学堂</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-  <!-- join -->
-  <navigator class="my-item" hover-class="none">
-    <view class="left-icon">
-      <text class="iconfont icon-show_jiarukehuchi"></text>
-      <view class="title">申请加入善商会</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-  <!-- feedback -->
-  <navigator class="my-item" hover-class="none">
-    <view class="left-icon">
-      <text class="iconfont icon-wentifankui" style="font-weight:700"></text>
-      <view class="title">问题反馈</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-  <!-- help -->
-  <navigator class="my-item" hover-class="none">
-    <view class="left-icon">
-      <text class="iconfont icon-bangzhu" ></text>
-      <view class="title">帮助中心</view>
-    </view>
-    <view class="right-arror">
-      <text class="iconfont icon-jiantou12"></text>
-    </view>
-  </navigator>
-</view>
-<!-- mine function end -->
-
+  <!-- mine end -->
+  <!-- mine function begin -->
+  <view class="mine-function">
+    <!-- my support -->
+    <navigator class="my-item" hover-class="none" url="/pages/basicinfo/basicinfo">
+      <view class="left-icon">
+        <text class="iconfont icon-weibiaoti2fuzhi12"></text>
+        <view class="title">我的基本信息</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+    <!-- my project -->
+    <navigator url="/pages/mypublish/mypublish?title=我的需求发布&cate={{0}}" class="my-item" hover-class="none">
+      <view class="left-icon">
+        <text class="iconfont icon-xiangmu" style="font-size:38rpx;font-weight:600"></text>
+        <view class="title">我的需求发布</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+    <!-- my connection -->
+    <navigator url="/pages/mypublish/mypublish?title=我的人脉发布&cate={{1}}" class="my-item" hover-class="none">
+      <view class="left-icon">
+        <text class="iconfont icon-renyuan" style="font-size:50rpx"></text>
+        <view class="title">我的人脉发布</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+    <!-- my good -->
+    <navigator class="my-item" hover-class="none" url="/pages/good/good">
+      <view class="left-icon">
+        <text class="iconfont icon-xueshimao" style="font-weight:700;font-size:50rpx"></text>
+        <view class="title">我的善学堂</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+    <!-- join -->
+    <navigator url="/pages/join/join" class="my-item" hover-class="none">
+      <view class="left-icon">
+        <text class="iconfont icon-show_jiarukehuchi"></text>
+        <view class="title">申请加入善商会</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+    <!-- feedback -->
+    <navigator url="/pages/feedback/feedback" class="my-item" hover-class="none">
+      <view class="left-icon">
+        <text class="iconfont icon-wentifankui" style="font-weight:700"></text>
+        <view class="title">问题反馈</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+    <!-- help -->
+    <navigator class="my-item" hover-class="none">
+      <view class="left-icon">
+        <text class="iconfont icon-bangzhu"></text>
+        <view class="title">帮助中心</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+  </view>
+  <!-- mine function end -->
+</scroll-view>

@@ -1,0 +1,20 @@
+page {
+  background-color: #f5f5f5;
+}
+.feedback-wrap {
+  margin-top: 20rpx;
+  width: 100vw;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+.feedback-wrap .feedbacktext {
+  width: 100%;
+  border: 1px solid #bbbbbb;
+  border-radius: 10rpx;
+  padding: 18rpx;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+.feedback-wrap .textarea-placeholder {
+  font-size: 28rpx;
+}

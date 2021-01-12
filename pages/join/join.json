@@ -3,6 +3,6 @@
     "province-city": "/components/province-city/province-city"
   },
   "navigationBarTitleText": "我的信息",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
+  "navigationBarBackgroundColor": "#970d0d",
+  "navigationBarTextStyle": "white"
 }

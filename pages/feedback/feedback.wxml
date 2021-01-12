@@ -1,0 +1,7 @@
+<view class="header-title-top">问题反馈</view>
+<view class="feedback-wrap">
+  <form class="" bindsubmit="" bindreset="">
+    <textarea class="feedbacktext" value="" placeholder="请输入您遇到的问题" placeholder-class="textarea-placeholder"></textarea>
+    <button class="submit" type="primary" formType="submit">提交</button>
+  </form>
+</view>

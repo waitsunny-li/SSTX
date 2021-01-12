@@ -5,7 +5,7 @@
   </view>
   <view class="star">
     <block wx:for="{{total}}" wx:key="index">
-      <text class="iconfont icon-xingxing" style="color: {{number >= index + 1 ? color : ''}}; font-size: {{size}}"></text>
+      <text class="iconfont icon-banxing_mian" style="color: {{number >= index + 1 ? color : ''}}; font-size: {{size}}"></text>
     </block>
   </view>
 </view>

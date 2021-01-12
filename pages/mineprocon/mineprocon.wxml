@@ -11,10 +11,10 @@
   <!-- project content beign -->
   <view class="project-wrap">
     <block wx:for="{{itemList}}" wx:key="index" wx:if="{{cateIndex == 0}}">
-      <project-item />
+      <project-item isShowIcon="{{false}}" />
     </block>
     <block wx:for="{{itemList}}" wx:key="index" wx:if="{{cateIndex == 1}}">
-      <connection-item />
+      <connection-item isShowIcon="{{false}}" />
     </block>
   </view>
   <!-- project content beign -->
