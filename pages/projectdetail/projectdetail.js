@@ -1,32 +1,35 @@
 /*
  * @Author: liweilong
- * @Date: 2021-01-09 09:35:08
+ * @Date: 2021-01-11 10:29:59
  */
-// pages/projectdetail/projectdetail.js
+//Page Object
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    seenAvaList: [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+    ]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  //options(Object)
+  onLoad: function(options) {
+    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  handleClickPub(e) {
-    console.log('ppppp');
-  }
-})
+  
+});
+  

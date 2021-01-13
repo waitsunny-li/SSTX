@@ -28,5 +28,5 @@
     </view>
   </view>
   <!-- cread star -->
-  <star number="{{number}}" class="star-position" />
+  <star number="{{number}}" class="star-position" width="{{210}}" size="{{26}}" />
 </view>

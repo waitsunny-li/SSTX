@@ -1,10 +1,14 @@
 <view class="publish-top">
-  <view class="publish-support-con left {{currentIndex == 0 ? 'active' : ''}}" bind:tap="handleTapNeed" data-cate="{{pubCatesList[0]}}">{{pubCatesList[0].name}}</view>
+  <view class="publish-support-con left {{currentIndex == 0 ? 'active' : ''}}" bind:tap="handleTapNeed" data-cate="{{pubCatesList[0]}}">
+    {{pubCatesList[0].name}}
+  </view>
   <view class="logo">
     <image class="img" src="/icons/logo.png"></image>
     <image class="boimg" src="/icons/logo-text.png"></image>
   </view>
-  <view class="publish-support-con right {{currentIndex == 1 ? 'active' : ''}}" bind:tap="handleTapConnection" data-cate="{{pubCatesList[1]}}">{{pubCatesList[1].name}}</view>
+  <view class="publish-support-con right {{currentIndex == 1 ? 'active' : ''}}" bind:tap="handleTapConnection" data-cate="{{pubCatesList[1]}}">
+    {{pubCatesList[1].name}}
+  </view>
 </view>
 <!-- form begin -->
 <swiper class="swiper_art" current="{{currentIndex}}" bindchange="handleSwiperChange">
@@ -98,7 +102,9 @@
           </view>
           <!-- user info end -->
           <!-- btn -->
-          <button class="submit" type="primary" formType="submit">提交</button>
+          <view class="btn-wrap">
+            <button class="submit" type="primary" formType="submit">提交</button>
+          </view>
         </form>
       </view>
     </scroll-view>
@@ -115,7 +121,8 @@
               <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
               <view class="text">优秀领导朋友，可以为</view>
               <input type="text" name="frontposition" class="front-position" placeholder="请填写行业" />
-              行业符合政策规定的招商引资项目做<view class="text">引荐，欢迎洽谈，来为我们</view>
+              行业符合政策规定的招商引资项目做
+              <view class="text">引荐，欢迎洽谈，来为我们</view>
               <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
               <view class="text">做贡献。</view>
             </view>
@@ -274,14 +281,16 @@
                 <text class="iconfont icon-hot"></text>
               </view>
               +
-              <star class="star" color="#ffd52e" size="38rpx" number="{{5}}" width="{{240}}" />
+              <star class="star" color="#ffd52e" size="{{30}}" number="{{10}}" width="{{260}}" />
             </view>
             <view class="bo-info">不认证，将不显示以上信誉权限，可能会错失一些优质合作机会。</view>
             <view class="tel-info">选择信誉认证  请致电：400 001 6988</view>
           </view>
           <!-- info text end -->
           <!-- btn -->
-          <button class="submit" type="primary" formType="submit">提交审核</button>
+          <view class="btn-wrap">
+            <button class="submit" type="primary" formType="submit">提交审核</button>
+          </view>
         </form>
       </view>
     </scroll-view>

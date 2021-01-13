@@ -18,17 +18,17 @@
     <!-- 信用 -->
     <view class="cread-wrap">
       <text class="text">信誉等级：</text>
-      <star class="star" color="#ffd52e" size="38rpx" number="{{2}}" width="{{240}}" />
+      <star class="star" color="#ffd52e" size="{{26}}" number="{{5}}" width="{{240}}" />
     </view>
     <view class="auth-bottom-wrap">
       <view class="auth">
         <view class="title-left">实名认证</view>
         <view class="right-info">
           <view class="info">您暂未实名认证</view>
-          <view class="go-cread">
+          <navigator url="/pages/authenticate/authenticate" class="go-cread" hover-class="none">
             <view class="go-text">立即认证</view>
             <text class="iconfont icon-jiantou12"></text>
-          </view>
+          </navigator>
         </view>
       </view>
     </view>

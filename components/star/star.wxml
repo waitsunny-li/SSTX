@@ -4,8 +4,9 @@
     <image class="" src="/icons/cread.png" wx:else />
   </view>
   <view class="star">
-    <block wx:for="{{total}}" wx:key="index">
-      <text class="iconfont icon-banxing_mian" style="color: {{number >= index + 1 ? color : ''}}; font-size: {{size}}"></text>
+    <block wx:for="{{imgList}}" wx:key="index">
+      <!-- <text class="iconfont icon-banxing_mian" style="color: {{number >= index + 1 ? color : ''}}; font-size: {{size}}"></text> -->
+      <image class="icon" src="{{item}}" style="width:{{size}}rpx;height:{{size}}rpx"></image>
     </block>
   </view>
 </view>

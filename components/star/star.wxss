@@ -140,3 +140,6 @@
 .star-wrap .star .active {
   color: var(--themeColor);
 }
+.star-wrap .star .icon {
+  margin-right: 10rpx;
+}

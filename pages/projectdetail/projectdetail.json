@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "custom-tab-bar": "/custom-tab-bar/index"
+    "star": "/components/star/star"
   },
   "navigationBarTitleText": "需求详情"
 }

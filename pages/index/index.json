@@ -8,5 +8,7 @@
     "connection-item": "/components/connection-item/connection-item",
     "custom-tab-bar": "/custom-tab-bar/index"
   },
-  "navigationBarTitleText": "首页"
+  "navigationBarTitleText": "首页",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
 }

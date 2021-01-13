@@ -1,4 +1,4 @@
-<view class="video-item">
+<navigator url="/pages/videodetail/videodetail" hover-class="none" class="video-item">
   <view class="left-item">
     <image class="video-thumb" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1175737380,1533684937&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="{{true}}"></image>
     <view class="time">4:29</view>
@@ -12,4 +12,4 @@
       8万次观看
     </view>
   </view>
-</view>
+</navigator>

@@ -13,7 +13,10 @@
     "pages/mineprocon/mineprocon" ,
     "pages/basicinfo/basicinfo" ,
     "pages/mypublish/mypublish" ,
-    "pages/feedback/feedback" 
+    "pages/feedback/feedback" ,
+    "pages/authenticate/authenticate" ,
+    "pages/videodetail/videodetail" ,
+    "pages/condetail/condetail" 
   ],
   "tabBar": {
     "custom": true,

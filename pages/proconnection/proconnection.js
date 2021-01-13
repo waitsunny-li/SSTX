@@ -18,7 +18,11 @@ Page({
       {},
       {},
       {},
-      {}
+      {},
+      {},
+      {},
+      {},
+      {},
     ],
     cateTop: 0,
 
@@ -31,7 +35,11 @@ Page({
       {},
       {},
       {},
-      {}
+      {},
+      {},
+      {},
+      {},
+      {},
     ],
 
     // connection
@@ -136,14 +144,11 @@ Page({
       scrollTop
     } = e.detail
     console.log(scrollTop);
-    if (scrollTop > this.data.cateTop) {
+    if (scrollTop >= this.data.cateTop) {
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#e1211f',
-        animation: {
-          duration: 0,
-          timingFunc: 'linear'
-        }
+        
       });
         
       this.setData({
@@ -153,10 +158,7 @@ Page({
       wx.setNavigationBarColor({
         frontColor: '#000000',
         backgroundColor: '#ffffff',
-        animation: {
-          duration: 300,
-          timingFunc: 'linear'
-        }
+       
       });
       this.setData({
         ishowcateps: false
