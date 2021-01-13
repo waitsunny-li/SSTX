@@ -1,3 +1,14 @@
+.procon-swiper {
+  width: 100vw;
+  height: 100vh;
+}
+.procon-swiper .pro-swiper-item {
+  width: 100vw;
+}
+.procon-swiper .pro-swiper-item .proconscroll {
+  width: 100vw;
+  height: 100vh;
+}
 .top-header-line {
   width: 100vw;
   height: 40rpx;
