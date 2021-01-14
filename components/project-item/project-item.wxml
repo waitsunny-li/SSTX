@@ -1,4 +1,4 @@
-<navigator class="project-item" url="/pages/projectdetail/projectdetail">
+<navigator class="project-item" url="/pages/projectdetail/projectdetail?id={{1}}" hover-class="none">
   <view class="left-item">
     <view class="top-icon" wx:if="{{isShowIcon}}">
       <text class="text">置顶</text>

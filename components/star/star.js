@@ -38,8 +38,6 @@ Component({
       this.setData({
         imgList
       })
-      console.log(imgList);
-      
     }
   },
   /**

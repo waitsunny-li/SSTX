@@ -22,7 +22,8 @@ Page({
       {
         title: 'jjjjjj'
       },
-    ]
+    ],
+    animationData: {}
 
   },
   //options(Object)
@@ -48,6 +49,9 @@ Page({
   },
   onReady: function () {
     this.queryMultipleNodes()
+  },
+
+  onShow: function () {
   },
 
   //声明节点查询的方法

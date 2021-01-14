@@ -10,6 +10,7 @@
 }
 .profile-header .ava-wrap {
   width: 70vw;
+  height: 150rpx;
   margin-left: 30rpx;
   display: flex;
   justify-content: space-around;
@@ -67,6 +68,19 @@
 .profile-header .cread-wrap .text {
   color: #ffffff;
   font-size: 30rpx;
+}
+.profile-header .login-wrap {
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+}
+.profile-header .login-wrap button {
+  width: 350rpx;
+  height: 70rpx;
+  font-size: 30rpx;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
 }
 .profile-header .auth-bottom-wrap {
   position: absolute;

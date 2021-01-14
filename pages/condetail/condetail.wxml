@@ -1,2 +1,102 @@
-<!--pages/condetail/condetail.wxml-->
-<text>pages/condetail/condetail.wxml</text>
+<swiper class="procon-swiper" vertical="{{true}}" bindchange="handleSwiperChange" bindanimationfinish="handleAnimationEnd" current="{{current}}" circular="{{false}}" bindtransition="handleTransiton">
+  <block wx:for="{{detailList}}" wx:key="index">
+    <swiper-item class="pro-swiper-item" item-id="">
+      <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" enable-back-to-top="{{true}}">
+        <view class="top-header">
+          <view class="top-wrap">
+            <image class="logo" src="/icons/logo.png"></image>
+            <image class="bo-logo" src="/icons/logo-text.png"></image>
+          </view>
+        </view>
+        <view class="top-header-line"></view>
+        <view class="art-content">
+          <view class="art-header">
+            <view class="title">人脉信息</view>
+            <view class="icon-group">
+              <view class="icon">
+                <text class="iconfont icon-star-full"></text>
+                <view class="text">关注</view>
+              </view>
+              <view class="icon">
+                <text class="iconfont icon-fenxiang1"></text>
+                <view class="text share-text">分享</view>
+              </view>
+            </view>
+          </view>
+          <!-- user infomation -->
+          <view class="user-header">
+            <view class="left-user">
+              <view class="ava">
+                <image class="ava-img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+              </view>
+              <view class="name-wrap">
+                <view class="username">董爱国</view>
+                <view class="star">
+                  <star width="{{200}}" number="{{7}}" size="{{25}}" />
+                </view>
+              </view>
+            </view>
+            <view class="right-desc" slot="right">
+              <view class="number-wrap">
+                预约次数：
+                <text class="number">32289</text>
+              </view>
+              <view class="number-wrap">
+                关注人数：
+                <text class="number">{{item.id}}</text>
+              </view>
+            </view>
+          </view>
+          <!-- content -->
+          <view class="art-inner">
+            <view class="art-header-title">我有长沙市高端人脉</view>
+            <!-- 需求具体内容 -->
+            <view class="detail-content">
+              <view class="detail-inner">
+                在美丽的长沙市我有优秀的领导朋友，可以为建筑、地产、行业符合政策规定的招商引资项目做引荐，欢迎志同道合的朋友一起加入我们来为长沙市做贡献！
+              </view>
+            </view>
+            <view class="user-info-inner">
+              <view class="info-item">
+                <view class="l-a">
+                  <text class="iconfont icon-weibiaoti2fuzhi12"></text>
+                  <text class="name-label" space="ensp">联 系 人：</text>
+                </view>
+                <view class="value">
+                  张三
+                </view>
+              </view>
+              <view class="info-item">
+                <view class="l-a">
+                  <text class="iconfont icon-dingwei"></text>
+                  <text class="name-label" space="emsp">地  区：</text>
+                </view>
+                <view class="value">
+                  湖南-长沙
+                </view>
+              </view>
+            </view>
+            <!-- look coonnertion -->
+            <view class="look-conection">查看联系方式</view>
+          </view>
+          <!-- who seen me -->
+          <view class="who-wrap">
+            <view class="whoseen">谁看过</view>
+            <view class="dianzan">
+              <text class="iconfont icon-dianzan"></text>
+              <text class="number">939</text>
+            </view>
+          </view>
+          <!-- who ava img -->
+          <view class="ava-img-wrap">
+            <block wx:for="{{seenAvaList}}" wx:key="index">
+              <view class="ava-item-img">
+                <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+              </view>
+            </block>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </block>
+</swiper>

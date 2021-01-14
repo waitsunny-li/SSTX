@@ -1,198 +1,216 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
     },
-    "enableEngineNative": false,
-    "bundle": false,
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.14.3",
-  "appid": "wx87d72d32f90f24f2",
-  "projectname": "stx",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "plugin": {
-      "list": []
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "useMultiFrameRuntime": false,
+        "useApiHook": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "enableEngineNative": false,
+        "bundle": false,
+        "useIsolateContext": true,
+        "useCompilerModule": true,
+        "userConfirmedUseCompilerModuleSwitch": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true
     },
-    "game": {
-      "list": []
+    "compileType": "miniprogram",
+    "libVersion": "2.14.3",
+    "appid": "wx87d72d32f90f24f2",
+    "projectname": "stx",
+    "debugOptions": {
+        "hidedInDevtools": []
     },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/profile/profile",
-          "pathName": "pages/profile/profile",
-          "query": "",
-          "scene": null
+    "scripts": {},
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/support/support",
-          "pathName": "pages/support/support",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "name": "pages/publish/publish",
-          "pathName": "pages/publish/publish",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/projectdetail/projectdetail",
-          "pathName": "pages/projectdetail/projectdetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/proconnection/proconnection",
-          "pathName": "pages/proconnection/proconnection",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/project/proconnection",
-          "pathName": "pages/project/project",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/project/project",
-          "pathName": "pages/project/project",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/connection/connection",
-          "pathName": "pages/connection/connection",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "善学堂",
-          "pathName": "pages/good/good",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/proconnection/proconnection",
-          "pathName": "pages/proconnection/proconnection",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/good/good",
-          "pathName": "pages/good/good",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/persondetail/persondetail",
-          "pathName": "pages/persondetail/persondetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/join/join",
-          "pathName": "pages/join/join",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/modifytel/modifytel",
-          "pathName": "pages/modifytel/modifytel",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mineprocon/mineprocon",
-          "pathName": "pages/mineprocon/mineprocon",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/basicinfo/basicinfo",
-          "pathName": "pages/basicinfo/basicinfo",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/feedback/feedback",
-          "pathName": "pages/feedback/feedback",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/authenticate/authenticate",
-          "pathName": "pages/authenticate/authenticate",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/videodetail/videodetail",
-          "pathName": "pages/videodetail/videodetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/projectdetail/projectdetail",
-          "pathName": "pages/projectdetail/projectdetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/projectdetail/projectdetail",
-          "pathName": "pages/projectdetail/projectdetail",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/profile/profile",
+                    "pathName": "pages/profile/profile",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/support/support",
+                    "pathName": "pages/support/support",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/publish/publish",
+                    "pathName": "pages/publish/publish",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/projectdetail/projectdetail",
+                    "pathName": "pages/projectdetail/projectdetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/proconnection/proconnection",
+                    "pathName": "pages/proconnection/proconnection",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/project/proconnection",
+                    "pathName": "pages/project/project",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/project/project",
+                    "pathName": "pages/project/project",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/connection/connection",
+                    "pathName": "pages/connection/connection",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "善学堂",
+                    "pathName": "pages/good/good",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/proconnection/proconnection",
+                    "pathName": "pages/proconnection/proconnection",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/good/good",
+                    "pathName": "pages/good/good",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/persondetail/persondetail",
+                    "pathName": "pages/persondetail/persondetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/join/join",
+                    "pathName": "pages/join/join",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/modifytel/modifytel",
+                    "pathName": "pages/modifytel/modifytel",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mineprocon/mineprocon",
+                    "pathName": "pages/mineprocon/mineprocon",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/basicinfo/basicinfo",
+                    "pathName": "pages/basicinfo/basicinfo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/feedback/feedback",
+                    "pathName": "pages/feedback/feedback",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/authenticate/authenticate",
+                    "pathName": "pages/authenticate/authenticate",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/videodetail/videodetail",
+                    "pathName": "pages/videodetail/videodetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/projectdetail/projectdetail",
+                    "pathName": "pages/projectdetail/projectdetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/projectdetail/projectdetail",
+                    "pathName": "pages/projectdetail/projectdetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/condetail/condetail",
+                    "pathName": "pages/condetail/condetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/profile/profile",
+                    "pathName": "pages/profile/profile",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/help/help",
+                    "pathName": "pages/help/help",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

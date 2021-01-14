@@ -1,0 +1,33 @@
+.help-wrap {
+  width: 100vw;
+  border-top: 1px solid #ececed;
+}
+.help-wrap .help-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 40rpx;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ececed;
+}
+.help-wrap .help-item .left-icon {
+  display: flex;
+  align-items: center;
+}
+.help-wrap .help-item .left-icon .iconfont {
+  color: #aa0100;
+  font-size: 40rpx;
+}
+.help-wrap .help-item .left-icon .title {
+  color: #000000;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+.help-wrap .help-item .right-arror {
+  transform: rotate(-90deg);
+}
+.help-wrap .help-item .right-arror .iconfont {
+  font-size: 50rpx;
+  color: #000000;
+}

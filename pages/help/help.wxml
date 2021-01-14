@@ -1,0 +1,12 @@
+<view class="help-wrap">
+  <block wx:for="{{helpCateList}}" wx:key="id">
+    <navigator class="help-item" hover-class="none" url="/pages/helpdetail/helpdetail?id={{item.id}}&title={{item.name}}">
+      <view class="left-icon">
+        <view class="title">{{item.name}}</view>
+      </view>
+      <view class="right-arror">
+        <text class="iconfont icon-jiantou12"></text>
+      </view>
+    </navigator>
+  </block>
+</view>

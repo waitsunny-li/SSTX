@@ -16,7 +16,9 @@
     "pages/feedback/feedback" ,
     "pages/authenticate/authenticate" ,
     "pages/videodetail/videodetail" ,
-    "pages/condetail/condetail" 
+    "pages/condetail/condetail" ,
+    "pages/help/help" ,
+    "pages/helpdetail/helpdetail" 
   ],
   "tabBar": {
     "custom": true,

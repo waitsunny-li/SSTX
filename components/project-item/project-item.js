@@ -11,6 +11,10 @@ Component({
       isShowIcon: {
         type: Boolean,
         value: true
+      },
+      projectItme: {
+        type: Object,
+        value: {}
       }
     },
 

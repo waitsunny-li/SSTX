@@ -1,7 +1,7 @@
-<swiper class="procon-swiper" vertical="{{true}}" bindchange="handleSwiperChange" bindanimationfinish="handleAnimationEnd" current="{{current}}">
-  <block wx:for="{{prodetailList}}" wx:key="index">
+<swiper class="procon-swiper" vertical="{{true}}" bindchange="handleSwiperChange" bindanimationfinish="handleAnimationEnd" current="{{current}}" circular="{{false}}" bindtransition="handleTransiton">
+  <block wx:for="{{detailList}}" wx:key="index" >
     <swiper-item class="pro-swiper-item" item-id="">
-      <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+      <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" enable-back-to-top="{{true}}">
         <view class="top-header">
           <view class="top-wrap">
             <image class="logo" src="/icons/logo.png"></image>

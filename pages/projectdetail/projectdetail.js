@@ -24,62 +24,96 @@ Page({
       {},
       {},
     ],
-    prodetailList: [{id: 0},
-      {id: 1},
-      {id: 2}
+    detailList: [{},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
     ],
-    page: 0,
-    current: 0
+    currentIdIndex: 0,
+    current: 0,
+    isUp: false,
+    idList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   //options(Object)
   onLoad: function (options) {
-
+    let detailList = this.data.detailList
+    let idList = this.data.idList
+    let {id} = options
+    let currentIdIndex = this.idReturnIndex(id)
+    detailList[0] = {id: idList[currentIdIndex]}
+    this.setData({
+      currentIdIndex,
+      detailList
+    })
   },
 
   // swiper animationfinish end
   handleSwiperChange(event) {
-    let page = this.data.page
-    let prodetailList = this.data.prodetailList
+    let currentIdIndex = this.data.currentIdIndex
+    let detailList = this.data.detailList
+    let isUp = this.data.isUp
     const {
       current
     } = event.detail
-    console.log(current);
-    if (current == 0 && page != 0) { // 加载上一页数据
-      // 向prodetailList数组的头部添加上一页数据
-      // 去掉prodetailList末尾的数据，让其永远保持三个数据
-      // 然后page减一
-      // prodetailList.unshift({id: 0})
-      // prodetailList.pop()
-      // page--
-      console.log('加载上一页数据')
-    } else if (current == 2) { // 加载下一页的数据
-      prodetailList.shift()
-      prodetailList.push({id: 3})
-      page++
-      console.log('加载下一页数据')
-    } else {
-      console.log('不加载');
-      return false;
-    }
 
+    if (!isUp) { // 向下滑动
+      detailList[current] = {
+        id: ++currentIdIndex
+      }
+      console.log('向下滑动', currentIdIndex);
+    } else { // 向上滑动
+      --currentIdIndex
+      detailList[current] = {
+        id: currentIdIndex
+      }
+      console.log('向上滑动', currentIdIndex);
+    }
     this.setData({
-      prodetailList,
-      page,
-      
+      detailList,
+      current,
+      currentIdIndex
     })
 
   },
 
-  // 
-  handleAnimationEnd(event) {
-    const {current} = event.detail
-    // console.log(current);
-    if (current == 2) {
-      console.log(2);
+  handleTransiton(event) {
+    const {
+      dx: dx,
+      dy: dy
+    } = event.detail
+    if (dy > 0) { // 向下滑动
       this.setData({
-        current: 1
+        isUp: false
+      })
+    } else { // 向上滑动
+      this.setData({
+        isUp: true
       })
     }
+  },
+
+  // 
+  handleAnimationEnd(event) {
+
+  },
+
+  // 根据当前数据id返回对应的下标
+  idReturnIndex(id) {
+    let currentIdIndex
+    let idList = this.data.idList
+    idList.some((v, index) => {
+      if(v == id) {
+        currentIdIndex = index
+        return true
+      }
+    })
+    return currentIdIndex
   }
 
 });

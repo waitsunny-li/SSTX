@@ -74,6 +74,7 @@
     </view>
     <!-- title tab end -->
   </view>
+  <view class="{{ishowcateps ? 'placehold-cate' : ''}}"></view>
   <!-- project / connection item begin -->
   <view class="project-connection-wrap">
     <project-item />
@@ -87,3 +88,11 @@
     <connection-item number="{{0}}" />
   </view>
 </scroll-view>
+
+<!-- 动态弹出一个小框 -->
+<view class="animation-wrap" animation="{{animationData}}">
+  <button class="default" size="default" type="default" plain="default"
+    hover-class="button-hover" open-type="getUserInfo" bindgetuserinfo="GetUserInfo">
+    立即登录
+  </button>
+</view>

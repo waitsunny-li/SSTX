@@ -1,7 +1,7 @@
 <scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
   <!-- video -->
   <view class="video-wrap">
-    <video class="video-content" src="" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror=""></video>
+    <video class="video-content" src="http://qmwnl3x8o.hn-bkt.clouddn.com/361de70d-77d9-4659-bb77-477d63b140f5.mp4" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror=""></video>
   </view>
   <view class="video-desc">
     <view class="title">儒家文化视频</view>
