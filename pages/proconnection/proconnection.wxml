@@ -1,4 +1,4 @@
-<scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
+<scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}" scroll-top="{{scrollTop}}">
   <view class="top-header">
     <view class="top-wrap">
       <image class="logo" src="/icons/logo.png"></image>
@@ -6,7 +6,7 @@
     </view>
   </view>
   <view class="top-position {{ishowcateps ? 'positiontab' : ''}}">
-    <title-tab width="100vw" ext-class="{{ishowcateps ? 'tab-reset' : 'tab-class'}}" initLeft="120rpx" bind:cateChange="handleCateChange"/>
+    <title-tab width="100vw" ext-class="{{ishowcateps ? 'tab-reset' : 'tab-class'}}" bind:cateChange="handleCateChange" currentIndex="{{cateIndex}}" />
     <!-- location -->
     <view class="location">
       <province-city ext-class="province-city" />
@@ -14,9 +14,7 @@
         <view class="cate-name">类别：</view>
         <picker bindchange="handlePickerCateChange" value="{{currentCateIndex}}" range="{{cateList}}">
           <view class="picker">
-            <view class="picker-text">
-              {{cateList[currentCateIndex]}}
-            </view>
+            <view class="picker-text">{{cateList[currentCateIndex]}}</view>
             <text class="iconfont icon-jiantou12"></text>
           </view>
         </picker>
@@ -25,12 +23,22 @@
   </view>
   <!-- project content beign -->
   <view class="project-wrap">
-    <block wx:for="{{itemList}}" wx:key="index" wx:if="{{cateIndex == 0}}">
-      <project-item />
-    </block>
-    <block wx:for="{{itemList}}" wx:key="index" wx:if="{{cateIndex == 1}}">
-      <connection-item />
-    </block>
+    <swiper class="procon-swiper" current="{{cateIndex}}" bindchange="handleSwiperChange">
+      <swiper-item class="procon-swiper-time" item-id="">
+        <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscroll="handleSwiperscroll">
+          <block wx:for="{{proList}}" wx:key="index">
+            <project-item />
+          </block>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item class="procon-swiper-time" item-id="">
+        <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscroll="handleSwiperscroll">
+          <block wx:for="{{conList}}" wx:key="index">
+            <connection-item />
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
   </view>
   <!-- project content beign -->
 </scroll-view>

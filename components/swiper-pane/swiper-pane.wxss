@@ -109,3 +109,12 @@
   font-size: 24rpx;
   color: #a7a4a4;
 }
+.swiper_part_wrap .swiper_art_wrap .pane-scroll {
+  height: 400rpx;
+  display: flex;
+}
+.swiper_part_wrap .swiper_art_wrap .pane-scroll .roll {
+  width: 1080rpx;
+  height: 100%;
+  display: flex;
+}

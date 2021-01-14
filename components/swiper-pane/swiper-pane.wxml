@@ -16,28 +16,33 @@
   </view>
   <!-- 底部滚动 -->
   <view class="swiper_art_wrap">
-    <movable-wrap width="{{360*3}}" height="{{320}}">
-      <navigator class="video-item-desc">
-        <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-        <view class="video-desc">
-          <view class="name">斯琴高娃</view>
-          <view class="desc">祝贺善商天下举办成功</view>
-        </view>
-      </navigator>
-      <navigator class="video-item-desc">
-        <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-        <view class="video-desc">
-          <view class="name">斯琴高娃</view>
-          <view class="desc">祝贺善商天下举办成功</view>
-        </view>
-      </navigator>
-      <navigator class="video-item-desc">
-        <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-        <view class="video-desc">
-          <view class="name">斯琴高娃</view>
-          <view class="desc">祝贺善商天下举办成功</view>
-        </view>
-      </navigator>
-    </movable-wrap>
+    <!-- <movable-wrap width="{{360*3}}" height="{{320}}">
+      
+    </movable-wrap> -->
+    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="roll">
+        <navigator class="video-item-desc">
+          <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
+          <view class="video-desc">
+            <view class="name">斯琴高娃</view>
+            <view class="desc">祝贺善商天下举办成功</view>
+          </view>
+        </navigator>
+        <navigator class="video-item-desc">
+          <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
+          <view class="video-desc">
+            <view class="name">斯琴高娃</view>
+            <view class="desc">祝贺善商天下举办成功</view>
+          </view>
+        </navigator>
+        <navigator class="video-item-desc">
+          <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
+          <view class="video-desc">
+            <view class="name">斯琴高娃</view>
+            <view class="desc">祝贺善商天下举办成功</view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
   </view>
 </view>

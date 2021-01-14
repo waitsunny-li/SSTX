@@ -13,6 +13,11 @@
   box-sizing: border-box;
   font-weight: 700;
   color: #ffffff;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+}
+.title-tab .active {
+  border-bottom: 3px solid #ffffff;
 }
 .title-tab .line {
   position: absolute;

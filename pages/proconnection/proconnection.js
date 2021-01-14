@@ -12,18 +12,6 @@ Page({
     cateList: ['高端人脉协助', '项目合作', '其他'],
     currentCateIndex: 0,
     cateIndex: 0,
-    itemList: [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
     cateTop: 0,
 
     // project
@@ -56,7 +44,10 @@ Page({
       {},
       {},
       {}
-    ]
+    ],
+
+
+    scrollTop: 0
   },
 
   /**
@@ -118,19 +109,15 @@ Page({
   // handle cate change
   handleCateChange(e) {
     const {index, cate} = e.detail
-    if (index == 1) {// connection
-      // change cateList
-      console.log("connection");
+    console.log(index);
+    if (index == 0) { // change project cate
+      
       this.setData({
-        cateList: this.data.conCateList,
-        currentCateIndex: this.data.conCateIndex,
-        itemList: this.data.conList
+        cateList: this.data.proCateList
       })
-    } else { // project
+    } else {
       this.setData({
-        cateList: this.data.proCateList,
-        currentCateIndex: this.data.proCateIndex ,
-        itemList: this.data.proList
+        cateList: this.data.conCateList
       })
     }
     this.setData({
@@ -164,5 +151,24 @@ Page({
         ishowcateps: false
       })
     }
+  },
+
+  // swiper change
+  handleSwiperChange(event) {
+    let {current} = event.detail
+    console.log(current);
+    this.setData({
+      cateIndex: current
+    })
+  },
+
+  handleSwiperscroll(e) {
+    let {
+      scrollTop
+    } = e.detail
+    console.log(scrollTop);
+    this.setData({
+      scrollTop
+    })
   }
 })

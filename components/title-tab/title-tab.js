@@ -28,6 +28,11 @@ Component({
     initLeft: {
       type: String,
       value: "54rpx"
+    },
+    currentIndex: {
+      type: Number,
+      value: 0,
+      // observer: '_changeCurrentIndex'
     }
   },
 
@@ -35,7 +40,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    currentIndex: 0,
+    // currentIndex: 0,
     left: ""
   },
 
@@ -50,11 +55,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    _changeCurrentIndex(newVal) {
+      console.log(newVal);
+      this.setData({
+        currentIndex: newVal
+      })
+    },
+
     handleTitleTab(e) {
       // let {index} = e.currentTarget.dataset
       let left = e.currentTarget.offsetLeft + 'px'
       let index = e.currentTarget.dataset.index
-      console.log(this.data.tabList);
       this.triggerEvent('cateChange', {
         index: index,
         cate: this.data.tabList[index].name
