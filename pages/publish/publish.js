@@ -52,7 +52,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -65,6 +65,12 @@ Page({
         selected: 2
       })
     }
+
+    const currentIndex = wx.getStorageSync('pubCateIndex');
+    console.log(currentIndex);
+    this.setData({
+      currentIndex
+    })
   },
 
   needCateRadioChange(e) {
@@ -99,6 +105,8 @@ Page({
   // swiper change 
   handleSwiperChange(e) {
     let currentIndex = e.detail.current
+    // 改变缓存中的pubCateIndex的值
+    wx.setStorageSync('pubCateIndex', currentIndex);
     if (currentIndex == 0) {
       wx.setNavigationBarTitle({
         title: '发布需求',
@@ -115,6 +123,7 @@ Page({
   // top cates tap
   handleTapNeed(e) {
     let {index, name} = e.currentTarget.dataset.cate
+    wx.setStorageSync('pubCateIndex', index);
     wx.setNavigationBarTitle({
       title: name,
     });
@@ -125,6 +134,7 @@ Page({
   },
   handleTapConnection(e) {
     let {index, name} = e.currentTarget.dataset.cate
+    wx.setStorageSync('pubCateIndex', index);
     wx.setNavigationBarTitle({
       title: name,
     });

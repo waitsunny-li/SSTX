@@ -24,13 +24,7 @@ Page({
     },
 
     cateIndex: 0,
-    itemList: [{},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ],
+
     cateTop: 0,
 
     // project
@@ -39,7 +33,11 @@ Page({
       {},
       {},
       {},
-      {}
+      {},
+      {},
+      {},
+      {},
+      {},
     ],
 
     // connection
@@ -66,7 +64,7 @@ Page({
       title,
       cb
     } = options
-    
+
     // change navigationBarTitleText
     wx.setNavigationBarTitle({
       title
@@ -105,61 +103,24 @@ Page({
     }
   },
 
-  // handle cate change
+  // cate change
   handleCateChange(e) {
-    const {
-      index,
-      cate
-    } = e.detail
-    if (index == 1) { // connection
-      // change cateList
-      console.log("connection");
-      this.setData({
-        cateList: this.data.conCateList,
-        itemList: this.data.conList
-      })
-    } else { // project
-      this.setData({
-        cateList: this.data.proCateList,
-        itemList: this.data.proList
-      })
-    }
+    const {index} = e.detail
     this.setData({
       cateIndex: index
     })
   },
 
-  // scroll 
-  handlescroll(e) {
+  // swiper change
+  handleSwiperChange(event) {
     let {
-      scrollTop
-    } = e.detail
-    console.log(scrollTop);
-    if (scrollTop > this.data.cateTop) {
-      wx.setNavigationBarColor({
-        frontColor: '#ffffff',
-        backgroundColor: '#970d0d',
-        animation: {
-          duration: 0,
-          timingFunc: 'linear'
-        }
-      });
+      current
+    } = event.detail
+    console.log(current);
+    this.setData({
+      cateIndex: current
+    })
+  },
 
-      this.setData({
-        ishowcateps: true
-      })
-    } else {
-      wx.setNavigationBarColor({
-        frontColor: '#000000',
-        backgroundColor: '#ffffff',
-        animation: {
-          duration: 300,
-          timingFunc: 'linear'
-        }
-      });
-      this.setData({
-        ishowcateps: false
-      })
-    }
-  }
+
 })

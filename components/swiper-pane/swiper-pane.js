@@ -4,30 +4,76 @@
  */
 // components/swiper-pane/swiper-pane.js
 Component({
+  lifetimes: {
+    attached() {
+      let rollwidth = 340 * this.data.swiperVideoList.length
+      console.log(rollwidth);
+      this.setData({
+        rollwidth
+      })
+    }
+  },
   /**
    * 组件的属性列表
    */
   properties: {
-    
+    swiperVideoList: {
+      type: Array,
+      value: []
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    currentIndex: 0
+    rollWidth: 1000,
+    catesList: [
+      {
+        status: 0,
+        name: '明星祝词'
+      },
+      {
+        status: 1,
+        name: '企业祝词'
+      },
+      {
+        status: 2,
+        name: '领导关怀'
+      }
+    ],
+    currentIndex: 0,
+    scrollLeft: 0
   },
+
 
   /**
    * 组件的方法列表
    */
   methods: {
     handleTitleTap(e) {
-      let {index} = e.currentTarget.dataset
+      let {
+        index
+      } = e.currentTarget.dataset
       this.setData({
         currentIndex: index
       })
+    },
+
+    // scroll lower
+    handleToLower(e) {
+      console.log('滚动底部');
+      let currentIndex = ++this.data.currentIndex
+      if (currentIndex > 2) {
+        currentIndex = 0
+      }
+      // 发送数据
+      
+      this.setData({
+        currentIndex,
+        scrollLeft: 0
+      })
     }
-    
+
   }
 })

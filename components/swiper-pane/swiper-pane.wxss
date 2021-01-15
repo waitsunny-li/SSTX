@@ -59,6 +59,7 @@
   margin-right: 25rpx;
   color: #eaeaea;
   border-bottom: 2px solid transparent;
+  transition: 0.3s;
 }
 .swiper_part_wrap .swiper_header_title .title_group .active {
   color: #ffffff !important;
@@ -110,11 +111,14 @@
   color: #a7a4a4;
 }
 .swiper_part_wrap .swiper_art_wrap .pane-scroll {
+  padding-left: 30rpx;
+  margin-top: 40rpx;
   height: 400rpx;
   display: flex;
+  box-sizing: border-box;
 }
 .swiper_part_wrap .swiper_art_wrap .pane-scroll .roll {
-  width: 1080rpx;
   height: 100%;
   display: flex;
+  white-space: nowrap;
 }

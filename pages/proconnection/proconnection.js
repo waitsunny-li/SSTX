@@ -46,8 +46,6 @@ Page({
       {}
     ],
 
-
-    scrollTop: 0
   },
 
   /**
@@ -86,6 +84,12 @@ Page({
         selected: 3
       })
     }
+
+    // 获取首页点击项目库或人才库跳转该页面固定位置
+    const cateIndex = wx.getStorageSync('proConCateIndex');
+    this.setData({
+      cateIndex
+    })
   },
 
   // handle cate change
@@ -109,13 +113,13 @@ Page({
   // handle cate change
   handleCateChange(e) {
     const {index, cate} = e.detail
-    console.log(index);
+    wx.setStorageSync('proConCateIndex', index)
     if (index == 0) { // change project cate
-      
       this.setData({
         cateList: this.data.proCateList
       })
     } else {
+
       this.setData({
         cateList: this.data.conCateList
       })
@@ -125,50 +129,26 @@ Page({
     })
   },
 
-  // scroll 
-  handlescroll(e) {
-    let {
-      scrollTop
-    } = e.detail
-    console.log(scrollTop);
-    if (scrollTop >= this.data.cateTop) {
-      wx.setNavigationBarColor({
-        frontColor: '#ffffff',
-        backgroundColor: '#e1211f',
-        
-      });
-        
-      this.setData({
-        ishowcateps: true
-      })
-    } else {
-      wx.setNavigationBarColor({
-        frontColor: '#000000',
-        backgroundColor: '#ffffff',
-       
-      });
-      this.setData({
-        ishowcateps: false
-      })
-    }
-  },
 
   // swiper change
   handleSwiperChange(event) {
     let {current} = event.detail
-    console.log(current);
+    wx.setStorageSync('proConCateIndex', current)
     this.setData({
       cateIndex: current
     })
   },
 
+  // scroll lower
+  handleSwiperLower(e) {
+    console.log('滚动到底部');
+  },
+
+  // scroll event
   handleSwiperscroll(e) {
     let {
       scrollTop
     } = e.detail
-    console.log(scrollTop);
-    this.setData({
-      scrollTop
-    })
+   
   }
 })

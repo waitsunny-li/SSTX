@@ -28,6 +28,14 @@ Page({
     this.queryMultipleNodes()
   },
 
+  onUnLoad: function() {
+    
+  },
+
+  onHide: function() {
+    
+  },
+
   //声明节点查询的方法
   queryMultipleNodes: function () {
     const query = wx.createSelectorQuery() // 创建节点查询器 query

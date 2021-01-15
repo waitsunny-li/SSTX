@@ -1,3 +1,7 @@
+/*
+ * @Author: liweilong
+ * @Date: 2021-01-07 15:47:38
+ */
 // components/video-item/video-item.js
 Component({
     /**
@@ -13,6 +17,7 @@ Component({
     data: {
 
     },
+    
 
     /**
      * 组件的方法列表

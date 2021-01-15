@@ -1,19 +1,19 @@
 <scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
   <view class="profile-header">
-    <block wx:if="{{isAuth}}">
+    <block wx:if="{{userInfo.nickName}}">
       <view class="ava-wrap">
         <view class="ara-image">
-          <image class="" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872" />
+          <image class="" src="{{userInfo.avatarUrl}}" />
         </view>
         <view class="name-wrap">
-          <view class="name">
-            <text class="n">昵称：逃跑的沸沸</text>
+          <navigator hover-class="none" url="/pages/basicinfo/basicinfo" class="name">
+            <text class="n">昵称：{{userInfo.nickName}}</text>
             <text class="iconfont icon-bianji"></text>
-          </view>
-          <view class="auth-wrap" wx:if="{{true}}">
+          </navigator>
+          <navigator hover-class="none" url="/pages/authenticate/authenticate" class="auth-wrap" wx:if="{{true}}">
             <view class="t">我的实名认证</view>
             <text class="iconfont icon-bianji"></text>
-          </view>
+          </navigator>
         </view>
       </view>
       <!-- 信用 -->

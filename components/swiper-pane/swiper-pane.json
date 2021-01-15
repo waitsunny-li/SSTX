@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "movable-wrap": "/components/movable-wrap/movable-wrap"
+   
   }
 }

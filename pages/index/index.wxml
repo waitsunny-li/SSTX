@@ -2,7 +2,10 @@
   <!-- logo begin -->
   <view class="top-logo">
     <view class="title-text">礼义仁智信</view>
-    <image class="" mode="aspectFill" src="/icons/logo.png" />
+    <view class="log-img">
+      <image class="logo-img" mode="aspectFill" src="/icons/logo.png" />
+      <image class="logo-text" mode="aspectFill" src="/icons/logo-text.png" />
+    </view>
     <view class="title-text">弘扬正能量</view>
   </view>
   <!-- logo end -->
@@ -25,12 +28,12 @@
   <!-- dynamic end -->
   <!-- publish begin -->
   <view class="publish-support">
-    <view class="item-wrap">
+    <view hover-class="none" class="item-wrap"  bind:tap="handlePubProPage">
       <text class="iconfont icon-fabu"></text>
       <view class="title">发布需求</view>
       <view class="desc">(寻求帮助)</view>
     </view>
-    <view class="item-wrap">
+    <view class="item-wrap" bind:tap="handlePubConPage">
       <text class="iconfont icon-ai-connection"></text>
       <view class="title">提供人脉</view>
       <view class="desc">(为家乡建设做贡献)</view>
@@ -38,7 +41,7 @@
   </view>
   <!-- publish end -->
   <!-- connection begin -->
-  <swiper-pane />
+  <swiper-pane swiperVideoList="{{swiperVideoList}}" />
   <!-- connection end -->
   <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
     <!-- location begin -->
@@ -59,17 +62,17 @@
     <!-- location end -->
     <!-- title tab begin -->
     <view class="title-tab-wrap">
-      <title-tab width="480rpx" initLeft="54rpx" ext-class="default"></title-tab>
+      <title-tab width="480rpx" ext-class="default" currentIndex="{{currentIndex}}" bind:cateChange="handleCateChange"></title-tab>
       <view class="project-connection">
-        <navigator class="item">
+        <view class="item" bind:tap="handleTapProCate">
           <text class="iconfont icon-xiangmu"></text>
           <view class="text">项目库</view>
-        </navigator>
+        </view>
         |
-        <navigator class="item">
+        <view class="item" bind:tap="handleTapConCate">
           <text class="iconfont icon-ai-connection"></text>
           <view class="text">人脉库</view>
-        </navigator>
+        </view>
       </view>
     </view>
     <!-- title tab end -->
@@ -77,22 +80,23 @@
   <view class="{{ishowcateps ? 'placehold-cate' : ''}}"></view>
   <!-- project / connection item begin -->
   <view class="project-connection-wrap">
-    <project-item />
-    <connection-item number="{{2}}" />
-    <connection-item number="{{4}}" />
-    <connection-item number="{{4}}" />
-    <connection-item number="{{4}}" />
-    <connection-item number="{{4}}" />
-    <connection-item number="{{4}}" />
-    <connection-item number="{{0}}" />
-    <connection-item number="{{0}}" />
+    <block wx:if="{{currentIndex == 0}}">
+      <block wx:for="{{proconList}}" wx:key="id">
+        <project-item />
+      </block>
+      <view style="width:100vw; height:100rpx"></view>
+    </block>
+    <block wx:else>
+      <block wx:for="{{proconList}}" wx:key="id">
+        <connection-item number="{{7}}" />
+      </block>
+      <view style="width:100vw; height:100rpx"></view>
+    </block>
   </view>
 </scroll-view>
-
 <!-- 动态弹出一个小框 -->
 <view class="animation-wrap" animation="{{animationData}}">
-  <button class="default" size="default" type="default" plain="default"
-    hover-class="button-hover" open-type="getUserInfo" bindgetuserinfo="GetUserInfo">
+  <button class="default" size="default" type="default" plain="default" hover-class="button-hover" open-type="getUserInfo" bindgetuserinfo="GetUserInfo">
     立即登录
   </button>
 </view>

@@ -58,9 +58,13 @@
 }
 .project-wrap .procon-swiper {
   width: 100%;
-  height: calc(100vh - 120rpx);
+  height: calc(100vh - 280rpx);
 }
 .project-wrap .procon-swiper .procon-swiper-time {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+}
+.project-wrap .procon-swiper .procon-swiper-time .proscroll {
+  width: 100%;
+  height: 100%;
 }

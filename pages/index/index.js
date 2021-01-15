@@ -23,7 +23,30 @@ Page({
         title: 'jjjjjj'
       },
     ],
-    animationData: {}
+    animationData: {},
+    // swiperpang
+    swiperVideoList: [{},
+      {},
+      {},
+      {},
+      {}
+    ],
+    currentIndex: 0,
+    proconList: [{},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+
 
   },
   //options(Object)
@@ -51,8 +74,7 @@ Page({
     this.queryMultipleNodes()
   },
 
-  onShow: function () {
-  },
+  onShow: function () {},
 
   //声明节点查询的方法
   queryMultipleNodes: function () {
@@ -73,6 +95,19 @@ Page({
         selected: 0
       })
     }
+  },
+
+  // handle Cate change
+  handleCateChange(e) {
+    const {
+      index,
+      cate
+    } = e.detail
+    console.log(index);
+
+    this.setData({
+      currentIndex: index
+    })
   },
 
   // listen location event
@@ -103,6 +138,35 @@ Page({
 
   handleClickPub(e) {
     console.log('点击发布');
+  },
+
+  /**
+   * 点击首页响应的链接进行跳转响应的位置
+   * click skip publist
+   */
+  handlePubProPage(e) {
+    wx.setStorageSync('pubCateIndex', 0);
+    wx.switchTab({
+      url: '/pages/publish/publish',
+    })
+  },
+  handlePubConPage(e) {
+    wx.setStorageSync('pubCateIndex', 1);
+    wx.switchTab({
+      url: '/pages/publish/publish',
+    })
+  },
+  handleTapProCate(e) {
+    wx.setStorageSync('proConCateIndex', 0);
+    wx.switchTab({
+      url: '/pages/proconnection/proconnection',
+    })
+  },
+  handleTapConCate(e) {
+    wx.setStorageSync('proConCateIndex', 1);
+    wx.switchTab({
+      url: '/pages/proconnection/proconnection',
+    })
   }
 
 });

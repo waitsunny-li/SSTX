@@ -6,6 +6,6 @@
     "connection-item": "/components/connection-item/connection-item"
   },
   "navigationBarTitleText": "项目人脉库",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
+  "navigationBarBackgroundColor": "#e1211f",
+  "navigationBarTextStyle": "white"
 }

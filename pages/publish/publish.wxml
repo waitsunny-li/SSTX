@@ -150,7 +150,7 @@
                 <text space="emsp">所在地区：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <province-city isShowIcon="{{false}}" style="width: 180rpx" />
+              <province-city isShowIcon="{{false}}" style="width: 170px" />
             </view>
             <!-- cate -->
             <view class="radio-cate-input">
@@ -171,7 +171,7 @@
             <!-- report -->
             <view class="radio-report-input">
               <view class="label">
-                选对方回报方式：
+                <text space="ensp">选对方回报方式 ：</text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
@@ -182,7 +182,7 @@
             <!-- thanks -->
             <view class="radio-thanks-input">
               <view class="label">
-                <text space="emsp">怎样感谢平台：</text>
+                <text space="ensp">怎样感谢平台：   </text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group class="radio-group" name="thanks">
@@ -193,7 +193,7 @@
             <!-- relation -->
             <view class="radio-relation-input">
               <view class="label">
-                与人脉关系程度：
+                <text space="ensp">与人脉关系程度： </text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
@@ -205,7 +205,7 @@
             <!-- photo -->
             <view class="radio-photo-input">
               <view class="label">
-                <text space="emsp">有无合影：</text>
+                <text space="emsp">有无合影： </text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
@@ -224,7 +224,7 @@
             <!-- tel -->
             <view class="radio-tel-input">
               <view class="label">
-                <text space="emsp">有无电话：</text>
+                <text space="emsp">有无电话： </text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">

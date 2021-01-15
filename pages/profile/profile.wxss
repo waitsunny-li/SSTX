@@ -9,15 +9,14 @@
   background-color: var(--themeColor);
 }
 .profile-header .ava-wrap {
-  width: 70vw;
   height: 150rpx;
   margin-left: 30rpx;
   display: flex;
   justify-content: space-around;
 }
 .profile-header .ava-wrap .ara-image {
-  width: 150rpx;
-  height: 150rpx;
+  width: 130rpx;
+  height: 130rpx;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -27,6 +26,7 @@
   object-fit: cover;
 }
 .profile-header .ava-wrap .name-wrap {
+  width: 520rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;

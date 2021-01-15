@@ -5,6 +5,6 @@
     "connection-item": "/components/connection-item/connection-item"
   },
   "navigationBarTitleText": "",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
+  "navigationBarBackgroundColor": "#970d0d",
+  "navigationBarTextStyle": "white"
 }

@@ -15,6 +15,13 @@
       <view class="input-wrap">
         <text class="label" space="nbsp">手机号</text>
         <view class="verify-code">
+          <input class="" type="number" placeholder="请输入手机号" name="newtel" />
+        </view>
+      </view>
+      <!-- send code -->
+      <view class="input-wrap">
+        <text class="label" space="nbsp">验证码</text>
+        <view class="verify-code">
           <input class="" type="number" placeholder="请输入验证码" name="newtel" />
           <view class="send {{isSend ? 'sended' : ''}}" bind:tap="handleSendCode">{{times}}</view>
         </view>

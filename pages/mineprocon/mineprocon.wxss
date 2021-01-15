@@ -58,3 +58,18 @@ page {
   width: 180rpx;
   font-size: 28rpx;
 }
+.project-wrap {
+  width: 100vw;
+}
+.project-wrap .procon-swiper {
+  width: 100%;
+  height: calc(100vh - 80rpx);
+}
+.project-wrap .procon-swiper .procon-swiper-time {
+  width: 100%;
+  height: 100%;
+}
+.project-wrap .procon-swiper .procon-swiper-time .proscroll {
+  width: 100%;
+  height: 100%;
+}

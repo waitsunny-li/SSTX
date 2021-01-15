@@ -9,39 +9,24 @@
     </view>
     <!-- 标题 -->
     <view class="title_group">
-      <view class="title_wrap active">明星祝词</view>
-      <view class="title_wrap">企业支持</view>
-      <view class="title_wrap">领导关怀</view>
+      <block wx:for="{{catesList}}" wx:key="status">
+        <view class="title_wrap {{currentIndex == index ? 'active' : ''}}" bind:tap="handleTitleTap" data-index="{{index}}">{{item.name}}</view>
+      </block>
     </view>
   </view>
   <!-- 底部滚动 -->
   <view class="swiper_art_wrap">
-    <!-- <movable-wrap width="{{360*3}}" height="{{320}}">
-      
-    </movable-wrap> -->
-    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
-      <view class="roll">
-        <navigator class="video-item-desc">
-          <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-          <view class="video-desc">
-            <view class="name">斯琴高娃</view>
-            <view class="desc">祝贺善商天下举办成功</view>
-          </view>
-        </navigator>
-        <navigator class="video-item-desc">
-          <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-          <view class="video-desc">
-            <view class="name">斯琴高娃</view>
-            <view class="desc">祝贺善商天下举办成功</view>
-          </view>
-        </navigator>
-        <navigator class="video-item-desc">
-          <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-          <view class="video-desc">
-            <view class="name">斯琴高娃</view>
-            <view class="desc">祝贺善商天下举办成功</view>
-          </view>
-        </navigator>
+    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}" bindscrolltolower="handleToLower" scroll-left="{{scrollLeft}}" bindscrolltoupper="handleToUpper">
+      <view class="roll" style="width: {{rollWidth}}px">
+        <block wx:for="{{swiperVideoList}}" wx:key="id">
+          <navigator class="video-item-desc">
+            <image class="video-item-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1078861629,3747050294&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
+            <view class="video-desc">
+              <view class="name">斯琴高娃</view>
+              <view class="desc">祝贺善商天下举办成功</view>
+            </view>
+          </navigator>
+        </block>
       </view>
     </scroll-view>
   </view>
