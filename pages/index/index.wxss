@@ -147,6 +147,88 @@
   z-index: 1000;
   box-shadow: 0 0 3px rgba(4, 4, 4, 0.3);
 }
+.good-person-list {
+  position: relative;
+  width: 100vw;
+  height: 130rpx;
+  margin-top: 30rpx;
+}
+.good-person-list .left-title {
+  position: absolute;
+  left: 4rpx;
+  top: 0;
+  width: 50rpx;
+  height: 100%;
+  background-color: var(--assColor);
+  color: #ffffff;
+  font-size: 30rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8rpx;
+  z-index: 100;
+}
+.good-person-list .pane-scroll {
+  width: 100vw;
+  height: 150rpx;
+  padding-left: 55rpx;
+  box-sizing: border-box;
+}
+.good-person-list .pane-scroll .goodrool {
+  display: flex;
+  justify-content: space-around;
+}
+.good-person-list .pane-scroll .goodrool .good-item {
+  width: 100rpx;
+  height: 130rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.good-person-list .pane-scroll .goodrool .good-item .img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+}
+.good-person-list .pane-scroll .goodrool .good-item .good-name {
+  width: 100%;
+  font-size: 22rpx;
+  color: #000000;
+  display: flex;
+}
+.good-person-list .pane-scroll .goodrool .good-item .good-name .index {
+  color: red;
+  font-weight: 700;
+}
+.good-person-list .pane-scroll .goodrool .more-data {
+  width: 70rpx;
+  height: 130rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10rpx;
+}
+.good-person-list .pane-scroll .goodrool .more-data .iconfont {
+  color: #999999;
+  font-size: 40rpx;
+}
+.good-bottom-nav {
+  width: 100vw;
+  height: 130rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.good-bottom-nav .nav-item {
+  width: 350rpx;
+  height: 75rpx;
+}
+.good-bottom-nav .nav-item image {
+  width: 100%;
+  height: 100%;
+}
 .animation-wrap {
   display: none;
   position: fixed;

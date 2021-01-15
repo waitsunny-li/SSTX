@@ -28,7 +28,7 @@
   <!-- dynamic end -->
   <!-- publish begin -->
   <view class="publish-support">
-    <view hover-class="none" class="item-wrap"  bind:tap="handlePubProPage">
+    <view hover-class="none" class="item-wrap" bind:tap="handlePubProPage">
       <text class="iconfont icon-fabu"></text>
       <view class="title">发布需求</view>
       <view class="desc">(寻求帮助)</view>
@@ -84,15 +84,46 @@
       <block wx:for="{{proconList}}" wx:key="id">
         <project-item />
       </block>
-      <view style="width:100vw; height:100rpx"></view>
     </block>
     <block wx:else>
       <block wx:for="{{proconList}}" wx:key="id">
         <connection-item number="{{7}}" />
       </block>
-      <view style="width:100vw; height:100rpx"></view>
     </block>
   </view>
+  <!-- good list begin -->
+  <view class="good-person-list">
+    <view class="left-title">善商榜</view>
+    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="goodrool" style="width:{{goodList.length * 140}}rpx">
+        <block wx:for="{{goodList}}" wx:key="id">
+          <view class="good-item">
+              <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613309671&t=b140fd1893504547be958685e1eb9eaa"></image>
+            <view class="good-name">
+              <text class="index">{{index + 1}}.</text>
+              许家印
+            </view>
+          </view>
+        </block>
+        <view class="more-data">
+          <text class="iconfont icon-chakangengduoshuju"></text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- good list end -->
+
+  <!-- good bottom nav begin -->
+  <view class="good-bottom-nav">
+    <viwe class="nav-item">
+      <image src="/icons/nav1.png"></image>
+    </viwe>
+    <viwe class="nav-item">
+      <image src="/icons/nav2.png"></image>
+    </viwe>
+  </view>
+  <!-- good bottom nav end -->
+
 </scroll-view>
 <!-- 动态弹出一个小框 -->
 <view class="animation-wrap" animation="{{animationData}}">
