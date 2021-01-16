@@ -8,7 +8,8 @@ import {wxLogin} from '../../utils/asyncWx'
 Page({
   data: {
     isAuth: false,
-    userInfo: {}
+    userInfo: {},
+    isShowLogin: false
   },
   //options(Object)
   onLoad: function(options) {
@@ -33,33 +34,18 @@ Page({
     })
   },
 
-  async handleGetUserInfo(e) {
-    const userInfo = e.detail.userInfo
-    const {avatarUrl, gender, nickName} = e.detail.userInfo
-    wx.showLoading({
-      title: '登录中',
-    })
-    const {code} = await wxLogin();
-    const {data} = await request(
-      {
-        url: '/user/login',
-        // method: 'post',
-        data: {
-          code,
-          gender,
-          avatar: avatarUrl,
-          nickname: nickName
-        }
-      }
-    )
-    wx.setStorageSync('token', data.token);
-    wx.hideLoading();
-    wx.setStorageSync('userInfo', userInfo);
+  handleLoginBtn(e) {
     this.setData({
-      isAuth: true,
+      isShowLogin: true
+    })
+  },
+
+  // get userInfo
+  handleGetUserInfo(e) {
+    const {userInfo} = e.detail
+    this.setData({
       userInfo
     })
-      
   }
 
 });

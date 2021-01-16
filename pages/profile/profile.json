@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "star": "/components/star/star"
+    "star": "/components/star/star",
+    "login-pop": "/components/login-pop/login-pop"
+
   },
   "navigationBarTitleText": "我的",
   "navigationBarBackgroundColor": "#e1211f",

@@ -2,12 +2,16 @@
  * @Author: liweilong
  * @Date: 2020-11-17 15:10:29
  */
+const app = getApp();
+const baseUrl = app.globalData.baseUrl
+const token = wx.getStorageSync('token');
+  
 export const request = (params) => {
   return new Promise((resolve, reject) => {
-    const baseUrl = 'https://stx.gz-isp.com/api'
     wx.request({
       ...params,
-      url: baseUrl + params.url,
+      url: baseUrl + '/api' + params.url,
+      header: {token},
       success: (result) => {
         resolve(result.data)
       },

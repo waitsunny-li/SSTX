@@ -2,9 +2,6 @@
  * @Author: liweilong
  * @Date: 2020-11-18 10:37:47
  */
-import {
-  Event
-} from '../utils/event';
 Component({
   data: {
     selected: 0,

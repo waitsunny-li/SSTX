@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "province-city": "/components/province-city/province-city",
-    "star": "/components/star/star"
+    "star": "/components/star/star",
+    "login-pop": "/components/login-pop/login-pop",
+    "toptips": "/components/toptips/toptips"
   },
   "navigationBarTitleText": "发布需求",
   "navigationBarBackgroundColor": "#fff",

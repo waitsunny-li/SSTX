@@ -35,3 +35,19 @@ export const wxLogin = () => {
     });
   })
 }
+
+// get location
+export const wxLocation = () => {
+  return new Promise((resolve, reject) => {
+    wx.getLocation({
+      type: 'wgs84',
+      altitude: false,
+      success: (result) => {
+        resolve(result)
+      },
+      fail: (error) => {
+        reject(error)
+      }
+    })
+  })
+}

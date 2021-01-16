@@ -70,7 +70,8 @@ Component({
       
       // send event
       this.triggerEvent("locationEvent", {
-        procity: [provinceObj.id, cityObj.id]
+        procity: [provinceObj.id, cityObj.id],
+        address: [provinceObj.name, cityObj.name]
       })
     
       this.setData({

@@ -11,20 +11,17 @@
   <!-- logo end -->
   <!-- index banner begin -->
   <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
-    <swiper-item class="index-swiper-item">
-      <navigator class="index-swiper-navigator">
-        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false" />
-      </navigator>
-    </swiper-item>
-    <swiper-item class="index-swiper-item">
-      <navigator class="index-swiper-navigator">
-        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-      </navigator>
-    </swiper-item>
+    <block wx:for="{{bannerList}}" wx:key="id">
+      <swiper-item class="index-swiper-item">
+        <navigator class="index-swiper-navigator">
+          <image src="{{baseUrl + item.image}}" mode="aspectFill" lazy-load="true" />
+        </navigator>
+      </swiper-item>
+    </block>
   </swiper>
   <!-- index banner end -->
   <!-- dynamic beign -->
-  <swiper-title titleList="{{titleList}}" />
+  <swiper-title titleList="{{noticeList}}" />
   <!-- dynamic end -->
   <!-- publish begin -->
   <view class="publish-support">
@@ -98,7 +95,7 @@
       <view class="goodrool" style="width:{{goodList.length * 140}}rpx">
         <block wx:for="{{goodList}}" wx:key="id">
           <view class="good-item">
-              <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613309671&t=b140fd1893504547be958685e1eb9eaa"></image>
+            <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613309671&t=b140fd1893504547be958685e1eb9eaa"></image>
             <view class="good-name">
               <text class="index">{{index + 1}}.</text>
               许家印
@@ -112,7 +109,6 @@
     </scroll-view>
   </view>
   <!-- good list end -->
-
   <!-- good bottom nav begin -->
   <view class="good-bottom-nav">
     <viwe class="nav-item">
@@ -123,11 +119,6 @@
     </viwe>
   </view>
   <!-- good bottom nav end -->
-
+  <view style="width: 100vw; height: 60rpx"></view>
 </scroll-view>
-<!-- 动态弹出一个小框 -->
-<view class="animation-wrap" animation="{{animationData}}">
-  <button class="default" size="default" type="default" plain="default" hover-class="button-hover" open-type="getUserInfo" bindgetuserinfo="GetUserInfo">
-    立即登录
-  </button>
-</view>
+<login-pop isShow="{{isShowLogin}}" />

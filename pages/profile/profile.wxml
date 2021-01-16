@@ -24,7 +24,7 @@
     </block>
     <block wx:else>
       <view class="login-wrap">
-        <button open-type="getUserInfo" bindgetuserinfo="handleGetUserInfo" plain="{{true}}" type="default">
+        <button bind:tap="handleLoginBtn" plain="{{true}}" type="default">
           立即登录
         </button>
       </view>
@@ -157,3 +157,5 @@
   </view>
   <!-- mine function end -->
 </scroll-view>
+
+<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleGetUserInfo"/>

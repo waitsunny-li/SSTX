@@ -1,3 +1,4 @@
+<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}"/>
 <view class="publish-top">
   <view class="publish-support-con left {{currentIndex == 0 ? 'active' : ''}}" bind:tap="handleTapNeed" data-cate="{{pubCatesList[0]}}">
     {{pubCatesList[0].name}}
@@ -12,6 +13,7 @@
 </view>
 <!-- form begin -->
 <swiper class="swiper_art" current="{{currentIndex}}" bindchange="handleSwiperChange">
+  <!-- 发布需求 -->
   <swiper-item class="swiper_art_item">
     <scroll-view class="publish-need-con" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view class="form-wrap">
@@ -21,20 +23,20 @@
               需求名称：
               <text class="iconfont icon-required"></text>
             </view>
-            <input type="text" name="needname" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx" />
+            <input type="text" name="title" value="" placeholder="请输入项目名称" placeholder-style="font-size:26rpx" />
           </view>
           <view class="radio-input">
             <view class="label">
               需求类别：
               <text class="iconfont icon-required"></text>
             </view>
-            <radio-group bindchange="needCateRadioChange" class="radio-group" name="needcate">
+            <radio-group class="radio-group" name="type">
               <block wx:for="{{needCates}}" wx:key="id">
-                <radio class="need-cate-radio" value="{{item.name}}" checked="{{item.checked}}" color="#970d0d">
+                <radio class="need-cate-radio" value="{{item.id}}" color="#970d0d">
                   {{item.name}}
                 </radio>
               </block>
-              <input type="text" class="other" />
+              <input type="text" class="other" name="other_type_desc" />
             </radio-group>
           </view>
           <!-- need content detail -->
@@ -45,7 +47,7 @@
               <view class="info">请按照真实情况填写，审核通过后将在平台发布</view>
             </view>
             <view class="need-content-textarea">
-              <textarea name="needcontent" id="" placeholder="例：我在海南省有15亿公路建设项目，已进入初期，距离结束时间30天。寻求高端人脉给予咨询协助对接。" placeholder-style="color: #cfcfcf"></textarea>
+              <textarea name="needcontent" id="" placeholder="例：我在海南省有15亿公路建设项目，已进入初期，距离结束时间30天。寻求高端人脉给予咨询协助对接。" placeholder-style="color: #cfcfcf" name="content"></textarea>
             </view>
           </view>
           <!-- date -->
@@ -56,7 +58,7 @@
             </view>
             <picker class="need-date" mode="date" value="" bindchange="handleNeedDateChange">
               <view class="picker">
-                <input type="text" value="{{needdate}}" name="needdate" placeholder="请选择项目截止时间" />
+                <input type="text" value="{{needdate}}" name="endtime" placeholder="请选择项目截止时间" disabled="{{true}}"/>
               </view>
             </picker>
           </view>
@@ -66,7 +68,7 @@
               居间回报：
               <text class="iconfont icon-required"></text>
             </view>
-            <input type="text" name="report" placeholder="输入最低回报" />
+            <input type="number" name="return_price" placeholder="输入最低回报" />
             万
           </view>
           <!-- user info begin -->
@@ -76,39 +78,41 @@
                 <text space="nbsp">姓  名：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <input type="text" name="username" value="" placeholder="请填写您的姓名" placeholder-style="font-size:26rpx" />
+              <input type="text" name="name" value="" placeholder="请填写您的姓名" placeholder-style="font-size:26rpx" />
             </view>
             <view class="user-item">
               <view class="label">
                 <text space="nbsp">电  话：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <input type="text" name="tel" value="" placeholder="请输入手机号" placeholder-style="font-size:26rpx" />
+              <input type="text" name="mobile" value="" placeholder="请输入手机号" placeholder-style="font-size:26rpx" />
             </view>
             <view class="user-item">
               <view class="label">
                 <text space="nbsp">行  业：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <input type="text" name="profession" value="" placeholder="请填写所属行业" placeholder-style="font-size:26rpx" />
+              <input type="text" name="work" value="" placeholder="请填写所属行业" placeholder-style="font-size:26rpx" />
             </view>
             <view class="user-item">
               <view class="label">
                 <text space="nbsp">地  区：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <province-city isShowIcon="{{false}}" />
+              <province-city isShowIcon="{{false}}" bind:locationEvent="handleNeedLocation"/>
             </view>
           </view>
           <!-- user info end -->
           <!-- btn -->
           <view class="btn-wrap">
             <button class="submit" type="primary" formType="submit">提交</button>
+            <button style="margin: 30rpx 0" formType="reset">Reset</button>
           </view>
         </form>
       </view>
     </scroll-view>
   </swiper-item>
+  <!-- 发布人脉 -->
   <swiper-item class="swiper_art_item">
     <scroll-view class="publish-need-con" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view class="form-wrap-connec">
@@ -297,3 +301,5 @@
   </swiper-item>
 </swiper>
 <!-- form end -->
+
+<login-pop isShow="{{isShowLogin}}" isShowClose="{{false}}"/>

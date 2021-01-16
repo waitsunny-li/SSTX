@@ -7,7 +7,7 @@
     <swiper class="swiper" autoplay="{{true}}" vertical="{{true}}" circular="{{true}}">
       <block wx:for="{{titleList}}" wx:key="id">
         <swiper-item class="swiper_item">
-          <view class="title">{{item.title}}</view>
+          <view class="title">{{item. content}}</view>
         </swiper-item>
       </block>
     </swiper>

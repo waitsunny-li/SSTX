@@ -20,6 +20,11 @@
     "pages/help/help" ,
     "pages/helpdetail/helpdetail" 
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于地区定位" 
+    }
+  },
   "tabBar": {
     "custom": true,
     "color": "#7A7E83",

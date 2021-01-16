@@ -2,6 +2,8 @@
  * @Author: liweilong
  * @Date: 2021-01-05 13:45:17
  */
+import {request} from '../../request/index'
+import pop from '../../utils/pop'
 // pages/publish/publish.js
 Page({
 
@@ -9,9 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowLogin: false,
     currentIndex: 0,
-    pubCatesList: [
-      {
+    pubCatesList: [{
         index: 0,
         name: '发布需求'
       },
@@ -35,6 +37,7 @@ Page({
     ],
     needdate: "",
     needcate: "",
+    needAddress: '',
 
     // pub connection
     conCates: [{
@@ -45,7 +48,10 @@ Page({
         id: 1,
         name: '招商类'
       },
-    ]
+    ],
+
+    poptype: '',
+    popmsg: '',
   },
 
   /**
@@ -65,12 +71,20 @@ Page({
         selected: 2
       })
     }
-
+    // get current Index 
     const currentIndex = wx.getStorageSync('pubCateIndex');
     console.log(currentIndex);
     this.setData({
       currentIndex
     })
+
+    // login ?
+    if (!wx.getStorageSync('userInfo')) {
+      this.setData({
+        isShowLogin: false
+      })
+    }
+
   },
 
   needCateRadioChange(e) {
@@ -89,14 +103,36 @@ Page({
     })
   },
 
+  // need location
+  handleNeedLocation(e) {
+    const {address} = e.detail
+    this.setData({
+      needAddress: address.join('/')
+    })
+  },
+
   // 表单提交
-  needsubmit(e) {
-    console.log(e);
+  async needsubmit(e) {
+    let {value} = e.detail
+    value.address = this.data.needAddress
+    console.log(value);
+    const result = await request({
+      url: '/project/add',
+      method: 'post',
+      data: value
+    })
+    if (result.code == 1) {
+      pop.success(result.msg)
+    } else {
+      this.setData({
+        popmsg: result.msg,
+        poptype: 'error'
+      })
+    }
   },
 
   // need date 
   handleNeedDateChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       needdate: e.detail.value
     })
@@ -122,18 +158,24 @@ Page({
   },
   // top cates tap
   handleTapNeed(e) {
-    let {index, name} = e.currentTarget.dataset.cate
+    let {
+      index,
+      name
+    } = e.currentTarget.dataset.cate
     wx.setStorageSync('pubCateIndex', index);
     wx.setNavigationBarTitle({
       title: name,
     });
-      
+
     this.setData({
       currentIndex: index
     })
   },
   handleTapConnection(e) {
-    let {index, name} = e.currentTarget.dataset.cate
+    let {
+      index,
+      name
+    } = e.currentTarget.dataset.cate
     wx.setStorageSync('pubCateIndex', index);
     wx.setNavigationBarTitle({
       title: name,

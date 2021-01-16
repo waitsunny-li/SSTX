@@ -1,0 +1,68 @@
+// animation
+@import '../../styles/iconfont.wxss';
+
+.login-pop {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+  background-color: rgba(4, 4, 4, 0.6);
+
+  .animation-wrap {
+    position: absolute;
+    z-index: 1000;
+    width: 80vw;
+    padding: 30rpx 20rpx;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    top: 40%;
+    left: 10vw;
+    // transform: translate(-50%, -50%);
+    box-shadow: 0 0 5rpx rgba(4, 4, 4, 0.3);
+    border-radius: 12rpx;
+
+    .login-title {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 30rpx;
+      font-size: 30rpx;
+      color: #000000;
+    }
+
+    .login {
+      width: 90%;
+      padding: 10rpx 0;
+      height: 70rpx;
+      font-size: 30rpx;
+      border-color: var(--themeColor);
+      background-color: var(--themeColor);
+      color: #ffffff;      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 35rpx;
+    }
+
+    .close-btn {
+      position: absolute;
+      width: 100rpx;
+      height: 100rpx;
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 200rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .iconfont {
+        color: #ffffff;
+        font-size: 60rpx;
+
+      }
+    }
+  }
+}

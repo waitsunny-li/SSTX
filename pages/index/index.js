@@ -5,24 +5,23 @@
 import {
   request
 } from '../../request/index'
+import QQMapWX from '../../utils/qqmap-wx-jssdk.min'
+import {
+  wxLocation
+} from '../../utils/asyncWx'
 //获取应用实例
-const app = getApp()
-
+let app =  getApp();
+let qqmapsdk = new QQMapWX({
+  key: '56DBZ-5BAHI-GE3G7-5AZUO-3DRJF-F7FXU'
+})
 //Page Object
 Page({
   data: {
+    baseUrl: app.globalData.baseUrl,
     cateTop: 0,
     ishowcateps: false,
-    titleList: [{
-        title: 'jjjdddDdddfsdfsdfsdfsdfssdfsdfjjj'
-      },
-      {
-        title: 'jjjjjj'
-      },
-      {
-        title: 'jjjjjj'
-      },
-    ],
+    bannerList: [],
+    noticeList: [],
     animationData: {},
     // swiperpang
     swiperVideoList: [{},
@@ -46,8 +45,7 @@ Page({
       {},
       {}
     ],
-    goodList: [
-      {},
+    goodList: [{},
       {},
       {},
       {},
@@ -55,36 +53,58 @@ Page({
       {},
       {},
       {}
-    ]
+    ],
 
-
+    isShowLogin: false
   },
   //options(Object)
   onLoad: function (options) {
+    // 缓存中不存在procity时要获取定位的位置信息
+    if (!wx.getStorageSync('procity')) {
+      app.getUserLocation(function(res) {
+        // 获取精确的地理位置
+        qqmapsdk.reverseGeocoder({
+          //获取输入框值并设置keyword参数
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: (resLoc) => {//搜索成功后的回调
+            let {province, city} = resLoc.result.address_component
+            console.log(province, city)
+            wx.setStorageSync('procity', [province, city]);
+          }
+        });
+      })
+    }
+    
+    console.log(app);
     let thems = async () => {
-      let provinceListDataPromise = request({
-        url: '/index/getCity',
+      let bannerDataPromise = request({
+        url: '/index/getBanner',
         data: {
-          level: 0
+          static: 0
         }
       })
-
-      let provinceData = await provinceListDataPromise
-      console.log(provinceData.data);
-
+      let noticeDataPromise = request({
+        url: '/index/getNotice'
+      })
+      let bannerData = await bannerDataPromise
+      let noticeData = await noticeDataPromise
 
       this.setData({
-        objectCityArray
+        bannerList: bannerData.data,
+        noticeList: noticeData.data
       })
     }
 
-    // thems()
+    thems().catch(error => {
+      console.log(error);
+    })
   },
   onReady: function () {
     this.queryMultipleNodes()
   },
-
-  onShow: function () {},
 
   //声明节点查询的方法
   queryMultipleNodes: function () {
@@ -105,6 +125,10 @@ Page({
         selected: 0
       })
     }
+
+    const userInfo = wx.getStorageSync('userInfo');
+    console.log(userInfo);
+    console.log('userInfo');
   },
 
   // handle Cate change

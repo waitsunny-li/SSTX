@@ -1,0 +1,14 @@
+<!-- 动态弹出一个小框 -->
+<view class="login-pop" wx:if="{{isShow}}">
+  <view class="animation-wrap" animation="{{animationData}}">
+    <view class="login-title">善天下登录</view>
+    <button class="login" size="default" type="default" plain="default" hover-class="button-hover" open-type="getUserInfo" bindgetuserinfo="handleGetUserInfo">
+      立即登录
+    </button>
+
+    <!-- close btn -->
+    <view class="close-btn" wx:if="{{isShowClose}}" bind:tap="handleClose">
+      <text class="iconfont icon-guanbi"></text>
+    </view>
+  </view>
+</view>
