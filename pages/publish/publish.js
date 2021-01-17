@@ -2,8 +2,19 @@
  * @Author: liweilong
  * @Date: 2021-01-05 13:45:17
  */
-import {request} from '../../request/index'
+
+import {
+  request
+} from '../../request/index'
 import pop from '../../utils/pop'
+import {
+  chooseOneImg,
+  uploadFile,
+  showModal
+} from '../../utils/asyncWx'
+import {
+  getCacheLocationInfo
+} from '../../utils/util'
 // pages/publish/publish.js
 Page({
 
@@ -11,6 +22,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 获取的位置信息的列下标
+    procityIndex: [0, 0],
+    provinceName: '北京',
+    cityName: '北京市',
+    objectCityArray: [],
+
     isShowLogin: false,
     currentIndex: 0,
     pubCatesList: [{
@@ -37,7 +54,8 @@ Page({
     ],
     needdate: "",
     needcate: "",
-    needAddress: '',
+    needAddress: [],
+    connectionAddress: [],
 
     // pub connection
     conCates: [{
@@ -48,7 +66,12 @@ Page({
         id: 1,
         name: '招商类'
       },
+      {
+        id: 2,
+        name: '其他'
+      }
     ],
+    group_image: '',
 
     poptype: '',
     popmsg: '',
@@ -58,7 +81,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    // 如果有 获取缓存中的procityObj, 填充到地区中
+    getCacheLocationInfo.apply(this, null)
+
+
+    // 保存当前位置信息到地区选择表单中
+    const addressArray = [this.data.provinceName, this.data.cityName]
+    this.setData({
+      needAddress: addressArray,
+      connectionAddress: addressArray
+    })
   },
 
   /**
@@ -78,13 +110,6 @@ Page({
       currentIndex
     })
 
-    // login ?
-    if (!wx.getStorageSync('userInfo')) {
-      this.setData({
-        isShowLogin: false
-      })
-    }
-
   },
 
   needCateRadioChange(e) {
@@ -92,7 +117,6 @@ Page({
     let dataName = e.detail.value
     const needCates = this.data.needCates
     needCates.forEach((v, index) => {
-      console.log(v);
       v.checked = false
       if (v.name == dataName) {
         v.checked = true
@@ -105,7 +129,9 @@ Page({
 
   // need location
   handleNeedLocation(e) {
-    const {address} = e.detail
+    const {
+      address
+    } = e.detail
     this.setData({
       needAddress: address.join('/')
     })
@@ -113,7 +139,9 @@ Page({
 
   // 表单提交
   async needsubmit(e) {
-    let {value} = e.detail
+    let {
+      value
+    } = e.detail
     value.address = this.data.needAddress
     console.log(value);
     const result = await request({
@@ -136,6 +164,80 @@ Page({
     this.setData({
       needdate: e.detail.value
     })
+  },
+
+  // 人脉表单提交
+  handleConAddress(e) {
+    const {
+      address
+    } = e.detail
+    this.setData({
+      connectionAddress: address.join('/')
+    })
+  },
+  // upload img
+  async handleUploadImg(e) {
+    // choose img
+    const r = await chooseOneImg({
+      sourceType: ['album']
+    })
+    let tempFilePaths = r.tempFilePaths
+    wx.showLoading({
+      title: '上传中',
+      mask: true,
+    })
+    // upload img
+    let result = await uploadFile({
+      filePath: tempFilePaths[0],
+      name: 'file',
+      header: {
+        'token': wx.getStorageSync('token')
+      }
+    })
+    wx.hideLoading()
+    this.setData({
+      group_image: tempFilePaths[0]
+    })
+    console.log(result, '暂时性文件group_image是本地地址')
+    if (result.data.code == 1) {// success
+      pop.success(result.data.msg)
+      this.setData({
+        group_image: tempFilePaths[0]
+      })
+    } else { // error
+      this.setData({
+        popmsg: result.data.msg,
+        poptype: 'error'
+      })
+    }
+  },
+  // look img
+  handleLookImg(e) {
+    let urls = []
+    urls[0] = this.data.group_image
+    wx.previewImage({
+      current: urls[0],
+      urls,
+    })
+  },
+  // del img
+  handleDelImg(e) {
+    showModal({
+      title: '提醒',
+      content: '是否要删除合影？'
+    }).then(() => {
+      this.setData({
+        group_image: ''
+      })
+    })
+  },
+
+  async connecsubmit(e) {
+    let {
+      value
+    } = e.detail
+    value.address = this.data.connectionAddress
+    console.log(value)
   },
 
   // swiper change 

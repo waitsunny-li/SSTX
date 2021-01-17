@@ -14,7 +14,7 @@ Component({
       if (wx.getStorageSync('city')) {
         let city = wx.getStorageSync('city')
         let province = wx.getStorageSync('province')
-        
+
         this.setProvinceCity(province, city, 1)
       } else {
         let {
@@ -30,6 +30,15 @@ Component({
         wx.setStorageSync('city', city);
         wx.setStorageSync('province', province);
       }
+
+      const multiIndex = this.data.multiIndex
+      const provinceName = this.data.provinceName
+      const cityName = this.data.cityName
+      this.setData({
+        multiIndex,
+        provinceName,
+        cityName
+      })
     }
   },
   // 允许多插槽
@@ -43,6 +52,22 @@ Component({
     isShowIcon: {
       type: Boolean,
       value: true
+    },
+    multiIndex: {
+      type: Array,
+      value: [0, 0]
+    },
+    provinceName: {
+      type: String,
+      value: '北京'
+    },
+    cityName: {
+      type: String,
+      value: '北京市'
+    },
+    objectCityArray: {
+      type: Array,
+      value: []
     }
   },
 
@@ -50,11 +75,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    provinceName: '北京',
-    cityName: '北京市',
     city: {},
     province: [],
-    multiIndex: [0, 0],
     objectCityArray: [],
   },
 
@@ -67,13 +89,13 @@ Component({
       console.log(this.data.objectCityArray);
       let provinceObj = this.data.objectCityArray[0][pro]
       let cityObj = this.data.objectCityArray[1][cit]
-      
+
       // send event
       this.triggerEvent("locationEvent", {
         procity: [provinceObj.id, cityObj.id],
         address: [provinceObj.name, cityObj.name]
       })
-    
+
       this.setData({
         provinceName: provinceObj.name,
         cityName: cityObj.name,
@@ -88,7 +110,10 @@ Component({
       } = e.detail
       if (column == 0) { // first column
         // get province id
-        let {id, name} = this.data.province[value]
+        let {
+          id,
+          name
+        } = this.data.province[value]
         let objectCityArray = this.data.objectCityArray
         objectCityArray[1] = this.data.city[id]
         this.setData({

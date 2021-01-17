@@ -43,7 +43,7 @@
   <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
     <!-- location begin -->
     <view class="pro-city">
-      <province-city bind:locationEvent="listenLocation">
+      <province-city bind:locationEvent="listenLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}">
         <view class="register-number" slot="right">
           <view class="on-line number-wrap">
             在线人数：

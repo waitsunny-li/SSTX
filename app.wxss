@@ -54,9 +54,18 @@ page {
 
 /* 提交按钮 */
 .submit {
-  margin-top: 50rpx;
+  margin-top: 30rpx;
   width: 100% !important;
   font-size: 28rpx !important;
   height: 70rpx !important;
   background-color: var(--themeColor) !important;
+}
+
+.reset {
+  margin-top: 20rpx;
+  width: 100% !important;
+  font-size: 28rpx !important;
+  height: 70rpx !important;
+  border: 1px solid var(--themeColor);
+  color: var(--themeColor);
 }

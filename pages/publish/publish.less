@@ -21,6 +21,7 @@ page {
     justify-content: center;
     align-items: center;
     transition: 0.3s;
+    font-size: 30rpx;
   }
 
   .left {
@@ -117,12 +118,17 @@ page {
         color: #000000;
       }
 
+      .iconfont {
+        font-size: 30rpx;
+      }
+
       .radio-group {
         width: 70%;
         display: flex;
         flex-wrap: wrap;
 
         .need-cate-radio {
+          font-size: 30rpx;
           margin-right: 20rpx;
           margin-bottom: 20rpx;
         }
@@ -177,6 +183,10 @@ page {
           color: #cfcfcf;
           font-size: 20rpx;
         }
+
+        .iconfont {
+          font-size: 30rpx;
+        }
       }
 
       .need-content-textarea {
@@ -201,13 +211,21 @@ page {
       display: flex;
       align-items: center;
 
+      .label {
+        font-size: 30rpx;
+
+        .iconfont {
+          font-size: 30rpx;
+        }
+      }
+
       .need-date {
         width: 60%;
         display: flex;
         align-items: center;
 
         .picker {
-          // color: #000000;
+          font-size: 30rpx;
         }
       }
     }
@@ -219,6 +237,15 @@ page {
       align-items: center;
       margin-top: 20rpx;
       margin-bottom: 30rpx;
+      font-size: 30rpx;
+
+      .label {
+        font-size: 30rpx;
+
+        .iconfont {
+          font-size: 30rpx;
+        }
+      }
 
       input {
         width: 300rpx;
@@ -248,13 +275,19 @@ page {
         display: flex;
         align-items: center;
 
+        .label {
+          text {
+            font-size: 30rpx;
+          }
+        }
+
         input {
           width: 400rpx;
           height: 60rpx;
           padding: 10rpx 20rpx;
           box-sizing: border-box;
           border: 1px solid #bbbbbb;
-          font-size: 28rpx;
+          font-size: 30rpx;
           border-radius: 10rpx;
         }
       }
@@ -386,6 +419,7 @@ page {
           color: #000000;
 
           .iconfont {
+            font-size: 30rpx;
             margin-right: 0;
           }
         }
@@ -403,11 +437,15 @@ page {
           }
 
           .other {
-            width: 220rpx;
+            width: 155rpx;
             padding: 0 10rpx;
             box-sizing: border-box;
             height: 50rpx;
             border-bottom: 1px solid #bbbbbb;
+          }
+
+          .ti {
+            font-size: 30rpx;
           }
         }
       }
@@ -427,6 +465,7 @@ page {
           color: #000000;
 
           .iconfont {
+            font-size: 30rpx;
             margin-right: 0;
           }
         }
@@ -459,6 +498,7 @@ page {
           color: #000000;
 
           .iconfont {
+            font-size: 30rpx;
             margin-right: 0;
           }
         }
@@ -491,6 +531,7 @@ page {
           color: #000000;
 
           .iconfont {
+            font-size: 30rpx;
             margin-right: 0;
           }
         }
@@ -509,6 +550,10 @@ page {
         }
       }
 
+      .iconfont {
+        font-size: 30rpx;
+      }
+
       .radio-photo-input {
         width: 100%;
         margin-top: 20rpx;
@@ -523,6 +568,7 @@ page {
           color: #000000;
 
           .iconfont {
+            font-size: 30rpx;
             margin-right: 0;
           }
         }
@@ -566,6 +612,14 @@ page {
             line-height: 60rpx;
             color: #bbbbbb;
             font-size: 26rpx;
+          }
+
+          .delimg {
+            height: 60rpx;
+            line-height: 60rpx;
+            color: rgb(86, 171, 245);
+            font-size: 26rpx;
+            margin-right: 20rpx;
           }
         }
       }
@@ -627,6 +681,7 @@ page {
 
           .picker {
             // color: #000000;
+            font-size: 30rpx;
           }
         }
       }
@@ -678,33 +733,31 @@ page {
 
         .bo-info {
           padding: 20rpx 0;
+          font-size: 30rpx;
           text-indent: 40rpx;
           color: #000000;
         }
 
         .tel-info {
           text-indent: 40rpx;
+          font-size: 30rpx;
           color: #000000;
         }
       }
 
-      // btn
-      .submit {
-        margin-top: 50rpx;
-        width: 100%;
-        height: 80rpx;
-        background-color: var(--assColor);
-      }
     }
   }
 
   .btn-wrap {
     width: 100%;
-    height: 220rpx;
+    // height: 240rpx;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .submit {
-      margin-top: 40rpx;
+      // margin-top: 40rpx;
     }
   }
 

@@ -1,16 +1,19 @@
 /*
  * @Author: liweilong
- * @Date: 2021-01-04 12:26:31
+ * @Date: 2021-01-16 19:24:13
  */
 import {
   request
 } from '../../request/index'
 import QQMapWX from '../../utils/qqmap-wx-jssdk.min'
 import {
-  wxLocation
+
 } from '../../utils/asyncWx'
+import {
+  addressTransIndexArray
+} from '../../utils/util'
 //获取应用实例
-let app =  getApp();
+let app = getApp();
 let qqmapsdk = new QQMapWX({
   key: '56DBZ-5BAHI-GE3G7-5AZUO-3DRJF-F7FXU'
 })
@@ -18,6 +21,12 @@ let qqmapsdk = new QQMapWX({
 Page({
   data: {
     baseUrl: app.globalData.baseUrl,
+    // 获取的位置信息的列下标
+    procityIndex: [0, 0],
+    provinceName: '北京',
+    cityName: '北京市',
+    objectCityArray: [],
+    
     cateTop: 0,
     ishowcateps: false,
     bannerList: [],
@@ -61,7 +70,8 @@ Page({
   onLoad: function (options) {
     // 缓存中不存在procity时要获取定位的位置信息
     if (!wx.getStorageSync('procity')) {
-      app.getUserLocation(function(res) {
+      console.log('jjj');
+      app.getUserLocation(function (res) {
         // 获取精确的地理位置
         qqmapsdk.reverseGeocoder({
           //获取输入框值并设置keyword参数
@@ -69,8 +79,11 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude
           },
-          success: (resLoc) => {//搜索成功后的回调
-            let {province, city} = resLoc.result.address_component
+          success: (resLoc) => { //搜索成功后的回调
+            let {
+              province,
+              city
+            } = resLoc.result.address_component
             console.log(province, city)
             wx.setStorageSync('procity', [province, city]);
           }
@@ -78,6 +91,23 @@ Page({
       })
     }
     
+    // 获取定位的信息转化为下标列值，方便地址选择,并设置地区选择框的值
+    const provinceList = wx.getStorageSync('province');
+    const cityList = wx.getStorageSync('city')
+    const procity = wx.getStorageSync('procity')
+    if (provinceList && cityList && procity) {
+      let procityObj = addressTransIndexArray(provinceList, cityList, procity)
+      console.log(procityObj)
+      this.setData({
+        procityIndex: procityObj.procityIndex,
+        provinceName: procityObj.procityName[0],
+        cityName: procityObj.procityName[1],
+        objectCityArray: procityObj.objectCityArray
+      })
+      wx.setStorageSync('procityObj', procityObj);
+        
+    }
+
     console.log(app);
     let thems = async () => {
       let bannerDataPromise = request({

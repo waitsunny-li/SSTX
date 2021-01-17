@@ -1,4 +1,4 @@
-<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}"/>
+<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}" />
 <view class="publish-top">
   <view class="publish-support-con left {{currentIndex == 0 ? 'active' : ''}}" bind:tap="handleTapNeed" data-cate="{{pubCatesList[0]}}">
     {{pubCatesList[0].name}}
@@ -58,7 +58,7 @@
             </view>
             <picker class="need-date" mode="date" value="" bindchange="handleNeedDateChange">
               <view class="picker">
-                <input type="text" value="{{needdate}}" name="endtime" placeholder="请选择项目截止时间" disabled="{{true}}"/>
+                <input type="text" value="{{needdate}}" name="endtime" placeholder="请选择项目截止时间" disabled="{{true}}" />
               </view>
             </picker>
           </view>
@@ -99,14 +99,14 @@
                 <text space="nbsp">地  区：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <province-city isShowIcon="{{false}}" bind:locationEvent="handleNeedLocation"/>
+              <province-city isShowIcon="{{false}}" bind:locationEvent="handleNeedLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}" />
             </view>
           </view>
           <!-- user info end -->
           <!-- btn -->
           <view class="btn-wrap">
             <button class="submit" type="primary" formType="submit">提交</button>
-            <button style="margin: 30rpx 0" formType="reset">Reset</button>
+            <button class="reset" formType="reset">重置</button>
           </view>
         </form>
       </view>
@@ -124,7 +124,7 @@
               <view class="text line-1">我有</view>
               <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
               <view class="text">优秀领导朋友，可以为</view>
-              <input type="text" name="frontposition" class="front-position" placeholder="请填写行业" />
+              <input type="text" name="position" class="front-position" placeholder="请填写行业" />
               行业符合政策规定的招商引资项目做
               <view class="text">引荐，欢迎洽谈，来为我们</view>
               <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
@@ -139,14 +139,14 @@
                 <text space="nbsp">人脉所在单位：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <input type="text" name="needname" value="" placeholder="请填写人脉所在单位" placeholder-style="font-size:26rpx" />
+              <input type="text" name="company" value="" placeholder="请填写人脉所在单位" placeholder-style="font-size:26rpx" />
             </view>
             <view class="name-input">
               <view class="label">
                 <text space="emsp">具体职务：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <input type="text" name="position" value="" placeholder="职务平台不展示" placeholder-style="font-size:26rpx" />
+              <input type="text" name="work" value="" placeholder="职务平台不展示" placeholder-style="font-size:26rpx" />
             </view>
             <!-- location -->
             <view class="name-input">
@@ -154,7 +154,7 @@
                 <text space="emsp">所在地区：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <province-city isShowIcon="{{false}}" style="width: 170px" />
+              <province-city isShowIcon="{{false}}" style="width: 170px" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}" bind:locationEvent="handleConAddress" />
             </view>
             <!-- cate -->
             <view class="radio-cate-input">
@@ -162,14 +162,13 @@
                 可提供哪类帮助：
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="needcate">
+              <radio-group class="radio-group" name="type">
                 <block wx:for="{{conCates}}" wx:key="id">
-                  <radio class="need-cate-radio" value="{{item.name}}" checked="{{item.checked}}" color="#970d0d">
+                  <radio class="need-cate-radio" value="{{item.id}}" checked="{{item.checked}}" color="#970d0d">
                     {{item.name}}
                   </radio>
                 </block>
-                <text class="ti">其他：</text>
-                <input type="text" class="other" />
+                <input type="text" class="other" name="other_type_desc" />
               </radio-group>
             </view>
             <!-- report -->
@@ -178,7 +177,7 @@
                 <text space="ensp">选对方回报方式 ：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
+              <radio-group class="radio-group" name="return_price">
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">面谈</radio>
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">项目一定比例</radio>
               </radio-group>
@@ -186,7 +185,7 @@
             <!-- thanks -->
             <view class="radio-thanks-input">
               <view class="label">
-                <text space="ensp">怎样感谢平台：   </text>
+                <text space="ensp">怎样感谢平台：</text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group class="radio-group" name="thanks">
@@ -197,10 +196,10 @@
             <!-- relation -->
             <view class="radio-relation-input">
               <view class="label">
-                <text space="ensp">与人脉关系程度： </text>
+                <text space="ensp">与人脉关系程度：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
+              <radio-group class="radio-group" name="friend">
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">一般</radio>
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">好</radio>
                 <radio class="need-cate-radio" value="2" checked="" color="#970d0d">非常好</radio>
@@ -209,29 +208,43 @@
             <!-- photo -->
             <view class="radio-photo-input">
               <view class="label">
-                <text space="emsp">有无合影： </text>
+                <text space="emsp">有无合影：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="conreport">
+              <radio-group class="radio-group" name="photo">
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
               </radio-group>
               <!-- upload -->
               <view class="upload_wrap">
-                <view class="button">
-                  <text class="iconfont icon-shangchuan"></text>
-                  上传
-                </view>
-                <view class="info">给予保密</view>
+                <block wx:if="{{!group_image}}">
+                  <view class="button" bind:tap="handleUploadImg">
+                    <text class="iconfont icon-shangchuan"></text>
+                    上传
+                    <input type="text" hidden="{{true}}" value="{{group_image}}" name="group_image" />
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class="button" bind:tap="handleLookImg">
+                    查看
+                  </view>
+                </block>
+                  
+                <block wx:if="{{!group_image}}">
+                  <view class="info">给予保密</view>
+                </block>
+                <block wx:else>
+                  <view class="delimg" bind:tap="handleDelImg">删除</view>
+                </block>
               </view>
             </view>
             <!-- tel -->
             <view class="radio-tel-input">
               <view class="label">
-                <text space="emsp">有无电话： </text>
+                <text space="emsp">有无电话：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">
+              <radio-group class="radio-group" name="has_phone">
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
               </radio-group>
@@ -242,7 +255,7 @@
                 <text space="emsp">有无微信：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">
+              <radio-group class="radio-group" name="has_weixin">
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
               </radio-group>
@@ -253,7 +266,7 @@
                 <text space="emsp">是否信誉认证：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group bindchange="conCateRadioChange" class="radio-group" name="contel">
+              <radio-group class="radio-group" name="has_check">
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
               </radio-group>
@@ -266,7 +279,7 @@
               </view>
               <picker class="need-date" mode="date" value="" bindchange="handleNeedDateChange">
                 <view class="picker">
-                  <input type="text" value="{{needdate}}" name="needdate" placeholder="请选择项目截止时间" />
+                  <input type="text" value="{{needdate}}" name="check_time" placeholder="请选择项目截止时间" disabled="{{true}}" />
                 </view>
               </picker>
             </view>
@@ -294,6 +307,7 @@
           <!-- btn -->
           <view class="btn-wrap">
             <button class="submit" type="primary" formType="submit">提交审核</button>
+            <button class="reset" formType="reset">重置</button>
           </view>
         </form>
       </view>
@@ -301,5 +315,4 @@
   </swiper-item>
 </swiper>
 <!-- form end -->
-
-<login-pop isShow="{{isShowLogin}}" isShowClose="{{false}}"/>
+<login-pop isShow="{{isShowLogin}}" isShowClose="{{false}}" />

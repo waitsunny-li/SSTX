@@ -3,7 +3,7 @@
  * @Date: 2021-01-13 10:44:30
  */
 // pages/authenticate/authenticate.js
-import {uploadOneImg} from '../../utils/asyncWx'
+import {chooseOneImg, uploadFile} from '../../utils/asyncWx'
 Page({
 
   /**
@@ -75,7 +75,7 @@ Page({
   async handleChooseIdCard(e) {
     let cardImgList = this.data.cardImgList
     const {index} = e.currentTarget.dataset
-    const r = await uploadOneImg()
+    const r = await chooseOneImg()
     let tempFilePaths = r.tempFilePaths
     cardImgList[index].url = tempFilePaths[0]
     this.setData({
