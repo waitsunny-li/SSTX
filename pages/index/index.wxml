@@ -3,8 +3,7 @@
   <view class="top-logo">
     <view class="title-text">礼义仁智信</view>
     <view class="log-img">
-      <image class="logo-img" mode="aspectFill" src="/icons/logo.png" />
-      <image class="logo-text" mode="aspectFill" src="/icons/logo-text.png" />
+      <image class="logo-img" mode="aspectFill" src="{{sitInfo.file_domain + sitInfo.logo}}" />
     </view>
     <view class="title-text">弘扬正能量</view>
   </view>
@@ -84,7 +83,7 @@
     </block>
     <block wx:else>
       <block wx:for="{{proconList}}" wx:key="id">
-        <connection-item number="{{7}}" />
+        <connection-item connectionObj="{{item}}"/>
       </block>
     </block>
   </view>

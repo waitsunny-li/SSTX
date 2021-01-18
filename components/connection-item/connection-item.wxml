@@ -1,11 +1,11 @@
 <navigator url="/pages/condetail/condetail?id={{1}}" hover-class="none" class="project-item">
   <view class="left-item">
     <block wx:if="{{isShowIcon}}">
-      <view class="top-icon" wx:if="{{false}}">
+      <view class="top-icon" wx:if="{{connectionObj.is_top_switch}}">
         <text class="text">置顶</text>
         <text class="iconfont icon-icon--"></text>
       </view>
-      <view class="top-icon" wx:elif="{{true}}">
+      <view class="top-icon" wx:elif="{{false}}">
         <text class="text">会员</text>
         <text class="iconfont icon-chengxin"></text>
       </view>
@@ -18,15 +18,15 @@
     <!-- 标题 -->
     <view class="title-section">
       <view class="title-1">[我为家乡做贡献]</view>
-      <view class="title">公路建设公路建设公路</view>
+      <view class="title">我有{{connectionObj.address}}高端人脉</view>
     </view>
     <!-- desc -->
-    <view class="desc">海南省公路11.8亿，需求合作，需要央企参与的凭证等等央企参与的凭证等等央企参与的凭证等等证等等央企参证等等央企参</view>
+    <view class="desc">在美丽的<view class="index">{{connectionObj.address}}</view>我有优秀的领导朋友，可以为<view class="index">{{connectionObj.work}}</view>行业符合政策规定的招商引资项目做引荐，欢迎志同道合的朋友一起加入我们来为长沙市做贡献！</view>
     <!-- bottom -->
     <view class="bottom-section">
       <view class="detail">详情>></view>
     </view>
   </view>
   <!-- cread star -->
-  <star number="{{number}}" class="star-position" width="{{210}}" size="{{26}}" />
+  <star number="{{7}}" class="star-position" width="{{210}}" size="{{26}}" />
 </navigator>

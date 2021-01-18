@@ -72,7 +72,7 @@ Component({
         currentIndex = 0
       }
       this.triggerEvent('changeTitle', {
-        index,
+        index: currentIndex
       })
       this.setData({
         currentIndex,

@@ -15,6 +15,10 @@ Component({
     isShowIcon: {
       type: Boolean,
       value: true
+    },
+    connectionObj: {
+      type: Object,
+      value: {}
     }
   },
 
