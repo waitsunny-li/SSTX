@@ -14,14 +14,14 @@
     <block wx:for="{{bannerList}}" wx:key="id">
       <swiper-item class="index-swiper-item">
         <navigator class="index-swiper-navigator">
-          <image src="{{baseUrl + item.image}}" mode="aspectFill" lazy-load="true" />
+          <image src="{{sitInfo.file_domain + item.image}}" mode="aspectFill" lazy-load="true" />
         </navigator>
       </swiper-item>
     </block>
   </swiper>
   <!-- index banner end -->
   <!-- dynamic beign -->
-  <swiper-title titleList="{{noticeList}}" />
+  <swiper-title titleList="{{noticeList}}" tel="{{sitInfo.phone}}"/>
   <!-- dynamic end -->
   <!-- publish begin -->
   <view class="publish-support">
@@ -38,7 +38,7 @@
   </view>
   <!-- publish end -->
   <!-- connection begin -->
-  <swiper-pane swiperVideoList="{{swiperVideoList}}" />
+  <swiper-pane swiperVideoList="{{swiperVideoList}}" uploadBaseUrl="{{sitInfo.file_domain}}" bind:changeTitle="handleSwiperTitle"/>
   <!-- connection end -->
   <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
     <!-- location begin -->
@@ -47,11 +47,11 @@
         <view class="register-number" slot="right">
           <view class="on-line number-wrap">
             在线人数：
-            <text class="number">25995</text>
+            <text class="number">{{sitInfo.online}}</text>
           </view>
           <view class="number-wrap">
             注册人数：
-            <text class="number">75995</text>
+            <text class="number">{{sitInfo.register}}</text>
           </view>
         </view>
       </province-city>
@@ -79,7 +79,7 @@
   <view class="project-connection-wrap">
     <block wx:if="{{currentIndex == 0}}">
       <block wx:for="{{proconList}}" wx:key="id">
-        <project-item />
+        <project-item projectItme="{{item}}"/>
       </block>
     </block>
     <block wx:else>
@@ -92,13 +92,13 @@
   <view class="good-person-list">
     <view class="left-title">善商榜</view>
     <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
-      <view class="goodrool" style="width:{{goodList.length * 140}}rpx">
+      <view class="goodrool" style="width:{{goodList.length * 90}}px">
         <block wx:for="{{goodList}}" wx:key="id">
           <view class="good-item">
-            <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613309671&t=b140fd1893504547be958685e1eb9eaa"></image>
+            <image class="img" src="{{sitInfo.file_domain + item.avatar}}"></image>
             <view class="good-name">
               <text class="index">{{index + 1}}.</text>
-              许家印
+              {{item.name}}
             </view>
           </view>
         </block>
@@ -121,4 +121,4 @@
   <!-- good bottom nav end -->
   <view style="width: 100vw; height: 60rpx"></view>
 </scroll-view>
-<login-pop isShow="{{isShowLogin}}" />
+<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleUserInfo" isShowClose="{{false}}"/>

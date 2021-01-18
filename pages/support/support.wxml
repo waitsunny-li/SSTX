@@ -13,4 +13,4 @@
 </view>
 <!-- tab end -->
 <!-- video content begin -->
-<transform-pane videoList="{{videoList}}" bind:scrolltolover="handleVideoToLower" currentIndex="{{currentIndex}}" bind:swiperChange="handleSwiperChange"></transform-pane>
+<transform-pane videoList="{{videoList}}" bind:scrolltolover="handleVideoToLower" currentIndex="{{currentIndex}}" imageBaseUrl="{{imageBaseUrl}}" bind:swiperChange="handleSwiperChange"></transform-pane>

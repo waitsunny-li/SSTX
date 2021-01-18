@@ -105,8 +105,14 @@ App({
     wx.setStorageSync('logs', logs)
   },
 
+  // set uploadBaseUrl
+  setUploadUrl: function(url) {
+    this.globalData.uploadBaseUrl = url
+  },
+
   globalData: {
     userInfo: null,
-    baseUrl: 'https://stx.gz-isp.com'
+    baseUrl: 'https://stx.gz-isp.com',
+    uploadBaseUrl: ''
   }
 })

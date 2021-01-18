@@ -15,9 +15,9 @@ import {
 import {
   getCacheLocationInfo
 } from '../../utils/util'
+const app =  getApp();
 // pages/publish/publish.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -76,7 +76,7 @@ Page({
     poptype: '',
     popmsg: '',
   },
-
+  baseUrl: app.globalData.baseUrl,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -91,6 +91,8 @@ Page({
       needAddress: addressArray,
       connectionAddress: addressArray
     })
+
+    console.log(app.globalData.uploadBaseUrl);
   },
 
   /**
@@ -133,7 +135,7 @@ Page({
       address
     } = e.detail
     this.setData({
-      needAddress: address.join('/')
+      needAddress: address
     })
   },
 
@@ -142,7 +144,7 @@ Page({
     let {
       value
     } = e.detail
-    value.address = this.data.needAddress
+    value.address = this.data.needAddress.join('/')
     console.log(value);
     const result = await request({
       url: '/project/add',
@@ -166,13 +168,13 @@ Page({
     })
   },
 
-  // 人脉表单提交
+  // 人脉
   handleConAddress(e) {
     const {
       address
     } = e.detail
     this.setData({
-      connectionAddress: address.join('/')
+      connectionAddress: address
     })
   },
   // upload img
@@ -191,22 +193,24 @@ Page({
       filePath: tempFilePaths[0],
       name: 'file',
       header: {
-        'token': wx.getStorageSync('token')
+        'token': wx.getStorageSync('token'),
+        'Content-Type': 'multipart/form-data'
       }
     })
     wx.hideLoading()
     this.setData({
       group_image: tempFilePaths[0]
     })
-    console.log(result, '暂时性文件group_image是本地地址')
-    if (result.data.code == 1) {// success
-      pop.success(result.data.msg)
+    let data = JSON.parse(result.data)
+    if (data.code == 1) {// success
+      console.log(data);
+      pop.success(data.msg)
       this.setData({
-        group_image: tempFilePaths[0]
+        group_image: data.data.url
       })
     } else { // error
       this.setData({
-        popmsg: result.data.msg,
+        popmsg: data.msg,
         poptype: 'error'
       })
     }
@@ -214,7 +218,7 @@ Page({
   // look img
   handleLookImg(e) {
     let urls = []
-    urls[0] = this.data.group_image
+    urls[0] = this.baseUrl + this.data.group_image
     wx.previewImage({
       current: urls[0],
       urls,
@@ -231,13 +235,33 @@ Page({
       })
     })
   },
-
+  // 人脉表单提交
   async connecsubmit(e) {
     let {
       value
     } = e.detail
-    value.address = this.data.connectionAddress
-    console.log(value)
+    value.address = this.data.connectionAddress.join('/')
+    value.group_image = this.data.group_image
+    const r = await request({
+      url: '/contacts/add',
+      method: 'post',
+      data: value
+    })
+    if (r.code == 1) {
+      pop.success(r.msg)
+    } else {
+      this.setData({
+        popmsg: r.msg,
+        poptype: 'error'
+      })
+    }
+  },
+
+  // 人脉表单重置
+  handleConReset(e) {
+    this.setData({
+      group_image: ''
+    })
   },
 
   // swiper change 

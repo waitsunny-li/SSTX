@@ -13,7 +13,7 @@
     </swiper>
   </view>
   <view class="right_wrap">
-      客服：010-81811111
+      客服：{{tel}}
     </view>
 </view>
 <!-- 头部title轮播end -->

@@ -122,12 +122,12 @@
             <vie class="header-title">前台展示简要信息：</vie>
             <view class="content">
               <view class="text line-1">我有</view>
-              <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
+              <input type="text" class="front-city" placeholder="请填写城市" name="has_city" />
               <view class="text">优秀领导朋友，可以为</view>
-              <input type="text" name="position" class="front-position" placeholder="请填写行业" />
+              <input type="text" class="front-position" placeholder="请填写行业" name="position"/>
               行业符合政策规定的招商引资项目做
               <view class="text">引荐，欢迎洽谈，来为我们</view>
-              <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" />
+              <input type="text" name="frontcity" class="front-city" placeholder="请填写城市" name="service_city" />
               <view class="text">做贡献。</view>
             </view>
           </view>
@@ -266,7 +266,7 @@
                 <text space="emsp">是否信誉认证：</text>
                 <text class="iconfont icon-required"></text>
               </view>
-              <radio-group class="radio-group" name="has_check">
+              <radio-group class="radio-group" name="is_check">
                 <radio class="need-cate-radio" value="1" checked="" color="#970d0d">有</radio>
                 <radio class="need-cate-radio" value="0" checked="" color="#970d0d">无</radio>
               </radio-group>
@@ -307,7 +307,7 @@
           <!-- btn -->
           <view class="btn-wrap">
             <button class="submit" type="primary" formType="submit">提交审核</button>
-            <button class="reset" formType="reset">重置</button>
+            <button class="reset" formType="reset" bind:tap="handleConReset">重置</button>
           </view>
         </form>
       </view>

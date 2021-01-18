@@ -1,15 +1,15 @@
-<navigator url="/pages/videodetail/videodetail" hover-class="none" class="video-item">
+<navigator url="/pages/videodetail/videodetail?id={{item.id}}" hover-class="none" class="video-item">
   <view class="left-item">
-    <image class="video-thumb" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1175737380,1533684937&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="{{true}}"></image>
+    <image class="video-thumb" src="{{imageBaseUrl + videoDetail.image}}" mode="aspectFill" lazy-load="{{true}}"></image>
     <view class="time">4:29</view>
   </view>
   <view class="right-item">
-    <view class="title">儒家文化视频</view>
+    <view class="title">{{videoDetail.title}}</view>
     <view class="desc">
-      思想的发展-纪录片-完整版
+      {{videoDetail.content}}
     </view>
     <view class="looked-number">
-      8万次观看
+      {{videoDetail.pv}}次观看
     </view>
   </view>
 </navigator>

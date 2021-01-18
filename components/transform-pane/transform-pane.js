@@ -19,6 +19,10 @@ Component({
       currentIndex: {
         type: Number,
         value: 0
+      },
+      imageBaseUrl: {
+        type: String,
+        value: ''
       }
     },
 

@@ -4,14 +4,16 @@
  */
 const app = getApp();
 const baseUrl = app.globalData.baseUrl
-const token = wx.getStorageSync('token');
-  
+
 export const request = (params) => {
+  const token = wx.getStorageSync('token');
   return new Promise((resolve, reject) => {
     wx.request({
       ...params,
       url: baseUrl + '/api' + params.url,
-      header: {token},
+      header: {
+        token
+      },
       success: (result) => {
         resolve(result.data)
       },

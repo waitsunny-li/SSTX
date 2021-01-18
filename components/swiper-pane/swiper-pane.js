@@ -6,11 +6,7 @@
 Component({
   lifetimes: {
     attached() {
-      let rollwidth = 340 * this.data.swiperVideoList.length
-      console.log(rollwidth);
-      this.setData({
-        rollwidth
-      })
+     
     }
   },
   /**
@@ -20,13 +16,18 @@ Component({
     swiperVideoList: {
       type: Array,
       value: []
-    }
+    },
+    uploadBaseUrl: {
+      type: String,
+      value: ''
+    },
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    
     rollWidth: 1000,
     catesList: [
       {
@@ -43,7 +44,7 @@ Component({
       }
     ],
     currentIndex: 0,
-    scrollLeft: 0
+    scrollLeft: 0,
   },
 
 
@@ -55,6 +56,9 @@ Component({
       let {
         index
       } = e.currentTarget.dataset
+      this.triggerEvent('changeTitle', {
+        index,
+      })
       this.setData({
         currentIndex: index
       })
@@ -67,8 +71,9 @@ Component({
       if (currentIndex > 2) {
         currentIndex = 0
       }
-      // 发送数据
-      
+      this.triggerEvent('changeTitle', {
+        index,
+      })
       this.setData({
         currentIndex,
         scrollLeft: 0

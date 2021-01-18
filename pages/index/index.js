@@ -20,13 +20,14 @@ let qqmapsdk = new QQMapWX({
 //Page Object
 Page({
   data: {
+    sitInfo: {},
     baseUrl: app.globalData.baseUrl,
     // 获取的位置信息的列下标
     procityIndex: [0, 0],
     provinceName: '北京',
     cityName: '北京市',
     objectCityArray: [],
-    
+
     cateTop: 0,
     ishowcateps: false,
     bannerList: [],
@@ -40,29 +41,8 @@ Page({
       {}
     ],
     currentIndex: 0,
-    proconList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ],
-    goodList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ],
+    proconList: [],
+    goodList: [],
 
     isShowLogin: false
   },
@@ -90,7 +70,7 @@ Page({
         });
       })
     }
-    
+
     // 获取定位的信息转化为下标列值，方便地址选择,并设置地区选择框的值
     const provinceList = wx.getStorageSync('province');
     const cityList = wx.getStorageSync('city')
@@ -105,35 +85,63 @@ Page({
         objectCityArray: procityObj.objectCityArray
       })
       wx.setStorageSync('procityObj', procityObj);
-        
+
     }
 
-    console.log(app);
-    let thems = async () => {
-      let bannerDataPromise = request({
-        url: '/index/getBanner',
-        data: {
-          static: 0
-        }
-      })
-      let noticeDataPromise = request({
-        url: '/index/getNotice'
-      })
-      let bannerData = await bannerDataPromise
-      let noticeData = await noticeDataPromise
-
-      this.setData({
-        bannerList: bannerData.data,
-        noticeList: noticeData.data
-      })
-    }
-
-    thems().catch(error => {
-      console.log(error);
+    this.requestTheme().catch(err => {
+      console.log('ddd');
     })
   },
   onReady: function () {
     this.queryMultipleNodes()
+  },
+
+  // 首页的所有请求
+  async requestTheme() {
+    let address = [this.data.provinceName, this.data.cityName]
+    console.log('requestTheme');
+    let getSiteDataPromise = request({
+      url: '/index/getSite',
+    })
+    let bannerDataPromise = request({
+      url: '/index/getBanner',
+      data: {
+        static: 0
+      }
+    })
+    let noticeDataPromise = request({
+      url: '/index/getNotice'
+    })
+    let supportBannerPromise = request({
+      url: '/index/list'
+    })
+    let projectDataPromise = request({
+      url: '/project/list',
+      data: {
+        type: this.data.currentIndex,
+        address: address.join('/')
+      }
+    })
+    let goodListDataPromise = request({
+      url: '/school/peopleList'
+    })
+    let siteInfoData = await getSiteDataPromise
+    let bannerData = await bannerDataPromise
+    let noticeData = await noticeDataPromise
+    let supportBannerDataList = await supportBannerPromise
+    let projectDataList = await projectDataPromise
+    let goodListDataList = await goodListDataPromise
+   
+    wx.setStorageSync('imageBaseUrl', siteInfoData.data.file_domain);
+    console.log(supportBannerDataList.data.data.length);
+    this.setData({
+      sitInfo: siteInfoData.data,
+      bannerList: bannerData.data,
+      noticeList: noticeData.data,
+      swiperVideoList: supportBannerDataList.data.data,
+      proconList: projectDataList.data.data,
+      goodList: goodListDataList.data.data
+    })
   },
 
   //声明节点查询的方法
@@ -158,7 +166,29 @@ Page({
 
     const userInfo = wx.getStorageSync('userInfo');
     console.log(userInfo);
-    console.log('userInfo');
+    if (!userInfo) {
+      this.setData({
+        isShowLogin: true
+      })
+    }
+  },
+
+  // 各界支持
+  async handleSwiperTitle(e) {
+    const {index} = e.detail
+    const r = await request({
+      url: '/support/list',
+      data: {
+        status: index
+      }
+    })
+    if (r.code == 1) {
+      this.setData({
+        swiperVideoList: r.data.data
+      })
+    } else {
+      console.log('服务器错误');
+    }
   },
 
   // handle Cate change
@@ -167,8 +197,8 @@ Page({
       index,
       cate
     } = e.detail
-    console.log(index);
-
+    let address = [this.data.provinceName, this.data.cityName]
+    this.requestProCon(index, {address: address.join('/')})
     this.setData({
       currentIndex: index
     })
@@ -176,7 +206,48 @@ Page({
 
   // listen location event
   listenLocation(e) {
-    console.log(e.detail.procity);
+    const address = e.detail.address.join('/')
+    const cateIndex = this.data.currentIndex
+    this.requestProCon(cateIndex, {address})
+    this.setData({
+      provinceName: e.detail.address[0],
+      cityName: e.detail.address[1]
+    })
+  },
+
+  // 请求优质项目或者高端人脉
+  async requestProCon(index, option) {
+    if (index == 0) {
+      let r = await request({
+        url: '/project/list',
+        data: {
+          address: option.address || ''
+        }
+      })
+      console.log('项目', r.data.data);
+      if (r.code == 1) {
+        this.setData({
+          proconList: r.data.data
+        })
+      } else {
+        console.log('服务器错误');
+      }
+    } else {
+      let r = await request({
+        url: '/contacts/list',
+        data: {
+          address: option.address || ''
+        }
+      })
+      if (r.code == 1) {
+        console.log('人脉', r.data.data);
+        this.setData({
+          proconList: r.data.data
+        })
+      } else {
+        console.log('服务器错误');
+      }
+    }
   },
 
   // scroll event
@@ -231,6 +302,10 @@ Page({
     wx.switchTab({
       url: '/pages/proconnection/proconnection',
     })
-  }
+  },
 
+  // 登录成功回调
+  handleUserInfo(e) {
+    this.requestTheme()
+  }
 });

@@ -11,6 +11,10 @@ Component({
       titleList: {
         type: Array,
         defalut: []
+      },
+      tel: {
+        type: String,
+        value: ''
       }
     },
 

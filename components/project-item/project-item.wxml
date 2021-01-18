@@ -1,6 +1,6 @@
-<navigator class="project-item" url="/pages/projectdetail/projectdetail?id={{1}}" hover-class="none">
+<navigator class="project-item" url="/pages/projectdetail/projectdetail?id={{projectItme.id}}" hover-class="none">
   <view class="left-item">
-    <view class="top-icon" wx:if="{{isShowIcon}}">
+    <view class="top-icon" wx:if="{{isShowIcon && projectItme.is_top_switch}}">
       <text class="text">置顶</text>
       <text class="iconfont icon-icon--"></text>
     </view>
@@ -11,20 +11,20 @@
   <view class="right-item">
     <!-- 标题 -->
     <view class="title-section">
-      <view class="title">公路建设公路建设公路</view>
+      <view class="title">{{projectItme.title}}</view>
       <view class="time">
-        倒计时：12天08:56
+        倒计时：{{projectItme.endtime}}
       </view>
     </view>
     <!-- desc -->
     <view class="desc">
-      海南省公路11.8亿，需求合作，需要央企参与的凭证等等
+      {{projectItme.content}}
     </view>
     <!-- bottom  -->
     <view class="bottom-section">
       <view class="location">
         <text class="iconfont icon-dingwei"></text>
-        <text class="text">海南省海口市</text>
+        <text class="text">{{projectItme.address}}</text>
       </view>
       <view class="detail">
         详情>>

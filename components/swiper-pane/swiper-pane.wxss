@@ -109,6 +109,9 @@
 .swiper_part_wrap .swiper_art_wrap .video-item-desc .video-desc .desc {
   font-size: 24rpx;
   color: #a7a4a4;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .swiper_part_wrap .swiper_art_wrap .pane-scroll {
   padding-left: 30rpx;
