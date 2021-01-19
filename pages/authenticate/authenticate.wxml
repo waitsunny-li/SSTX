@@ -1,18 +1,19 @@
+<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}" />
 <view class="form-content">
-  <form class="form" bindreset="">
+  <form class="form" bindreset="" bindsubmit="handleSubmit">
     <view class="input-wrap">
-      <text class="label" space="emsp">昵 称</text>
-      <input type="text" name="idcard" value="" placeholder="神经蛙" />
+      <text class="label" space="emsp">姓 名</text>
+      <input type="text" name="idcard" value="{{nickname}}" name="realname" placeholder="" />
     </view>
     <!-- tel -->
     <view class="input-wrap">
       <text class="label" space="emsp">手机号</text>
-      <input type="text" name="newtel" value="" placeholder="请输入手机号" />
+      <input type="number" name="mobile" value="" bindblur="handleTelBlur" placeholder="请输入手机号" />
     </view>
     <view class="input-wrap">
       <text class="label" space="nbsp">验证码</text>
       <view class="verify-code">
-        <input class="" type="number" placeholder="请输入验证码" name="send_code" />
+        <input class="" type="number" placeholder="请输入验证码" name="code" />
         <view class="send {{isSend ? 'sended' : ''}}" bind:tap="handleSendCode">{{times}}</view>
       </view>
     </view>
@@ -25,6 +26,8 @@
     <view class="img-wrap">
       <view class="title">上传身份证照片</view>
       <view class="img-group">
+      <input type="text" name="idcardimage1" hidden value="{{idcardimage1}}" />
+       <input type="text" name="idcardimage2" hidden value="{{idcardimage2}}" />
         <block wx:for="{{cardImgList}}" wx:key="id">
           <view class="img-item" bind:tap="handleChooseIdCard" data-index="{{index}}">
             <block wx:if="{{!item.url}}">

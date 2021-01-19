@@ -2,77 +2,96 @@
  * @Author: liweilong
  * @Date: 2021-01-05 13:45:17
  */
+import {
+  request
+} from '../../request/index'
 // pages/project/project.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    procityIndex: [0, 0],
+    provinceName: '北京',
+    cityName: '北京市',
+    objectCityArray: [],
+
     cateList: ['高端人脉协助', '项目合作', '其他'],
     currentCateIndex: 0,
     cateIndex: 0,
-    cateTop: 0,
 
     // project
     proCateList: ['高端人脉协助', '项目合作', '其他'],
     proCateIndex: 0,
-    proList: [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
+    proList: [],
 
     // connection
     conCateList: ['工程类', '招商类', '其他'],
     conCateIndex: 0,
-    conList: [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ],
-
+    conList: [],
+    top: 0
   },
+  page: 1,
+  // is scroll to lower
+  isScrollLower: false,
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
+    let procityObj = wx.getStorageSync('procityObj')
+    if (procityObj) {
+      this.setData({
+        procityIndex: procityObj.procityIndex,
+        provinceName: procityObj.procityName[0],
+        cityName: procityObj.procityName[1],
+        objectCityArray: procityObj.objectCityArray
+      })
+    }
+
+    // get prolist
+    this.initRequest().catch(err => {
+      if (err == 401) {
+        console.log('请登录');
+      }
+      console.log(err);
+    })
+  },
+
+  // init request data
+  async initRequest() {
+    let address = this.data.provinceName + '/' + this.data.cityName
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    });
+
+    let proPromiseData = await request({
+      url: '/project/list',
+      data: {
+        type: this.data.proCateIndex,
+        address: address
+      }
+    })
+    let conPromiseData = await request({
+      url: '/contacts/list',
+      data: {
+        type: this.data.conCateIndex,
+        address: address
+      }
+    })
+    wx.hideLoading();
+    this.setData({
+      proList: proPromiseData.data.data,
+      conList: conPromiseData.data.data
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    this.queryMultipleNodes()
-  },
-
-  //声明节点查询的方法
-  queryMultipleNodes: function () {
-    const query = wx.createSelectorQuery() // 创建节点查询器 query
-    query.select('.top-position').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
-    query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
-    query.exec((res) => {
-      this.setData({
-        cateTop: res[0].top
-      })
-    })
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -93,16 +112,39 @@ Page({
   },
 
   // handle cate change
-  handlePickerCateChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+  async handlePickerCateChange(e) {
+    this.page = 1
     let index = e.detail.value
     if (this.data.cateIndex == 0) { // project
       this.setData({
         proCateIndex: index
       })
+      const r = await this.scrollToLowerRequest(this.data.cateIndex)
+      let list = r.data.data
+      if (list.length == 0) {
+        wx.showToast({
+          title: '暂时没有数据哦~',
+          icon: 'none',
+        })
+      }
+      this.setData({
+        proList: r.data.data
+      })
+
     } else { // connection
       this.setData({
         conCateIndex: index
+      })
+      const r = await this.scrollToLowerRequest(this.data.cateIndex)
+      let list = r.data.data
+      if (list.length == 0) {
+        wx.showToast({
+          title: '暂时没有数据哦~',
+          icon: 'none',
+        })
+      }
+      this.setData({
+        conList: r.data.data
       })
     }
     this.setData({
@@ -111,17 +153,24 @@ Page({
   },
 
   // handle cate change
-  handleCateChange(e) {
-    const {index, cate} = e.detail
+  async handleCateChange(e) {
+    this.page = 1
+    const {
+      index,
+      cate
+    } = e.detail
     wx.setStorageSync('proConCateIndex', index)
     if (index == 0) { // change project cate
+      const r = await this.scrollToLowerRequest(index)
       this.setData({
-        cateList: this.data.proCateList
+        cateList: this.data.proCateList,
+        proList: r.data.data
       })
     } else {
-
+      const r = await this.scrollToLowerRequest(index)
       this.setData({
-        cateList: this.data.conCateList
+        cateList: this.data.conCateList,
+        conList: r.data.data
       })
     }
     this.setData({
@@ -129,26 +178,135 @@ Page({
     })
   },
 
+  // change address
+  async listenLocation(e) {
+    this.page = 1
+    let index = this.data.cateIndex
+    const [provinceName, cityName] = e.detail.address
+    this.setData({
+      provinceName,
+      cityName
+    })
+    const r = await this.scrollToLowerRequest(index)
+    console.log(r.data.data);
+    let list = r.data.data
+    if (list.length == 0) {
+      wx.showToast({
+        title: '暂没数据哦~',
+        icon: 'none',
+      });
+    }
+    if (index == 0) {
+      this.setData({
+        proList: list
+      })
+    } else {
+      this.setData({
+        conList: list
+      })
+    }
+
+  },
+
 
   // swiper change
-  handleSwiperChange(event) {
-    let {current} = event.detail
+  async handleSwiperChange(event) {
+    this.page = 1
+    let {
+      current
+    } = event.detail
     wx.setStorageSync('proConCateIndex', current)
+    if (current == 0) { // change project cate
+      const r = await this.scrollToLowerRequest(current)
+      this.setData({
+        cateList: this.data.proCateList,
+        proList: r.data.data
+      })
+    } else {
+      const r = await this.scrollToLowerRequest(current)
+      this.setData({
+        cateList: this.data.conCateList,
+        conList: r.data.data
+      })
+    }
     this.setData({
       cateIndex: current
     })
   },
 
-  // scroll lower
-  handleSwiperLower(e) {
-    console.log('滚动到底部');
+  // scroll to lower request
+  async scrollToLowerRequest(index) {
+    let r
+    if (index == 0) {
+      r = await request({
+        url: '/project/list',
+        data: {
+          type: this.data.proCateIndex,
+          address: this.data.provinceName + '/' + this.data.cityName,
+          page: this.page
+        }
+      })
+    } else {
+      r = await request({
+        url: '/contacts/list',
+        data: {
+          type: this.data.conCateIndex,
+          address: this.data.provinceName + '/' + this.data.cityName,
+          page: this.page
+        }
+      })
+    }
+    return r
   },
 
-  // scroll event
-  handleSwiperscroll(e) {
-    let {
-      scrollTop
-    } = e.detail
-   
+  // scroll pro lower
+  async handleSwiperProLower(e) {
+    if(this.isScrollLower) {
+      return;
+    }
+    this.isScrollLower = true
+    console.log('项目滚动到底部');
+    this.page++
+    let r = await this.scrollToLowerRequest(this.data.cateIndex)
+    let list = r.data.data
+    console.log(list);
+    if (list.length == 0) {
+      wx.showToast({
+        title: '我是有底线的哦~',
+        icon: 'none',
+      })
+    } else {
+      let proList = this.data.proList.concat(list)
+      this.setData({
+        proList
+      })
+    }
+    this.isScrollLower = false
+  },
+
+  // scroll con lower
+  async handleSwiperConLower(e) {
+    if(this.isScrollLower) {
+      return;
+    }
+    this.isScrollLower = true
+    this.page++
+    console.log('人脉滚到地');
+    const r = await this.scrollToLowerRequest(this.data.cateIndex)
+    let list = r.data.data
+    console.log(list);
+    if (list.length == 0) {
+      wx.showToast({
+        title: '我是有底线的哦~',
+        icon: 'none',
+      })
+    } else {
+      let conList = this.data.conList.concat(list)
+      this.setData({
+        conList
+      })
+    }
+    this.isScrollLower = false
   }
+  
 })

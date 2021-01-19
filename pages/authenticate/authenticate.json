@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "toptips": "/components/toptips/toptips"
+  },
   "navigationBarTitleText": "认证信息",
   "navigationBarBackgroundColor": "#970d0d",
   "navigationBarTextStyle": "white"

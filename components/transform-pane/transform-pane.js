@@ -23,7 +23,11 @@ Component({
       imageBaseUrl: {
         type: String,
         value: ''
-      }
+      },
+      top: {
+        type: Number,
+        value: 0
+      },
     },
 
     /**

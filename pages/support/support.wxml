@@ -13,4 +13,6 @@
 </view>
 <!-- tab end -->
 <!-- video content begin -->
-<transform-pane videoList="{{videoList}}" bind:scrolltolover="handleVideoToLower" currentIndex="{{currentIndex}}" imageBaseUrl="{{imageBaseUrl}}" bind:swiperChange="handleSwiperChange"></transform-pane>
+<transform-pane videoList="{{videoList}}" bind:scrolltolover="handleVideoToLower" currentIndex="{{currentIndex}}" imageBaseUrl="{{imageBaseUrl}}" bind:swiperChange="handleSwiperChange" top="{{top}}"></transform-pane>
+
+<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleUserInfo" isShowClose="{{false}}"/>

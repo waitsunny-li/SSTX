@@ -46,9 +46,12 @@ Component({
         path,
         index
       } = e.currentTarget.dataset
-      wx.switchTab({
-        url: path
-      })
+      const userInfo = wx.getStorageSync('userInfo');
+      if (userInfo) {
+        wx.switchTab({
+          url: path
+        })
+      }
     }
   }
 })

@@ -15,7 +15,11 @@ export const request = (params) => {
         token
       },
       success: (result) => {
-        resolve(result.data)
+        if (result.data.code == 401) {
+          reject(result.data.code)
+        } else {
+          resolve(result.data)
+        }
       },
       fail: (err) => {
         reject(err)

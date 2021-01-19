@@ -2,7 +2,7 @@
   <title-tab width="100vw" ext-class="tab-reset" bind:cateChange="handleCateChange" currentIndex="{{cateIndex}}" />
   <!-- location -->
   <view class="location">
-    <province-city ext-class="province-city" />
+    <province-city ext-class="province-city" bind:locationEvent="listenLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}"/>
     <view class="cate-wrap">
       <view class="cate-name">类别：</view>
       <picker bindchange="handlePickerCateChange" value="{{currentCateIndex}}" range="{{cateList}}">
@@ -18,17 +18,17 @@
 <view class="project-wrap">
   <swiper class="procon-swiper" current="{{cateIndex}}" bindchange="handleSwiperChange">
     <swiper-item class="procon-swiper-time" item-id="">
-      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscroll="handleSwiperscroll" bindscrolltolower="handleSwiperLower">
+      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}"  bindscrolltolower="handleSwiperProLower" scroll-top="{{top}}">
         <block wx:for="{{proList}}" wx:key="index">
-          <project-item />
+          <project-item projectItme="{{item}}"/>
         </block>
         <view style="width:100vw;height:40rpx"></view>
       </scroll-view>
     </swiper-item>
     <swiper-item class="procon-swiper-time" item-id="">
-      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscroll="handleSwiperscroll">
+      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" scroll-top="{{top}}" bindscrolltolower="handleSwiperConLower">
         <block wx:for="{{conList}}" wx:key="index">
-          <connection-item />
+          <connection-item connectionObj="{{item}}"/>
         </block>
         <view style="width:100vw;height:40rpx"></view>
       </scroll-view>

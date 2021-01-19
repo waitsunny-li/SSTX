@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "tab": "/components/tab/tab",
-    "transform-pane": "/components/transform-pane/transform-pane"
+    "transform-pane": "/components/transform-pane/transform-pane",
+    "login-pop": "/components/login-pop/login-pop"
   },
   "navigationBarTitleText": "各界支持",
   "navigationBarBackgroundColor": "#970d0d",

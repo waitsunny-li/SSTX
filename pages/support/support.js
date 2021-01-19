@@ -33,9 +33,13 @@ Page({
     videoList: [],
     tabTop: 0,
     ishowtabs: false,
-    currentIndex: 0
+    currentIndex: 0,
+
+    // 登录显示
+    isShowLogin: false,
+    top: 0
   },
-  page: 0,
+  page: 1,
   // page_0: 1,
   // page_1: 1,
   // page_2: 1,
@@ -47,19 +51,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    request({
-      url: '/support/list',
-      data: {
-        status: 0,
-        page: 1
-      }
-    }).then(res => {
+    let init = async () => {
+      let res = await request({
+        url: '/support/list',
+        data: {
+          status: 0,
+          page: 1
+        }
+      })
       let videoList = res.data.data
       this.setData({
         imageBaseUrl: wx.getStorageSync('imageBaseUrl'),
         videoList,
+      }).catch(error => {
+        console.log(error);
       })
+    }
+
+    init().catch(err => {
+      if (err == 401) {
+        wx.setStorageSync('userInfo', '');
+        this.setData({
+          isShowLogin: true
+        })
+      }
     })
+
   },
 
   // 初次获取数据
@@ -102,32 +119,67 @@ Page({
     }
   },
 
+  // 重新登录后，重新拉取数据
+  async handleUserInfo(e) {
+    let r = await request({
+      url: '/support/list',
+      data: {
+        status: this.data.currentIndex,
+        page: this.page
+      }
+    })
+    if (r.code == 1) {
+      let videoList = r.data.data
+      this.setData({
+        videoList
+      })
+    }
+  },
+
   // click tab event
   async handleChangeCurrent(e) {
     let {
       currentIndex
     } = e.detail
-    let videoList
-    let r = await request({
-      url: '/support/list',
-      data: {
-        status: currentIndex,
-        page: this.page
-      }
-    })
-    if (r.code == 1) {
-      videoList = r.data.data
+    this.page = 1
+    let videoList, r
+    try {
+      r = await request({
+        url: '/support/list',
+        data: {
+          status: currentIndex,
+          page: this.page
+        }
+      })
+    } catch (e) {
+      console.log(e);
     }
+    console.log(this.page);
+
+    videoList = r.data.data
     this.setData({
       currentIndex,
-      videoList
+      videoList,
+      top: 0
     })
   },
 
   // srcorll lower
-  handleVideoToLower(e) {
+  async handleVideoToLower(e) {
     console.log('滚到到底');
+    this.page++
+    let r = await request({
+      url: '/support/list',
+        data: {
+          status: this.data.currentIndex,
+          page: this.page
+        }
+    })
     console.log(this.page);
+    let videoList = this.data.videoList.concat(r.data.data)
+    this.setData({
+      videoList
+    })
   },
 
   // handle swiper change
@@ -136,7 +188,7 @@ Page({
       current
     } = e.detail
     let videoList
-    this.page = 0
+    this.page = 1
     let r = await request({
       url: '/support/list',
       data: {
@@ -147,9 +199,12 @@ Page({
     if (r.code == 1) {
       videoList = r.data.data
     }
+    console.log(this.page);
+
     this.setData({
       currentIndex: current,
-      videoList
+      videoList,
+      top: 0
     })
   }
 
