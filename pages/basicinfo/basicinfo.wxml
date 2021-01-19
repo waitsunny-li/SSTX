@@ -1,35 +1,40 @@
+<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}" />
 <view class="basicinfo-wrap">
   <view class="hade-ava-wrap">
-    <view class="hade-ava">
+    <view class="hade-ava" bind:tap="handleUploadAvatarTap">
       <text class="iconfont icon-camera"></text>
-      <image class="ava" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+      <image class="ava" src="{{avatar}}"></image>
+      <input type="text" name="uploadAvatar" hidden/>
     </view>
   </view>
   <view class="form-content">
-    <form class="form" bindreset="">
+    <form class="form" bindsubmit="handleFormSubmit">
       <view class="input-wrap">
         <text class="label" space="emsp">昵 称</text>
-        <input type="text" name="idcard" value="" placeholder="神经蛙" />
+        <input type="text" name="nickname" value="{{nickname}}" placeholder="" />
       </view>
       <!-- tel -->
       <view class="input-wrap">
         <text class="label" space="nbsp">手机号</text>
         <view class="verify-code">
-          <input class="" type="number" placeholder="请输入手机号" name="newtel" />
+          <input class="" type="number" placeholder="请输入手机号" name="mobile" value="{{mobile}}" disabled="{{true}}"/>
+          <navigator url="/pages/modifytel/modifytel?mobile={{mobile}}" hover-class="none" class="change-mobile">
+            更换绑定
+          </navigator>
         </view>
       </view>
       <!-- send code -->
       <view class="input-wrap">
         <text class="label" space="nbsp">验证码</text>
         <view class="verify-code">
-          <input class="" type="number" placeholder="请输入验证码" name="newtel" />
+          <input class="" type="number" placeholder="请输入验证码" name="code" />
           <view class="send {{isSend ? 'sended' : ''}}" bind:tap="handleSendCode">{{times}}</view>
         </view>
       </view>
       <!-- sex -->
       <view class="input-wrap">
         <text class="label" space="emsp">性 别</text>
-        <picker bindchange="PickerSexChange" value="{{sexIndex}}" range="{{sexList}}">
+        <picker bindchange="PickerSexChange" value="{{sexIndex}}" range="{{sexList}}" name="gender">
           <view class="picker">
             {{sexList[sexIndex]}}
             <text class="iconfont icon-jiantou12"></text>
@@ -39,7 +44,7 @@
       <!-- location -->
       <view class="location">
         <text class="label" space="emsp">地 区</text>
-        <province-city isShowIcon="{{false}}"/>
+        <province-city isShowIcon="{{false}}" bind:locationEvent="handleNeedLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}"/>
       </view>
 
       <!-- btn -->

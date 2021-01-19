@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "toptips": "/components/toptips/toptips"
+  },
   "navigationBarTitleText": "更改手机号",
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black"

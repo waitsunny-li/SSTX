@@ -1,3 +1,4 @@
+<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}" />
 <view class="top-header">
   <view class="top-wrap">
     <image class="logo" src="/icons/logo.png"></image>
@@ -12,13 +13,13 @@
 
 <!-- form -->
 <view class="form-wrap">
-  <form class="form" report-submit="false" bindsubmit="" bindreset="">
+  <form class="form" report-submit="false" bindsubmit="handleFormSubmit" bindreset="">
     <view class="input-wrap">
       <view class="left-label">
         旧手机号：
       </view>
       <view class="input">
-        <input class="" type="number" placeholder="189****9999" disabled="{{true}}" placeholder-style="text-align: right"/>
+        <input class="" type="number" placeholder="{{mobile}}" disabled="{{true}}" placeholder-style="text-align: right"/>
       </view>
     </view>
     <view class="input-wrap">
@@ -26,7 +27,7 @@
         新手机号：
       </view>
       <view class="input">
-        <input class="" type="number" placeholder="请输入新手机号" name="newtel"/>
+        <input class="" type="number" placeholder="请输入新手机号" name="newmoile" bindblur="handleNewMBlur"/>
       </view>
     </view>
     <view class="input-wrap">
@@ -34,7 +35,7 @@
         手机验证：
       </view>
       <view class="verify-code">
-        <input class="" type="number" placeholder="请输入验证码" name="newtel"/>
+        <input class="" type="number" placeholder="请输入验证码" name="code"/>
         <view class="send {{isSend ? 'sended' : ''}}" bind:tap="handleSendCode">
           {{times}}
         </view>

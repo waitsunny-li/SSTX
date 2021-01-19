@@ -84,6 +84,16 @@ page {
 .basicinfo-wrap .form-content .input-wrap .verify-code .sended {
   background-color: #bbbbbb;
 }
+.basicinfo-wrap .form-content .input-wrap .verify-code .change-mobile {
+  width: 180rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5rpx;
+  color: var(--assColor);
+}
 .basicinfo-wrap .form-content .input-wrap picker {
   height: 100%;
   width: 450rpx;
