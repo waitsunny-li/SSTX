@@ -5,17 +5,17 @@
 <view class="project-wrap">
   <swiper class="procon-swiper" current="{{cateIndex}}" bindchange="handleSwiperChange">
     <swiper-item class="procon-swiper-time" item-id="">
-      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscroll="handleSwiperscroll">
+      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscrolltolower="handleProToLower" scroll-top="{{top}}">
         <block wx:for="{{proList}}" wx:key="index">
-          <project-item />
+          <project-item projectItme="{{item}}" isShowIcon="{{false}}"/>
         </block>
         <view style="width:100vw;height:40rpx"></view>
       </scroll-view>
     </swiper-item>
     <swiper-item class="procon-swiper-time" item-id="">
-      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscroll="handleSwiperscroll">
+      <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" bindscrolltolower="handleConToLower" scroll-top="{{top}}">
         <block wx:for="{{conList}}" wx:key="index">
-          <connection-item />
+          <connection-item connectionObj="{{item}}" isShowIcon="{{false}}"/>
         </block>
         <view style="width:100vw;height:40rpx"></view>
       </scroll-view>
@@ -23,3 +23,8 @@
   </swiper>
 </view>
 <!-- project content beign -->
+<!-- no data -->
+<viwe class="no-data" wx:if="{{isNoData}}">
+  <text class="iconfont icon-meiyoudingdan-01"></text>
+  <view class="no-text">你还没有发布任何东西呦~</view>
+</viwe>

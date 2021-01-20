@@ -2,6 +2,9 @@
  * @Author: liweilong
  * @Date: 2021-01-12 17:05:14
  */
+
+import { request } from "../../request/index"
+
 // pages/mypublish/mypublish.js
 Page({
 
@@ -12,17 +15,12 @@ Page({
     cateTop: 0,
     headerTitle: '',
     cateIndex: 0,
-    itemList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ]
+    itemList: [],
+    currentUrls: ['/user/myProjectList', '/user/myContactsList'],
+    isTotal: false
   },
+  page: 1,
+  isScrollLower: false,
 
   /**
    * 生命周期函数--监听页面加载
@@ -35,11 +33,47 @@ Page({
     wx.setNavigationBarTitle({
       title
     })
+    this.requestUrl(this.data.currentUrls[cate]).catch(err => {
+      console.log(err);
+    })
     this.setData({
       cateIndex: cate,
       headerTitle: title
     })
 
+  },
+
+  // request init
+  async requestUrl(url) {
+    if (this.isScrollLower) {
+      return;
+    } else {
+      this.isScrollLower = true
+      const r =  await request({
+        url,
+        data: {
+          page: this.page
+        }
+      })
+      let list = r.data.data
+      if (list.length == 0) {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+        this.setData({
+          isTotal: true
+        })
+      } else {
+        let itemList = this.data.itemList.concat(list) 
+        this.setData({
+          itemList
+        })
+        this.isScrollLower = false
+      }
+      
+    }
+    
   },
 
   onReady: function () {
@@ -63,13 +97,12 @@ Page({
     let {
       scrollTop
     } = e.detail
-    console.log(scrollTop);
     if (scrollTop > this.data.cateTop) {
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#970d0d',
       });
-        
+
     } else {
       wx.setNavigationBarColor({
         frontColor: '#000000',
@@ -81,6 +114,8 @@ Page({
   // scroll lower
   handletolower(e) {
     console.log(e);
+    this.page++
+    this.requestUrl(this.data.currentUrls[this.data.cateIndex])
   }
 
 })

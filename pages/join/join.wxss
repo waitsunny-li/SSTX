@@ -11,8 +11,10 @@
   font-size: 28rpx;
   padding: 15rpx 0;
 }
-.my-infomation .infomation-form .info-textarea textarea {
+.my-infomation .infomation-form .info-textarea .shop-good {
   width: 100%;
+  padding: 20rpx 20rpx;
+  box-sizing: border-box;
 }
 .my-infomation .infomation-form .input-wrap {
   width: 100%;
@@ -44,11 +46,13 @@
 .my-infomation .infomation-form .input-wrap .picker {
   width: 200rpx;
   height: 60rpx;
-  padding: 10rpx 20rpx;
+  padding: 10rpx 20rpx 10rpx 40rpx;
   box-sizing: border-box;
   border: 1px solid #bbbbbb;
   font-size: 28rpx;
   border-radius: 10rpx;
+  display: flex;
+  justify-content: space-between;
 }
 .my-infomation .infomation-form .input-wrap .change-tel {
   width: 150rpx;

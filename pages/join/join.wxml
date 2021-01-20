@@ -1,8 +1,10 @@
+<toptips type="{{poptype}}" msg="{{popmsg}}" show="{{popmsg}}" />
 <view class="my-infomation">
-  <form class="infomation-form" report-submit="false" bindsubmit="" bindreset="">
+  <form class="infomation-form" report-submit="false" bindsubmit="handleFormSubmit" bindreset="">
     <view class="info-textarea">
       <view class="title">商会优势：</view>
-      <textarea name="advantage" id="" placeholder="商会优势" placeholder-style="color: #cfcfcf" maxlength="{{600}}"></textarea>
+      <rich-text class="shop-good" nodes="{{shopGood}}">
+      </rich-text>
     </view>
     <!-- 姓名 -->
     <view class="input-wrap">
@@ -10,7 +12,7 @@
         真实姓名：
         <text class="iconfont icon-required"></text>
       </view>
-      <input type="text" name="name" value="" placeholder="张三" placeholder-style="font-size:26rpx" />
+      <input type="text" name="realname" value="{{realname}}" placeholder="" placeholder-style="font-size:26rpx" />
     </view>
     <!-- 性别 -->
     <view class="input-wrap">
@@ -18,7 +20,7 @@
         <text space="emsp">性  别：</text>
         <text class="iconfont icon-required"></text>
       </view>
-      <picker bindchange="PickerSexChange" value="{{sexIndex}}" range="{{sexList}}">
+      <picker bindchange="PickerSexChange" value="{{sexIndex}}" range="{{sexList}}" name="gender">
         <view class="picker">
           {{sexList[sexIndex]}}
           <text class="iconfont icon-jiantou12"></text>
@@ -31,8 +33,8 @@
         联系电话：
         <text class="iconfont icon-required"></text>
       </view>
-      <input type="text" style="width:300rpx" name="tel" value="" placeholder="1888888888" disabled="{{true}}" placeholder-style="font-size:26rpx" />
-      <navigator url="/pages/modifytel/modifytel" hover-class="none" class="change-tel">更换绑定</navigator>
+      <input type="text" style="width:300rpx" name="tel" value="{{mobile}}" placeholder="" disabled="{{true}}" placeholder-style="font-size:26rpx" name="mobile" />
+      <navigator url="/pages/modifytel/modifytel?mobile={{mobile}}" hover-class="none" class="change-tel">更换绑定</navigator>
     </view>
     <!-- ID -->
     <view class="input-wrap">
@@ -40,12 +42,12 @@
         <text space="nbsp">身 份 证：</text>
         <text class="iconfont icon-required"></text>
       </view>
-      <input type="text" style="width:470rpx" name="idcard" value="" placeholder="请填写省份证" placeholder-style="font-size:26rpx" />
+      <input type="text" style="width:470rpx" name="idcard" value="{{idcard}}" placeholder="请填写省份证" placeholder-style="font-size:26rpx" disabled="{{true}}"/>
     </view>
     <!-- idcard img -->
     <view class="id-card-img">
       <block wx:for="{{cardImgList}}" wx:key="id">
-        <view class="img-item" bind:tap="handleUploadImg" data-index="{{index}}">
+        <view class="img-item"  data-index="{{index}}">
           <block wx:if="{{!item.url}}">
             <text class="iconfont icon-tianjia"></text>
             <view class="b-t">{{item.text}}</view>
@@ -62,7 +64,7 @@
         <text space="emsp">地  区：</text>
         <text class="iconfont icon-required"></text>
       </view>
-      <province-city isShowIcon="{{false}}" style="width: 380rpx"/>
+      <province-city isShowIcon="{{false}}" style="width: 380rpx" bind:locationEvent="handleNeedLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}"/>
     </view>
     
     <!-- btn -->

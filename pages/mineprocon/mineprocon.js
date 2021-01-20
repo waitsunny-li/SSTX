@@ -2,6 +2,9 @@
  * @Author: liweilong
  * @Date: 2021-01-05 13:45:17
  */
+import {
+  request
+} from '../../request/index'
 // pages/project/project.js
 Page({
 
@@ -12,47 +15,30 @@ Page({
     // 借此对象根据状态来显示相对应的navigationBarTitleText
     navigationObj: {
       // 审核
-      check: '',
+      checking: '/user/examineingList',
+      uncheck: '/user/unExamineList',
       // 发布成功
-      pubsuccess: '',
+      pubsuccess: '/user/successPublishList',
       // 关注
-      collect: '',
+      collect: '/user/mySubscribeList',
       // 足迹
-      track: '',
+      track: '/user/myHistoryList',
       // 分享
       share: ''
     },
+    currentUrl: '',
 
     cateIndex: 0,
-
-    cateTop: 0,
-
     // project
-    proList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
+    proList: [],
 
     // connection
-    conList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ]
+    conList: [],
+    top: 0,
+    isNoData: false,
   },
+  page: 1,
+  isrequest: false,
 
   /**
    * 生命周期函数--监听页面加载
@@ -60,34 +46,19 @@ Page({
   onLoad: function (options) {
     console.log(options);
     let {
-      status,
       title,
       cb
     } = options
-
+    console.log(cb);
+    this.requestProCon(this.data.navigationObj[cb]).catch(err => {
+      console.log(err);
+    })
     // change navigationBarTitleText
     wx.setNavigationBarTitle({
       title
     })
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    this.queryMultipleNodes()
-  },
-
-  //声明节点查询的方法
-  queryMultipleNodes: function () {
-    const query = wx.createSelectorQuery() // 创建节点查询器 query
-    query.select('.top-position').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
-    query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
-    query.exec((res) => {
-      this.setData({
-        cateTop: res[0].top
-      })
+    this.setData({
+      currentUrl: this.data.navigationObj[cb]
     })
   },
 
@@ -103,24 +74,142 @@ Page({
     }
   },
 
+  // request
+  async requestProCon(url) {
+    // 防止触发连续两次请求，由于点击tabtitle时，swiper也触发了一次
+    if (this.isrequest) {
+      return;
+    } else {
+      this.isrequest = true
+      const r = await request({
+        url: url,
+        data: {
+          type: this.data.cateIndex,
+          page: this.page
+        }
+      })
+      console.log('我是请求', this.data.cateIndex);
+      if (this.data.cateIndex == 0) {
+        // let proList = this.data.proList.concat(r.data.data)
+        let proList = r.data.data
+        if (proList.length == 0 && this.page == 1) {
+          this.setData({
+            isNoData: true
+          })
+        } else {
+          this.setData({
+            proList,
+            isNoData: false
+          })
+        }
+      } else {
+        let conList = r.data.data
+        if (conList.length == 0 && this.page == 1) {
+          this.setData({
+            isNoData: true
+          })
+        } else {
+          this.setData({
+            conList,
+            isNoData: false
+          })
+        }
+      }
+      this.isrequest = false
+    }
+
+  },
+
   // cate change
   handleCateChange(e) {
-    const {index} = e.detail
+    this.page = 1
+    const {
+      index
+    } = e.detail
     this.setData({
-      cateIndex: index
+      cateIndex: index,
+      top: 0
+    })
+    this.requestProCon(this.data.currentUrl).catch(err => {
+      console.log(err);
     })
   },
 
   // swiper change
   handleSwiperChange(event) {
+    this.page = 1
     let {
       current
     } = event.detail
-    console.log(current);
     this.setData({
-      cateIndex: current
+      cateIndex: current,
+      top: 0
+    })
+    this.requestProCon(this.data.currentUrl).catch(err => {
+      console.log(err);
     })
   },
 
+  // project scroll to lower
+  async handleProToLower(e) {
+    if (this.isrequest) {
+      return;
+    } else {
+      this.isrequest = true
+      this.page++
+      const r = await request({
+        url: this.data.currentUrl,
+        data: {
+          type: this.data.cateIndex,
+          page: this.page
+        }
+      })
+      let list = r.data.data
+      if (list.length > 0) {
+        let proList = this.data.proList.concat(list)
+        this.setData({
+          proList
+        })
+      } else {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+      }
+      this.isrequest = false
 
+    }
+
+  },
+
+  // connection scroll to lower
+  async handleConToLower(e) {
+    if (this.isrequest) {
+      return;
+    } else {
+      this.isrequest = true
+      this.page++
+      const r = await request({
+        url: this.data.currentUrl,
+        data: {
+          type: this.data.cateIndex,
+          page: this.page
+        }
+      })
+      let list = r.data.data
+      if (list.length > 0) {
+        let conList = this.data.conList.concat(list)
+        this.setData({
+          conList
+        })
+      } else {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+      }
+      this.isrequest = false
+    }
+
+  }
 })

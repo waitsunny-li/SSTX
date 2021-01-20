@@ -6,7 +6,7 @@ import {
   request
 } from '../../request/index'
 import {
-  wxLogin
+  showModal
 } from '../../utils/asyncWx'
 //Page Object
 Page({
@@ -48,6 +48,9 @@ Page({
     this.setData({
       userInfo
     })
+
+    // 每次显示都获取最新的状态
+    this.getVipUserInfo()
   },
 
   handleLoginBtn(e) {
@@ -64,6 +67,30 @@ Page({
     this.setData({
       userInfo
     })
+  },
+
+  // join shop good
+  async handleJoinTap(e) {
+    const {realname} = this.data.vipUserInfo.verification
+
+    if (realname) {
+      wx.navigateTo({
+        url: '/pages/join/join',
+      })
+    } else {
+      const r = await showModal(
+        {
+          title: '申请加入商会',
+          content: '您还没有通过认证，赶紧去认证吧',
+          confirmText: '去认证'
+        }
+      )
+      if (r) {
+        wx.navigateTo({
+          url: '/pages/authenticate/authenticate',
+        })
+      }
+    }
   }
 
 });

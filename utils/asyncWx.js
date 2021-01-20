@@ -77,11 +77,11 @@ export const showModal = option => {
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#000000',
-      confirmText: '确定',
+      confirmText: option.confirmText || '确定',
       confirmColor: '#3CC51F',
       success: (result) => {
         if (result.confirm) {
-          resolve()
+          resolve(result.confirm)
         } else {
           reject()
         }

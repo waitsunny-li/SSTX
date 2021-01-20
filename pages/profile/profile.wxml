@@ -10,7 +10,10 @@
             <text class="n">昵称：{{userInfo.nickName}}</text>
             <text class="iconfont icon-bianji"></text>
           </navigator>
-          <navigator hover-class="none" url="/pages/authenticate/authenticate" class="auth-wrap" wx:if="{{true}}">
+          <view class="auth-wrap" wx:if="{{vipUserInfo.verification.realname}}">
+            <view class="t">实名认证用户</view>
+          </view>
+          <navigator hover-class="none" url="/pages/authenticate/authenticate" class="auth-wrap" wx:else>
             <view class="t">我的实名认证</view>
             <text class="iconfont icon-bianji"></text>
           </navigator>
@@ -34,8 +37,9 @@
       <view class="auth">
         <view class="title-left">实名认证</view>
         <view class="right-info">
-          <view class="info">您暂未实名认证</view>
-          <navigator url="/pages/authenticate/authenticate" class="go-cread" hover-class="none">
+          <view class="info" wx:if="{{vipUserInfo.verification.realname}}">尊敬的用户，您已实名认证</view>
+          <view class="info" wx:else>您暂未实名认证</view>
+          <navigator url="/pages/authenticate/authenticate" class="go-cread" hover-class="none" wx:if="{{!vipUserInfo.verification.realname}}">
             <view class="go-text">立即认证</view>
             <text class="iconfont icon-jiantou12"></text>
           </navigator>
@@ -45,19 +49,19 @@
   </view>
   <!-- publish number begin -->
   <view class="pub-check">
-    <navigator url="/pages/mineprocon/mineprocon?status={{1}}&cb=pubsuccess&title=发布成功" hover-class="none" class="left-pub">
+    <navigator url="/pages/mineprocon/mineprocon?cb=pubsuccess&title=发布成功" hover-class="none" class="left-pub">
       <view class="number">12</view>
       <view class="text-bo">发布成功</view>
     </navigator>
     <view class="line"></view>
     <view class="right-check">
-      <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=check&title=审核中" hover-class="none" class="item">
+      <navigator url="/pages/mineprocon/mineprocon?cb=checking&title=审核中" hover-class="none" class="item">
         <view class="icon">
           <text class="iconfont icon-shenhe1"></text>
         </view>
         <view class="text">审核中</view>
       </navigator>
-      <navigator url="/pages/mineprocon/mineprocon?status={{2}}&cb=check&title=未通过审核" hover-class="none" class="item">
+      <navigator url="/pages/mineprocon/mineprocon?cb=uncheck&title=未通过审核" hover-class="none" class="item">
         <view class="icon">
           <text class="iconfont icon-stop"></text>
         </view>
@@ -68,15 +72,15 @@
   <!-- publish number end -->
   <!-- mine begin -->
   <view class="mine-wrap">
-    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=collect&title=我的关注" hover-class="none" class="mine-item">
+    <navigator url="/pages/mineprocon/mineprocon?cb=collect&title=我的关注" hover-class="none" class="mine-item">
       <text class="iconfont icon-shoucang"></text>
       <view class="b-text">我的关注</view>
     </navigator>
-    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=track&title=我的足迹" hover-class="none" class="mine-item">
+    <navigator url="/pages/mineprocon/mineprocon?cb=track&title=我的足迹" hover-class="none" class="mine-item">
       <text class="iconfont icon-zuji"></text>
       <view class="b-text">我的足迹</view>
     </navigator>
-    <navigator url="/pages/mineprocon/mineprocon?status={{0}}&cb=share&title=我的分享" hover-class="none" class="mine-item">
+    <navigator url="/pages/mineprocon/mineprocon?cb=share&title=我的分享" hover-class="none" class="mine-item">
       <text class="iconfont icon-fenxiang"></text>
       <view class="b-text">我的分享</view>
     </navigator>
@@ -125,7 +129,7 @@
       </view>
     </navigator>
     <!-- join -->
-    <navigator url="/pages/join/join" class="my-item" hover-class="none">
+    <view url="/pages/join/join" class="my-item" hover-class="none" bind:tap="handleJoinTap">
       <view class="left-icon">
         <text class="iconfont icon-show_jiarukehuchi"></text>
         <view class="title">申请加入善商会</view>
@@ -133,7 +137,7 @@
       <view class="right-arror">
         <text class="iconfont icon-jiantou12"></text>
       </view>
-    </navigator>
+    </view>
     <!-- feedback -->
     <navigator url="/pages/feedback/feedback" class="my-item" hover-class="none">
       <view class="left-icon">
@@ -154,8 +158,10 @@
         <text class="iconfont icon-jiantou12"></text>
       </view>
     </navigator>
+    <view style="width:100vw; height: 100rpx"></view>
   </view>
   <!-- mine function end -->
 </scroll-view>
 
 <login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleGetUserInfo"/>
+

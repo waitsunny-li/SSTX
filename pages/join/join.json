@@ -1,8 +1,9 @@
 {
   "usingComponents": {
-    "province-city": "/components/province-city/province-city"
+    "province-city": "/components/province-city/province-city",
+    "toptips": "/components/toptips/toptips"
   },
-  "navigationBarTitleText": "我的信息",
+  "navigationBarTitleText": "加入商会",
   "navigationBarBackgroundColor": "#970d0d",
   "navigationBarTextStyle": "white"
 }

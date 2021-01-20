@@ -1,4 +1,4 @@
-.help-detail {
+.hedetail {
   width: 100vw;
   padding: 30rpx;
   box-sizing: border-box;

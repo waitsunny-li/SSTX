@@ -10,16 +10,11 @@
   width: 100rpx;
   height: 130rpx;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 .header-top .left-top .img {
-  width: 80rpx;
-  height: 80rpx;
-}
-.header-top .left-top .header-text {
   width: 100rpx;
-  height: 37rpx;
+  height: 130rpx;
 }
 .header-top .right-text {
   margin-left: 50rpx;

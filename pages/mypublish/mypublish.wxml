@@ -8,8 +8,11 @@
   <view class="header-title-top">{{headerTitle}}</view>
   <viwe class="art-content">
     <block wx:for="{{itemList}}" wx:key="id">
-      <project-item isShowIcon="{{false}}" wx:if="{{cateIndex == 0}}"/>
-      <connection-item isShowIcon="{{false}}" wx:else/>
+      <project-item isShowIcon="{{false}}"  wx:if="{{cateIndex == 0}}" projectItme="{{item}}"/>
+      <connection-item connectionObj="{{item}}" isShowIcon="{{false}}" wx:else/>
     </block>
+    <view class="blank" wx:if="{{isTotal}}">
+      我是有底线的哦~
+    </view>
   </viwe>
 </scroll-view>

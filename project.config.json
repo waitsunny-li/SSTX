@@ -209,6 +209,37 @@
                 {
                     "name": "pages/help/help",
                     "pathName": "pages/help/help",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/join/join",
+                    "pathName": "pages/join/join",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mineprocon/mineprocon",
+                    "pathName": "pages/mineprocon/mineprocon",
+                    "query": "status=1&cb=pubsuccess&title=发布成功",
+                    "scene": null
+                },
+                {
+                    "name": "pages/feedback/feedback",
+                    "pathName": "pages/feedback/feedback",
+                    "query": "status=1&cb=pubsuccess&title=发布成功",
+                    "scene": null
+                },
+                {
+                    "name": "pages/help/help",
+                    "pathName": "pages/help/help",
+                    "query": "status=1&cb=pubsuccess&title=发布成功",
+                    "scene": null
+                },
+                {
+                    "name": "pages/good/good",
+                    "pathName": "pages/good/good",
+                    "query": "status=1&cb=pubsuccess&title=发布成功",
                     "scene": null
                 }
             ]

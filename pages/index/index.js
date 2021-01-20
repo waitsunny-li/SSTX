@@ -89,7 +89,12 @@ Page({
     }
 
     this.requestTheme().catch(err => {
-      console.log('ddd');
+      console.log(err);
+      if (err == 401) {
+        this.setData({
+          isShowLogin: true
+        })
+      }
     })
   },
   onReady: function () {
@@ -133,7 +138,7 @@ Page({
     let goodListDataList = await goodListDataPromise
    
     wx.setStorageSync('imageBaseUrl', siteInfoData.data.file_domain);
-    console.log(supportBannerDataList.data.data.length);
+    wx.setStorageSync('sitInfo', siteInfoData.data)
     this.setData({
       sitInfo: siteInfoData.data,
       bannerList: bannerData.data,

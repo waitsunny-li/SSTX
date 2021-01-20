@@ -1,8 +1,7 @@
 <!-- top begin -->
 <view class="header-top">
   <view class="left-top">
-    <image class="img" src="/icons/logo.png"></image>
-    <image class="header-text" src="/icons/logo-text.png"></image>
+    <image class="img" src="{{sitInfo.file_domain + sitInfo.logo}}"></image>
   </view>
   <view class="right-text">善学堂</view>
 </view>
@@ -16,10 +15,10 @@
 <swiper class="swiper_art" current="{{currentIndex}}" bindchange="handleSwiperChange">
   <!-- 儒家文化 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item />
+          <video-item  videoDetail="{{item}}"/>
         </block>
       </view>
     </scroll-view>
@@ -84,7 +83,7 @@
   </swiper-item>
   <!-- 励志人生 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
           <video-item />
@@ -94,7 +93,7 @@
   </swiper-item>
   <!-- 精选文章 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
           <video-item />
