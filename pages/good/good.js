@@ -2,7 +2,7 @@
  * @Author: liweilong
  * @Date: 2021-01-05 13:45:17
  */
-
+import {showModal} from '../../utils/asyncWx'
 import {
   request
 } from "../../request/index";
@@ -14,6 +14,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 获取的位置信息的列下标
+    procityIndex: [0, 0],
+    provinceName: '北京',
+    cityName: '北京市',
+    objectCityArray: [],
+
     sitInfo: {},
     tabList: [{
         id: 0,
@@ -98,10 +104,39 @@ Page({
     // 获取小程序基本信息
     const sitInfo = wx.getStorageSync('sitInfo')
     this.setData({
-      sitInfo: this.data.currentIndex
+      sitInfo
     })
     this.requestVideo().catch(err => {
       console.log(err);
+    })
+    // 获取定位的信息
+    let procityObj = wx.getStorageSync('procityObj')
+    if (procityObj) {
+      this.setData({
+        procityIndex: procityObj.procityIndex,
+        provinceName: procityObj.procityName[0],
+        cityName: procityObj.procityName[1],
+        objectCityArray: procityObj.objectCityArray
+      })
+    }
+
+    // 获取善商会的banner图
+    this.getBanners().catch(err => {
+      console.log(err);
+    })
+  },
+
+  // 获取善商会的banner图
+  async getBanners() {
+    const r = await request({
+      url: '/index/getBanner',
+      data: {
+        static: 1
+      }
+    })
+    console.log(r);
+    this.setData({
+      bannerList: r.data
     })
   },
 
@@ -128,7 +163,7 @@ Page({
       }
       this.isRequest = false
     }
-    
+
   },
 
   onReady: function () {
@@ -180,9 +215,45 @@ Page({
       currentCateIndex
     })
   },
+  // join shop good
+  async handleJoinTap(e) {
+    const r = await request({
+      url: '/user/userInfo'
+    })
+    const {
+      realname
+    } = r.data.verification
+
+    if (realname) {
+      wx.navigateTo({
+        url: '/pages/join/join',
+      })
+    } else {
+      const r = await showModal({
+        title: '申请加入商会',
+        content: '您还没有通过认证，赶紧去认证吧',
+        confirmText: '去认证'
+      })
+      if (r) {
+        wx.navigateTo({
+          url: '/pages/authenticate/authenticate',
+        })
+      }
+    }
+  },
+  // listen location event
+  listenLocation(e) {
+    const address = e.detail.address.join('/')
+
+    this.setData({
+      provinceName: address[0],
+      cityName: address[1]
+    })
+  },
 
   // video list to lower
   async handleVideotolower(e) {
+    console.log('滚到底');
     if (this.isRequest) {
       return;
     } else {
@@ -195,9 +266,19 @@ Page({
           status: this.data.currentIndex
         }
       })
-
+      let list = r.data.data
+      if (list.length == 0) {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+      } else {
+        this.setData({
+          videoList: r.data.data
+        })
+      }
       this.isRequest = false
     }
-    
+
   }
 })

@@ -83,6 +83,8 @@
 }
 .swiper_art .swiper_art_item .swiper-scroll .good_business .top-cate-wrap {
   width: 100vw;
+  padding: 0 20rpx;
+  box-sizing: border-box;
 }
 .swiper_art .swiper_art_item .swiper-scroll .good_business .top-cate-wrap .register-number {
   width: 33%;

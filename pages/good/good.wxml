@@ -18,14 +18,14 @@
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item  videoDetail="{{item}}"/>
+          <video-item videoDetail="{{item}}" />
         </block>
       </view>
     </scroll-view>
   </swiper-item>
   <!-- 善商会 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" bindscroll="handleGoodJoinscroll" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" scroll-anchoring="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" scroll-anchoring="{{true}}">
       <view class="good_business">
         <!-- index banner begin -->
         <swiper class="good-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
@@ -42,14 +42,14 @@
         </swiper>
         <!-- index banner end -->
         <!-- join begin -->
-        <navigator url="/pages/join/join" class="join-wrap">
+        <view class="join-wrap" bind:tap="handleJoinTap">
           <view class="join">申请加入商会</view>
-        </navigator>
+        </view>
         <!-- join end -->
         <!-- location city -->
         <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
           <!-- location begin -->
-          <province-city bind:locationEvent="listenLocation">
+          <province-city bind:locationEvent="listenLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}">
             <view class="register-number" slot="right">
               <view class="on-line number-wrap">
                 已分布城市：
