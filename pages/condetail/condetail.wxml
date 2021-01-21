@@ -27,33 +27,33 @@
           <view class="user-header">
             <view class="left-user">
               <view class="ava">
-                <image class="ava-img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+                <image class="ava-img" src="{{item.user.avatar}}"></image>
               </view>
               <view class="name-wrap">
-                <view class="username">董爱国</view>
+                <view class="username">{{item.user.nickname}}</view>
                 <view class="star">
-                  <star width="{{200}}" number="{{7}}" size="{{25}}" />
+                  <star width="{{200}}" number="{{item.level}}" size="{{25}}" />
                 </view>
               </view>
             </view>
             <view class="right-desc" slot="right">
               <view class="number-wrap">
                 预约次数：
-                <text class="number">32289</text>
+                <text class="number">{{item.num}}</text>
               </view>
               <view class="number-wrap">
                 关注人数：
-                <text class="number">{{item.id}}</text>
+                <text class="number">{{item.subscribe_num}}</text>
               </view>
             </view>
           </view>
           <!-- content -->
           <view class="art-inner">
-            <view class="art-header-title">我有长沙市高端人脉</view>
+            <view class="art-header-title">我有{{item.address}}高端人脉</view>
             <!-- 需求具体内容 -->
             <view class="detail-content">
               <view class="detail-inner">
-                在美丽的长沙市我有优秀的领导朋友，可以为建筑、地产、行业符合政策规定的招商引资项目做引荐，欢迎志同道合的朋友一起加入我们来为长沙市做贡献！
+                在美丽的长沙市我有优秀的领导朋友，可以为{{item.position}}符合政策规定的招商引资项目做引荐，欢迎志同道合的朋友一起加入我们来为长沙市做贡献！
               </view>
             </view>
             <view class="user-info-inner">
@@ -63,7 +63,7 @@
                   <text class="name-label" space="ensp">联 系 人：</text>
                 </view>
                 <view class="value">
-                  张三
+                  {{item.user.nickname}}
                 </view>
               </view>
               <view class="info-item">
@@ -72,7 +72,7 @@
                   <text class="name-label" space="emsp">地  区：</text>
                 </view>
                 <view class="value">
-                  湖南-长沙
+                  {{item.address}}
                 </view>
               </view>
             </view>
@@ -84,14 +84,14 @@
             <view class="whoseen">谁看过</view>
             <view class="dianzan">
               <text class="iconfont icon-dianzan"></text>
-              <text class="number">939</text>
+              <text class="number">{{item.zan_num}}</text>
             </view>
           </view>
           <!-- who ava img -->
           <view class="ava-img-wrap">
             <block wx:for="{{seenAvaList}}" wx:key="index">
               <view class="ava-item-img">
-                <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+                <image class="img" src="{{item.avatar}}"></image>
               </view>
             </block>
           </view>

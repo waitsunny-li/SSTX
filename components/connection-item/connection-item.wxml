@@ -1,4 +1,4 @@
-<navigator url="/pages/condetail/condetail?id={{1}}" hover-class="none" class="project-item">
+<view url="/pages/condetail/condetail?id={{1}}" hover-class="none" class="project-item">
   <view class="left-item">
     <block wx:if="{{isShowIcon}}">
       <view class="top-icon" wx:if="{{connectionObj.is_top_switch}}">
@@ -29,4 +29,4 @@
   </view>
   <!-- cread star -->
   <star number="{{7}}" class="star-position" width="{{210}}" size="{{26}}" />
-</navigator>
+</view>

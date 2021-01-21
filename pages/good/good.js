@@ -2,7 +2,9 @@
  * @Author: liweilong
  * @Date: 2021-01-05 13:45:17
  */
-import {showModal} from '../../utils/asyncWx'
+import {
+  showModal
+} from '../../utils/asyncWx'
 import {
   request
 } from "../../request/index";
@@ -51,19 +53,7 @@ Page({
     videoList: [],
 
     // 善商会
-    locationList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
+    locationList: [],
     cateTop: 0,
 
     // 善商榜
@@ -76,25 +66,14 @@ Page({
         name: '善商人物周刊'
       }
     ],
-    currentCateIndex: 1,
-    goodVideoList: [{},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ],
-    persionList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-    ]
+    currentCateIndex: 0,
+    goodVideoList: [],
+    persionList: [],
+    isShowLogin: false,
   },
   page: 1,
+  clubpage: 1,
+  peopage: 1,
   isRequest: false,
 
   /**
@@ -106,9 +85,7 @@ Page({
     this.setData({
       sitInfo
     })
-    this.requestVideo().catch(err => {
-      console.log(err);
-    })
+    
     // 获取定位的信息
     let procityObj = wx.getStorageSync('procityObj')
     if (procityObj) {
@@ -120,10 +97,22 @@ Page({
       })
     }
 
-    // 获取善商会的banner图
-    this.getBanners().catch(err => {
-      console.log(err);
+    this.initAllRequest().catch(err => {
+      if (err == 401) {
+        this.setData({
+          isShowLogin: true
+        })
+      }
     })
+  },
+
+  // init all request
+  async initAllRequest() {
+    await this.requestVideo()
+    await this.getBanners()
+    await this.requestClub()
+    await this.requestPeoList()
+    await this.requestWeekly()
   },
 
   // 获取善商会的banner图
@@ -134,7 +123,6 @@ Page({
         static: 1
       }
     })
-    console.log(r);
     this.setData({
       bannerList: r.data
     })
@@ -166,20 +154,97 @@ Page({
 
   },
 
-  onReady: function () {
-    this.queryMultipleNodes()
+  // get club list
+  async requestClub() {
+    if (this.isRequest) {
+      return;
+    } else {
+      this.isRequest = true
+      const r = await request({
+        url: '/club/list',
+        data: {
+          address: this.data.provinceName + '/' + this.data.cityName,
+          page: this.clubpage
+        }
+      })
+      let list = r.data.data
+      if (list.length == 0) {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+      } else {
+        let locationList = this.data.locationList.concat(list)
+        this.setData({
+          locationList
+        })
+      }
+      this.isRequest = false
+    }
+
   },
 
-  //声明节点查询的方法
-  queryMultipleNodes: function () {
-    const query = wx.createSelectorQuery() // 创建节点查询器 query
-    query.select('.top-cate-wrap').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
-    query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
-    query.exec((res) => {
-      this.setData({
-        cateTop: res[0].top
+  // 善商榜-善商榜
+  async requestPeoList() {
+    if (this.isRequest) {
+      return;
+    } else {
+      this.isRequest = true
+      const r = await request({
+        url: '/school/peopleList',
+        data: {
+          page: this.peopage
+        }
       })
-    })
+      let list = r.data.data
+      if (list.length == 0) {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+      } else {
+        let goodVideoList = this.data.goodVideoList.concat(list)
+        this.setData({
+          goodVideoList
+        })
+      }
+      this.isRequest = false
+    }
+
+  },
+
+  // 人物周刊
+  async requestWeekly() {
+    if (this.isRequest) {
+      return;
+    } else {
+      this.isRequest = true
+      const r = await request({
+        url: '/school/weekly',
+        data: {
+          page: this.weekpage
+        }
+      })
+      let list = r.data.data
+      console.log(list);
+      if (list.length == 0) {
+        wx.showToast({
+          title: '我是有底线的哦~',
+          icon: 'none',
+        })
+      } else {
+        let persionList = this.data.persionList.concat(list)
+        this.setData({
+          persionList
+        })
+      }
+      this.isRequest = false
+    }
+  },
+
+  // 重新登录
+  handleUserInfo() {
+    this.initAllRequest()
   },
 
   // handle swiper change
@@ -243,13 +308,32 @@ Page({
   },
   // listen location event
   listenLocation(e) {
-    const address = e.detail.address.join('/')
-
+    this.clubpage = 1
+    const address = e.detail.address
     this.setData({
       provinceName: address[0],
       cityName: address[1]
     })
+    this.requestClub()
   },
+  // 商会滚动底部
+  handleClubslower() {
+    this.clubpage++
+    this.requestClub()
+  },
+
+
+  // 商会榜单列表滚动到底
+  handleClubListtolower(e) {
+    if (this.data.currentCateIndex == 0) {
+      this.peopage++
+      this.requestPeoList()
+    } else {
+      this.weekpage++
+      this.requestWeekly()
+    }
+  },
+
 
   // video list to lower
   async handleVideotolower(e) {

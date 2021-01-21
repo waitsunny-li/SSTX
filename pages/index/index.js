@@ -7,10 +7,8 @@ import {
 } from '../../request/index'
 import QQMapWX from '../../utils/qqmap-wx-jssdk.min'
 import {
-
-} from '../../utils/asyncWx'
-import {
-  addressTransIndexArray
+  addressTransIndexArray,
+  returnIdArry
 } from '../../utils/util'
 //获取应用实例
 let app = getApp();
@@ -85,7 +83,6 @@ Page({
         objectCityArray: procityObj.objectCityArray
       })
       wx.setStorageSync('procityObj', procityObj);
-
     }
 
     this.requestTheme().catch(err => {
@@ -136,7 +133,7 @@ Page({
     let supportBannerDataList = await supportBannerPromise
     let projectDataList = await projectDataPromise
     let goodListDataList = await goodListDataPromise
-   
+
     wx.setStorageSync('imageBaseUrl', siteInfoData.data.file_domain);
     wx.setStorageSync('sitInfo', siteInfoData.data)
     this.setData({
@@ -180,7 +177,9 @@ Page({
 
   // 各界支持
   async handleSwiperTitle(e) {
-    const {index} = e.detail
+    const {
+      index
+    } = e.detail
     const r = await request({
       url: '/support/list',
       data: {
@@ -203,7 +202,9 @@ Page({
       cate
     } = e.detail
     let address = [this.data.provinceName, this.data.cityName]
-    this.requestProCon(index, {address: address.join('/')})
+    this.requestProCon(index, {
+      address: address.join('/')
+    })
     this.setData({
       currentIndex: index
     })
@@ -213,7 +214,9 @@ Page({
   listenLocation(e) {
     const address = e.detail.address.join('/')
     const cateIndex = this.data.currentIndex
-    this.requestProCon(cateIndex, {address})
+    this.requestProCon(cateIndex, {
+      address
+    })
     this.setData({
       provinceName: e.detail.address[0],
       cityName: e.detail.address[1]
@@ -279,6 +282,29 @@ Page({
   handleClickPub(e) {
     console.log('点击发布');
   },
+
+  /**
+   * 
+   * 项目、人脉跳转 
+   */
+  handleProConToDetail(e) {
+    const {id} = e.currentTarget.dataset
+    console.log(id);
+    let proconList = this.data.proconList
+    let idList = returnIdArry(proconList)
+    if (this.data.currentIndex == 0) {
+      wx.navigateTo({
+        url: '/pages/projectdetail/projectdetail?id=' + id + '&ids=' + idList
+      })
+    } else {
+      console.log('人脉：');
+      wx.navigateTo({
+        url: '/pages/condetail/condetail?id=' + id + '&ids=' + idList
+      })
+    }
+
+  },
+
 
   /**
    * 点击首页响应的链接进行跳转响应的位置

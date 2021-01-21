@@ -241,6 +241,24 @@
                     "pathName": "pages/good/good",
                     "query": "status=1&cb=pubsuccess&title=发布成功",
                     "scene": null
+                },
+                {
+                    "name": "pages/persondetail/persondetail",
+                    "pathName": "pages/persondetail/persondetail",
+                    "query": "id=4",
+                    "scene": null
+                },
+                {
+                    "name": "pages/authenticate/authenticate",
+                    "pathName": "pages/authenticate/authenticate",
+                    "query": "id=4",
+                    "scene": null
+                },
+                {
+                    "name": "pages/join/join",
+                    "pathName": "pages/join/join",
+                    "query": "id=4",
+                    "scene": null
                 }
             ]
         }

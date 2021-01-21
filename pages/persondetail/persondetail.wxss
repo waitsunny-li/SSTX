@@ -83,3 +83,10 @@
   font-size: 28rpx;
   text-indent: 40rpx;
 }
+.persondetail-wrap .conversation-content .rich {
+  width: 100%;
+  margin-top: 20rpx;
+}
+.persondetail-wrap .conversation-content .rich img {
+  width: 100%;
+}

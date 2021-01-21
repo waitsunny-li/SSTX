@@ -69,8 +69,8 @@ Page({
     const imageBaseUrl = wx.getStorageSync('imageBaseUrl');
 
     let cardImgList = this.data.cardImgList
-    cardImgList[0].url = imageBaseUrl + vipUserInfo.idcardimage1
-    cardImgList[1].url = imageBaseUrl + vipUserInfo.idcardimage2
+    cardImgList[0].url = imageBaseUrl + '/' + vipUserInfo.idcardimage1
+    cardImgList[1].url = imageBaseUrl + '/' + vipUserInfo.idcardimage2
     this.setData({
       realname: vipUserInfo.realname,
       mobile: vipUserInfo.mobile,

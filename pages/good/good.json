@@ -2,7 +2,8 @@
   "usingComponents": {
     "tab": "/components/tab/tab",
     "video-item": "/components/video-item/video-item",
-    "province-city": "/components/province-city/province-city"
+    "province-city": "/components/province-city/province-city",
+    "login-pop": "/components/login-pop/login-pop"
   },
   "navigationBarTitleText": "善学堂",
   "navigationBarBackgroundColor": "#fff",

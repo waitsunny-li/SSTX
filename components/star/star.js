@@ -6,38 +6,10 @@
 Component({
   lifetimes: {
     attached() {
-      let imgList = []
-      let number = this.data.number
-      let total = this.data.total
-      let ex = number % 2
-      console.log(ex);
-
-      if (ex == 0) {
-        let active = number / 2
-        for(let i=0; i<total; i++) {
-          if (i < active) {
-            imgList.push(this.data.totalxing)
-          } else {
-            imgList.push(this.data.noxing)
-          }
-        }
-      } else {
-        let active = (number- 1) / 2 
-        let ext = active
-        for(let i=0; i<total; i++) {
-          if (i < active) {
-            imgList.push(this.data.totalxing)
-          } else if(i == ext) {
-            imgList.push(this.data.banxing)
-          } else {
-            imgList.push(this.data.noxing)
-          }
-        }
+      let newValue = this.data.number
+      if (!newValue) {
+        this.changeStar(newValue)
       }
-
-      this.setData({
-        imgList
-      })
     }
   },
   /**
@@ -46,7 +18,8 @@ Component({
   properties: {
     number: {
       type: Number,
-      value: 0
+      value: 0,
+      observer: '_changeNumber'
     },
     total: {
       type: Number,
@@ -81,6 +54,41 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    _changeNumber(newValue) {
+      this.changeStar(newValue)
+    },
 
+    // change star
+    changeStar(newValue) {
+      let imgList = []
+      let total = this.data.total
+      let ex = newValue % 2
+      if (ex == 0) {
+        let active = newValue / 2
+        for (let i = 0; i < total; i++) {
+          if (i < active) {
+            imgList.push(this.data.totalxing)
+          } else {
+            imgList.push(this.data.noxing)
+          }
+        }
+      } else {
+        let active = (newValue - 1) / 2
+        let ext = active
+        for (let i = 0; i < total; i++) {
+          if (i < active) {
+            imgList.push(this.data.totalxing)
+          } else if (i == ext) {
+            imgList.push(this.data.banxing)
+          } else {
+            imgList.push(this.data.noxing)
+          }
+        }
+      }
+
+      this.setData({
+        imgList
+      })
+    }
   }
 })

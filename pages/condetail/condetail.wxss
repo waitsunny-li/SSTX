@@ -152,7 +152,6 @@
   align-items: center;
 }
 .art-content .art-inner .user-info-inner .info-item {
-  width: 60%;
   height: 60rpx;
   display: flex;
   align-items: center;
@@ -168,6 +167,10 @@
   font-weight: 600;
 }
 .art-content .art-inner .user-info-inner .info-item .l-a .name-label {
+  color: #000000;
+  font-size: 28rpx;
+}
+.art-content .art-inner .user-info-inner .info-item .value {
   color: #000000;
   font-size: 28rpx;
 }

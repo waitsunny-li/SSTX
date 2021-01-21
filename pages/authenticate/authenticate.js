@@ -4,11 +4,12 @@
  */
 // pages/authenticate/authenticate.js
 import {
-  request
+  request,
+  getQiNiuToken,
+  uploadFile
 } from '../../request/index';
 import {
-  chooseOneImg,
-  uploadFile
+  chooseOneImg
 } from '../../utils/asyncWx'
 Page({
 
@@ -126,6 +127,9 @@ Page({
 
   // choose id card
   async handleChooseIdCard(e) {
+    const {
+      token
+    } = await getQiNiuToken()
     let cardImgList = this.data.cardImgList
     const {
       index
@@ -143,28 +147,29 @@ Page({
     let result = await uploadFile({
       filePath: tempFilePaths[0],
       name: 'file',
+      formData: {
+        'token': token
+      },
       header: {
-        'token': wx.getStorageSync('token'),
         'Content-Type': 'multipart/form-data'
       }
     })
+    console.log(result);
     wx.hideLoading()
     let data = JSON.parse(result.data)
-    if (data.code == 1) { // success
-      if (index == 0) {
-        let idcardimage1 = data.data.url
-        this.setData({
-          idcardimage1
-        })
-      } else {
-        let idcardimage2 = data.data.url
-        this.setData({
-          idcardimage2
-        })
-      }
-    } else { // error
-      console.log(data.data.msg);
+
+    if (index == 0) {
+      let idcardimage1 = data.key
+      this.setData({
+        idcardimage1
+      })
+    } else {
+      let idcardimage2 = data.key
+      this.setData({
+        idcardimage2
+      })
     }
+
     this.setData({
       cardImgList
     })
@@ -180,16 +185,16 @@ Page({
       method: 'post',
       data: value
     })
-    console.log(r);
     if (r.code == 1) {
       wx.showToast({
         title: '上传成功！',
-        icon: 'none'
-      });
-      
-      wx.navigateBack({
-        delta: 1
-      });
+        icon: 'success',
+        success: () => {
+          wx.navigateBack({
+            delta: 1
+          });
+        }
+      })
     } else {
       this.setData({
         poptype: 'error',

@@ -2,28 +2,11 @@
  * @Author: liweilong
  * @Date: 2021-01-11 10:29:59
  */
+import {request} from '../../request/index'
 //Page Object
 Page({
   data: {
-    seenAvaList: [{},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
+    seenAvaList: [],
     detailList: [{},
       {},
       {},
@@ -35,49 +18,89 @@ Page({
       {},
       {},
     ],
+    lookAllList: [],
     currentIdIndex: 0,
     current: 0,
     isUp: false,
-    idList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    idList: []
   },
   //options(Object)
   onLoad: function (options) {
-    let detailList = this.data.detailList
-    let idList = this.data.idList
-    let {id} = options
-    let currentIdIndex = this.idReturnIndex(id)
-    detailList[0] = {id: idList[currentIdIndex]}
+    const {
+      id,
+      ids
+    } = options
+    let idList = ids.split(',')
+    let currentIdIndex = this.idReturnIndex(id, idList)
+    // 发送请求详情
+    this.requestConDetail(id)
     this.setData({
       currentIdIndex,
-      detailList
+      idList
     })
+  },
+
+  // get connection detail
+  async requestConDetail(id) {
+    let detailList = this.data.detailList
+    let lookAllList = this.data.lookAllList
+    const r = await request({
+      url: '/contacts/detail',
+      data: {
+        id
+      }
+    })
+    const look = await request({
+      url: '/contacts/lookList',
+      data: {
+        id
+      }
+    })
+    console.log(r, look);
+    if (r.code == 1) {
+      detailList[this.data.current] = r.data
+      let seenAvaList = look.data
+      lookAllList[this.data.current] = look.data
+      this.setData({
+        detailList,
+        lookAllList,
+        seenAvaList
+      })
+    } else {
+      console.log(r.msg);
+    }
   },
 
   // swiper animationfinish end
   handleSwiperChange(event) {
     let currentIdIndex = this.data.currentIdIndex
+    let lookAllList = this.data.lookAllList
     let detailList = this.data.detailList
+    let idList = this.data.idList
     let isUp = this.data.isUp
+    let seenAvaList
     const {
       current
     } = event.detail
-
+    this.setData({
+      current
+    })
     if (!isUp) { // 向下滑动
-      detailList[current] = {
-        id: ++currentIdIndex
+      if (currentIdIndex == (idList.length - 1)) { // 临界点，在此循环
+        currentIdIndex = 0
+      } else {
+        currentIdIndex++
       }
-      console.log('向下滑动', currentIdIndex);
+      console.log(currentIdIndex);
+      this.requestConDetail(idList[currentIdIndex])
     } else { // 向上滑动
       --currentIdIndex
-      detailList[current] = {
-        id: currentIdIndex
-      }
-      console.log('向上滑动', currentIdIndex);
+      seenAvaList = lookAllList[currentIdIndex]
     }
     this.setData({
       detailList,
-      current,
-      currentIdIndex
+      currentIdIndex,
+      seenAvaList
     })
 
   },
@@ -104,11 +127,10 @@ Page({
   },
 
   // 根据当前数据id返回对应的下标
-  idReturnIndex(id) {
+  idReturnIndex(id, idList) {
     let currentIdIndex
-    let idList = this.data.idList
     idList.some((v, index) => {
-      if(v == id) {
+      if (v == id) {
         currentIdIndex = index
         return true
       }

@@ -3,10 +3,13 @@
  * @Date: 2021-01-12 16:08:47
  */
 
-import { request } from "../../request/index";
+import {
+  request,
+  uploadFile,
+  getQiNiuToken
+} from "../../request/index";
 import {
   chooseOneImg,
-  uploadFile
 } from '../../utils/asyncWx'
 // pages/basicinfo/basicinfo.js
 Page({
@@ -49,10 +52,10 @@ Page({
         objectCityArray: procityObj.objectCityArray
       })
     }
-    
+
   },
 
-  onShow: function() {
+  onShow: function () {
     // 获取缓存中的VIP信息
     const vipUserInfo = wx.getStorageSync('vipUserInfo');
     this.setData({
@@ -65,6 +68,9 @@ Page({
 
   // upload avatar
   async handleUploadAvatarTap(e) {
+    const {
+      token
+    } = await getQiNiuToken()
     let r
     try {
       r = await chooseOneImg({
@@ -75,27 +81,32 @@ Page({
       return;
     }
     let tempFilePaths = r.tempFilePaths
-    let result = await uploadFile({
-      filePath: tempFilePaths[0],
-      name: 'file',
-      header: {
-        'token': wx.getStorageSync('token'),
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-    let data = JSON.parse(result.data)
-    console.log(data);
-    if (data.code == 1) {
-      this.setData({
-        avatar: tempFilePaths[0],
-        uploadAvatar: data.data.url
+    let result
+    try {
+      result = await uploadFile({
+        filePath: tempFilePaths[0],
+        name: 'file',
+        formData: {
+          'token': token
+        },
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
       })
-    } else {
+    } catch(e) {
+      console.log(e);
       this.setData({
         poptype: 'error',
-        popmsg: data.data.msg
+        popmsg: e
       })
     }
+    let data = JSON.parse(result.data)
+    console.log(data);
+    this.setData({
+      avatar: tempFilePaths[0],
+      uploadAvatar: data.key
+    })
+   
   },
 
   // sex change
@@ -168,7 +179,9 @@ Page({
 
   // form submit
   async handleFormSubmit(e) {
-    const {value} = e.detail
+    const {
+      value
+    } = e.detail
     value.address = this.data.provinceName + '/' + this.data.cityName
     console.log(value);
     const r = await request({

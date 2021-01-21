@@ -21,21 +21,7 @@ export const chooseOneImg = option => {
 
   })
 }
-export const uploadFile = option => {
-  return new Promise((resolve, reject) => {
-    wx.uploadFile({
-      ...option,
-      url: baseUrl + '/api/common/upload',
-      success: (result) => {
-        resolve(result)
-      },
-      fail: (error) => {
-        reject(error)
-      },
-    })
-  })
-    
-}
+
 
 // wx-login
 export const wxLogin = () => {

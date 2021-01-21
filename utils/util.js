@@ -1,3 +1,7 @@
+/*
+ * @Author: liweilong
+ * @Date: 2021-01-04 12:26:31
+ */
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -55,4 +59,14 @@ export const getCacheLocationInfo = function() {
       objectCityArray: procityObj.objectCityArray
     })
   }
+}
+
+
+// 获取数组数据，并返回只含有id的数组
+export const returnIdArry = arryList => {
+  let newarry = []
+  arryList.forEach(v => {
+    newarry.push(v.id)
+  })
+  return newarry
 }

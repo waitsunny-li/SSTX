@@ -27,10 +27,10 @@
           <view class="user-header">
             <view class="left-user">
               <view class="ava">
-                <image class="ava-img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+                <image class="ava-img" src="{{item.user.avatar}}"></image>
               </view>
               <view class="name-wrap">
-                <view class="username">董爱国</view>
+                <view class="username">{{item.user.nickname}}</view>
                 <view class="star">
                   <star width="{{240}}" number="{{7}}" size="{{25}}" />
                 </view>
@@ -39,11 +39,11 @@
             <view class="right-desc" slot="right">
               <view class="number-wrap">
                 倒计时：
-                <text class="number">12天08:56</text>
+                <text class="number">{{endtime}}</text>
               </view>
               <view class="number-wrap">
                 关注人数：
-                <text class="number">{{item.id}}</text>
+                <text class="number">{{item.subscribe_num}}</text>
               </view>
             </view>
           </view>
@@ -53,45 +53,45 @@
             <view class="item-info">
               <text space="ensp" class="inner-name">需求名称：</text>
               <view class="info">
-                青岛20亿钢结构工程
+                {{item.title}}
                 <text class="r">[需人脉]</text>
               </view>
             </view>
             <!-- 姓名： -->
             <view class="item-info">
               <text space="emsp" class="inner-name">姓  名：</text>
-              <view class="info">张三</view>
+              <view class="info">{{item.name}}</view>
             </view>
             <!-- 行业： -->
             <view class="item-info">
               <text space="emsp" class="inner-name">行  业：</text>
-              <view class="info">制造生产</view>
+              <view class="info">{{item.work}}</view>
             </view>
             <!-- 地区： -->
             <view class="item-info">
               <text space="emsp" class="inner-name">地  区：</text>
-              <view class="info">山东 - 青岛</view>
+              <view class="info">{{item.address}}</view>
             </view>
             <!-- 居间回报 -->
             <view class="item-info">
               <text space="emsp" class="inner-name">居间回报：</text>
-              <view class="info">500万</view>
+              <view class="info">{{item.return_price}}万</view>
             </view>
             <!-- 发布时间 -->
             <view class="item-info">
               <text space="emsp" class="inner-name">发布时间：</text>
-              <view class="info">500万</view>
+              <view class="info">{{item.createtime}}</view>
             </view>
             <!-- 截止时间 -->
             <view class="item-info">
               <text space="emsp" class="inner-name">截止时间：</text>
-              <view class="info">500万</view>
+              <view class="info">{{item.endtime}}</view>
             </view>
             <!-- 需求具体内容 -->
             <view class="detail-content">
               <view class="title">需求具体内容：</view>
               <view class="detail-inner">
-                山东青岛，总承包上海建工和新疆一建，20亿工程量钢结构，按照年计划的月进度30%预付款到账签约一周左右可以给施工单位，要求每个标段4个亿有履约保函1000万或者200万质保金！保函开到预付款领款，每次开半年有效期就可以
+                {{item.content}}
               </view>
             </view>
             <!-- look coonnertion -->
@@ -102,14 +102,14 @@
             <view class="whoseen">谁看过</view>
             <view class="dianzan">
               <text class="iconfont icon-dianzan"></text>
-              <text class="number">939</text>
+              <text class="number">{{item.zan_num}}</text>
             </view>
           </view>
           <!-- who ava img -->
           <view class="ava-img-wrap">
             <block wx:for="{{seenAvaList}}" wx:key="index">
               <view class="ava-item-img">
-                <image class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.jf258.com%2Fuploads%2F2013-06-28%2F073931933.jpg&refer=http%3A%2F%2Fwww.jf258.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612582046&t=ba11e7ea2a93fbd2e26e8b0bed5ee872"></image>
+                <image class="img" src="{{item.avatar}}" lazy-load="{{true}}"></image>
               </view>
             </block>
           </view>

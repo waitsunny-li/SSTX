@@ -78,12 +78,12 @@
   <view class="project-connection-wrap">
     <block wx:if="{{currentIndex == 0}}">
       <block wx:for="{{proconList}}" wx:key="id">
-        <project-item projectItme="{{item}}"/>
+        <project-item bind:tap="handleProConToDetail" projectItme="{{item}}" data-id="{{item.id}}"/>
       </block>
     </block>
     <block wx:else>
       <block wx:for="{{proconList}}" wx:key="id">
-        <connection-item connectionObj="{{item}}"/>
+        <connection-item bind:tap="handleProConToDetail" connectionObj="{{item}}" data-id="{{item.id}}"/>
       </block>
     </block>
   </view>

@@ -18,27 +18,24 @@
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item videoDetail="{{item}}" />
+          <video-item imageBaseUrl="{{sitInfo.file_domain}}" videoDetail="{{item}}" />
         </block>
       </view>
     </scroll-view>
   </swiper-item>
   <!-- 善商会 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" scroll-anchoring="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleClubslower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" scroll-anchoring="{{true}}">
       <view class="good_business">
         <!-- index banner begin -->
         <swiper class="good-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
-          <swiper-item class="good-swiper-item">
-            <navigator class="good-swiper-navigator">
-              <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F02%2F38%2F01300000237560123245382609951.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612333629&t=3345b04ef09b3764b205cad752855150" mode="aspectFill" lazy-load="false" />
-            </navigator>
-          </swiper-item>
-          <swiper-item class="good-swiper-item">
-            <navigator class="good-swiper-navigator">
-              <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false" />
-            </navigator>
-          </swiper-item>
+          <block wx:for="{{bannerList}}" wx:key="id">
+            <swiper-item class="good-swiper-item">
+              <navigator class="good-swiper-navigator">
+                <image src="{{sitInfo.file_domain + item.image}}" mode="aspectFill" lazy-load="false" />
+              </navigator>
+            </swiper-item>
+          </block>
         </swiper>
         <!-- index banner end -->
         <!-- join begin -->
@@ -65,14 +62,14 @@
         </view>
         <!-- location content begin -->
         <view class="location-content">
-          <block wx:for="{{locationList}}" wx:key="index">
+          <block wx:for="{{locationList}}" wx:key="id">
             <view class="location-item">
               <view class="left-item">
                 <text class="iconfont icon-dingwei1"></text>
               </view>
               <view class="right-item">
-                <view class="title">广东惠州市</view>
-                <view class="detail">广东省惠州市，天河大道，15号楼东1806</view>
+                <view class="title">{{item.title}}</view>
+                <view class="detail">{{item.address}}</view>
               </view>
             </view>
           </block>
@@ -86,7 +83,7 @@
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item />
+          <video-item imageBaseUrl="{{sitInfo.file_domain}}" videoDetail="{{item}}" />
         </block>
       </view>
     </scroll-view>
@@ -96,14 +93,14 @@
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item />
+          <video-item imageBaseUrl="{{sitInfo.file_domain}}" videoDetail="{{item}}" />
         </block>
       </view>
     </scroll-view>
   </swiper-item>
   <!-- 善商榜 -->
   <swiper-item class="swiper_art_item">
-    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
+    <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleClubListtolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view class="good-example">
         <!-- cate good begin -->
         <view class="title-tab">
@@ -116,21 +113,32 @@
         </view>
         <!-- video or person content -->
         <view class="vidwo-person-wrap">
-          <block wx:if="{{currentCateIndex === 0}}" wx:for="{{goodVideoList}}" wx:key="index">
-            <video-item />
+          <block wx:if="{{currentCateIndex === 0}}" wx:for="{{goodVideoList}}" wx:key="id">
+            <view class="peo-item">
+              <view class="index">
+                {{index + 1}}
+              </view>
+              <view class="left-item">
+                <image class="video-thumb" src="{{sitInfo.file_domain +  item.avatar}}" mode="aspectFill" lazy-load="{{true}}"></image>
+              </view>
+              <view class="right-item">
+                <view class="title">{{item.name}}</view>
+                <view class="desc">{{ item._desc}}</view>
+              </view>
+            </view>
           </block>
           <block wx:if="{{currentCateIndex === 1}}">
             <view class="person-content">
               <block wx:for="{{persionList}}" wx:key="id">
-                <navigator class="person-item" url="/pages/persondetail/persondetail" hover-class="none">
+                <navigator class="person-item" url="/pages/persondetail/persondetail?id={{item.id}}" hover-class="none">
                   <view class="per-img">
-                    <image class="img" src="/icons/person.png"></image>
+                    <image class="img" src="{{sitInfo.file_domain + item.image}}"></image>
                   </view>
                   <view class="person-detail">
-                    <view class="title">本期人物 张景鑫</view>
+                    <view class="title">本期人物 {{item.people.name}}</view>
                     <view class="desc">
-                      <view class="headline">善商人物张景鑫 · 8万次观看</view>
-                      <view class="position">善天下商友会 副秘书长</view>
+                      <view class="headline">善商人物 {{item.people.name}}</view>
+                      <view class="position">{{item.people._desc}}</view>
                     </view>
                   </view>
                 </navigator>
@@ -143,3 +151,4 @@
   </swiper-item>
 </swiper>
 <!-- content end -->
+<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleUserInfo" isShowClose="{{false}}" />
