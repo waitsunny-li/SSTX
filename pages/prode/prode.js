@@ -2,7 +2,9 @@
  * @Author: liweilong
  * @Date: 2021-01-11 10:29:59
  */
-import {request} from '../../request/index'
+import {
+  request
+} from '../../request/index'
 //Page Object
 Page({
   data: {
@@ -22,36 +24,46 @@ Page({
     currentIdIndex: 0,
     current: 0,
     isUp: false,
-    idList: []
+    idList: [],
+    isShowConnect: false,
+    isShowShare: false,
   },
   //options(Object)
   onLoad: function (options) {
+    // init value
     const {
       id,
       ids
     } = options
     let idList = ids.split(',')
+    let detailList = []
+    idList.forEach(v => {
+      detailList.push({})
+    })
+    this.setData({
+      detailList
+    })
     let currentIdIndex = this.idReturnIndex(id, idList)
     // 发送请求详情
-    this.requestConDetail(id)
+    this.requestProDetail(id)
     this.setData({
       currentIdIndex,
       idList
     })
   },
 
-  // get connection detail
-  async requestConDetail(id) {
+  // get project detail
+  async requestProDetail(id) {
     let detailList = this.data.detailList
     let lookAllList = this.data.lookAllList
     const r = await request({
-      url: '/contacts/detail',
+      url: '/project/detail',
       data: {
         id
       }
     })
     const look = await request({
-      url: '/contacts/lookList',
+      url: '/project/lookList',
       data: {
         id
       }
@@ -70,6 +82,7 @@ Page({
       console.log(r.msg);
     }
   },
+
 
   // swiper animationfinish end
   handleSwiperChange(event) {
@@ -91,8 +104,7 @@ Page({
       } else {
         currentIdIndex++
       }
-      console.log(currentIdIndex);
-      this.requestConDetail(idList[currentIdIndex])
+      this.requestProDetail(idList[currentIdIndex])
     } else { // 向上滑动
       --currentIdIndex
       seenAvaList = lookAllList[currentIdIndex]
@@ -136,6 +148,33 @@ Page({
       }
     })
     return currentIdIndex
+  },
+
+  // 分享
+  onShareAppMessage(e) {
+    console.log(e)
+  },
+  
+  // 查看联系电话
+  handleLookConnect(e) {
+    this.setData({
+      isShowConnect: true
+    })
+  },
+
+  // 查看分享
+  handleTapShare(e) {
+    this.setData({
+      isShowShare: true
+    })
+  },
+
+  handleCallTelTap(e) {
+    console.log(e)
+    const {tel} =  e.currentTarget.dataset
+    wx.makePhoneCall({
+      phoneNumber: tel,
+    })
   }
 
 });

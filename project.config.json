@@ -259,6 +259,18 @@
                     "pathName": "pages/join/join",
                     "query": "id=4",
                     "scene": null
+                },
+                {
+                    "name": "pages/prode/prode",
+                    "pathName": "pages/prode/prode",
+                    "query": "id=22",
+                    "scene": null
+                },
+                {
+                    "name": "pages/conde/conde",
+                    "pathName": "pages/conde/conde",
+                    "query": "id=22",
+                    "scene": null
                 }
             ]
         }

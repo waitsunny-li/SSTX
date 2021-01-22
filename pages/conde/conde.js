@@ -24,38 +24,47 @@ Page({
     currentIdIndex: 0,
     current: 0,
     isUp: false,
-    idList: []
+    idList: [],
+    isShowConnect: false,
+    isShowShare: false
   },
   //options(Object)
   onLoad: function (options) {
+    // init value
     const {
       id,
       ids
     } = options
     let idList = ids.split(',')
-    console.log(idList);
+    let detailList = []
+    idList.forEach(v => {
+      detailList.push({})
+    })
+    this.setData({
+      detailList
+    })
     let currentIdIndex = this.idReturnIndex(id, idList)
-    console.log(currentIdIndex);
+
     // 发送请求详情
-    this.requestProDetail(id)
+    this.requestConDetail(id)
     this.setData({
       currentIdIndex,
       idList
     })
   },
 
-  // get project detail
-  async requestProDetail(id) {
+  // get connection detail
+  async requestConDetail(id) {
     let detailList = this.data.detailList
     let lookAllList = this.data.lookAllList
     const r = await request({
-      url: '/project/detail',
+      url: '/contacts/detail',
       data: {
         id
       }
     })
     const look = await request({
-      url: '/project/lookList',
+      url: '/contacts/lookList',
       data: {
         id
       }
@@ -74,7 +83,6 @@ Page({
       console.log(r.msg);
     }
   },
-
 
   // swiper animationfinish end
   handleSwiperChange(event) {
@@ -96,7 +104,8 @@ Page({
       } else {
         currentIdIndex++
       }
-      this.requestProDetail(idList[currentIdIndex])
+      console.log(currentIdIndex);
+      this.requestConDetail(idList[currentIdIndex])
     } else { // 向上滑动
       --currentIdIndex
       seenAvaList = lookAllList[currentIdIndex]
@@ -140,6 +149,29 @@ Page({
       }
     })
     return currentIdIndex
+  },
+
+  // 查看联系电话
+  handleLookConnect(e) {
+    this.setData({
+      isShowConnect: true
+    })
+  },
+
+  // 查看分享
+  handleTapShare(e) {
+    this.setData({
+      isShowShare: true
+    })
+  },
+
+  handleCallTelTap(e) {
+    const {
+      tel
+    } = e.currentTarget.dataset
+    wx.makePhoneCall({
+      phoneNumber: tel,
+    })
   }
 
 });

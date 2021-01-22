@@ -294,12 +294,12 @@ Page({
     let idList = returnIdArry(proconList)
     if (this.data.currentIndex == 0) {
       wx.navigateTo({
-        url: '/pages/projectdetail/projectdetail?id=' + id + '&ids=' + idList
+        url: '/pages/prode/prode?id=' + id + '&ids=' + idList
       })
     } else {
       console.log('人脉：');
       wx.navigateTo({
-        url: '/pages/condetail/condetail?id=' + id + '&ids=' + idList
+        url: '/pages/conde/conde?id=' + id + '&ids=' + idList
       })
     }
 

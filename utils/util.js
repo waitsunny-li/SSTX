@@ -70,3 +70,26 @@ export const returnIdArry = arryList => {
   })
   return newarry
 }
+
+// 只截取数组中的10个
+export const sliceArrayTen = (arry, value) => {
+  let index
+  let len = arry.length
+  if (len <= 10) return arry;
+  // > 10
+  // 获取value在数组arry的下标
+  arry.some((v, i) => {
+    if (v == value) {
+      index = i
+      return true
+    }
+  })
+  // 切割index后面的
+  let rightSlice = arry.slice(index, index + 10)
+  let rightLen = rightSlice.length
+  if (rightLen == 10) return rightSlice;
+  // 切割index前面的
+  let leftArry = arry.slice(index - (10-rightLen), index)
+  let newArr = rightSlice.concat(leftArry)
+  return newArr
+}

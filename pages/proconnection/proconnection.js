@@ -5,6 +5,7 @@
 import {
   request
 } from '../../request/index'
+import {returnIdArry, sliceArrayTen} from '../../utils/util'
 // pages/project/project.js
 Page({
   /**
@@ -307,6 +308,27 @@ Page({
       })
     }
     this.isScrollLower = false
-  }
+  },
+
+  // 跳转详情
+  handleProConToDetail(e) {
+    const {id} = e.currentTarget.dataset
+    console.log(id);
+    
+    if (this.data.cateIndex == 0) {
+      let proList = this.data.proList
+      let idList = sliceArrayTen(returnIdArry(proList))
+      
+      wx.navigateTo({
+        url: '/pages/prode/prode?id=' + id + '&ids=' + idList
+      })
+    } else {
+      let conList = this.data.conList
+      let idList = sliceArrayTen(returnIdArry(conList))
+      wx.navigateTo({
+        url: '/pages/conde/conde?id=' + id + '&ids=' + idList
+      })
+    }
+  },
   
 })

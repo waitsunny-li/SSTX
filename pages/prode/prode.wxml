@@ -1,5 +1,5 @@
 <swiper class="procon-swiper" vertical="{{true}}" bindchange="handleSwiperChange" bindanimationfinish="handleAnimationEnd" current="{{current}}" circular="{{false}}" bindtransition="handleTransiton">
-  <block wx:for="{{detailList}}" wx:key="index" >
+  <block wx:for="{{detailList}}" wx:key="index">
     <swiper-item class="pro-swiper-item" item-id="">
       <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" enable-back-to-top="{{true}}">
         <view class="top-header">
@@ -17,7 +17,7 @@
                 <text class="iconfont icon-star-full"></text>
                 <view class="text">关注</view>
               </view>
-              <view class="icon">
+              <view class="icon" bind:tap="handleTapShare">
                 <text class="iconfont icon-fenxiang1"></text>
                 <view class="text share-text">分享</view>
               </view>
@@ -90,12 +90,10 @@
             <!-- 需求具体内容 -->
             <view class="detail-content">
               <view class="title">需求具体内容：</view>
-              <view class="detail-inner">
-                {{item.content}}
-              </view>
+              <view class="detail-inner">{{item.content}}</view>
             </view>
             <!-- look coonnertion -->
-            <view class="look-conection">查看联系方式</view>
+            <view class="look-conection" bind:tap="handleLookConnect">查看联系方式</view>
           </view>
           <!-- who seen me -->
           <view class="who-wrap">
@@ -118,3 +116,35 @@
     </swiper-item>
   </block>
 </swiper>
+<!-- 查看联系弹框 -->
+<bottom-pop isShow="{{isShowConnect}}">
+  <view class="bottom-inner">
+    <view class="title">请联系平台查看对方电话</view>
+    <view class="look-tel">
+      <button class="look-item" open-type="contact">
+        <text class="iconfont icon-kefu"></text>
+        <view class="title-icon-text">微信在线客服</view>
+      </button>
+      <view class="look-item">
+        <text class="iconfont icon-ai-connection"></text>
+        <view class="title-icon-text" bind:tap="handleCallTelTap" data-tel="17333283006">善天下客服电话：13000000000</view>
+      </view>
+    </view>
+  </view>
+</bottom-pop>
+
+<!-- 分享弹框 -->
+<bottom-pop isShow="{{isShowShare}}">
+  <view class="bottom-inner">
+    <view class="look-tel">
+      <view class="look-item">
+        <text class="iconfont icon-ai-moments"></text>
+        <view class="title-icon-text">生成图片</view>
+      </view>
+      <button open-type="share" class="look-item">
+        <text class="iconfont icon-ai-connection"></text>
+        <view class="title-icon-text">转发给好友或群聊天</view>
+      </button>
+    </view>
+  </view>
+</bottom-pop>

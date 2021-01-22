@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "star": "/components/star/star",
+    "bottom-pop": "/components/bottom-pop/bottom-pop"
+  },
+  "navigationBarTitleText": "需求详情"
+}

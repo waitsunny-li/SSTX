@@ -6,7 +6,7 @@
     "pages/proconnection/proconnection",
     "pages/good/good",
     "pages/profile/profile" ,
-    "pages/projectdetail/projectdetail" ,
+    "pages/prode/prode" ,
     "pages/persondetail/persondetail" ,
     "pages/join/join" ,
     "pages/modifytel/modifytel" ,
@@ -16,7 +16,7 @@
     "pages/feedback/feedback" ,
     "pages/authenticate/authenticate" ,
     "pages/videodetail/videodetail" ,
-    "pages/condetail/condetail" ,
+    "pages/conde/conde" ,
     "pages/help/help" ,
     "pages/helpdetail/helpdetail" 
   ],

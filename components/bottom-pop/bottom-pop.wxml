@@ -1,0 +1,8 @@
+<view class="bottom-pop" wx:if="{{isShow}}">
+  <view class="bottom-pop-content" animation="{{animationData}}">
+    <slot />
+    
+    <!-- 取消 -->
+    <view class="close" bind:tap="handleCloseTap">取消</view>
+  </view>
+</view>
