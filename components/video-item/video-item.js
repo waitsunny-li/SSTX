@@ -15,6 +15,14 @@ Component({
     imageBaseUrl: {
       type: String,
       value: ''
+    },
+    requestCate: {
+      type: String,
+      value: ''
+    },
+    status: {
+      type: Number,
+      value: 0
     }
   },  
 

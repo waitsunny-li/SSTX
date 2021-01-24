@@ -1,0 +1,14 @@
+/*
+ * @Author: liweilong
+ * @Date: 2021-01-23 18:41:19
+ */
+function numberText(number) {
+  var numbervalue = parseInt(number)
+  if ((numbervalue + '').length < 5) return number;
+  var fixNumber = number / 10000
+  return fixNumber.toFixed(2) + '万'
+}
+
+module.exports = {
+  numberText: numberText
+}

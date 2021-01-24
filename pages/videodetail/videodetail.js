@@ -2,38 +2,95 @@
  * @Author: liweilong
  * @Date: 2021-01-13 14:23:37
  */
+import {
+  request
+} from '../../request/index'
 //Page Object
 Page({
   data: {
     cateTop: 0,
     navigationTitle: '',
-    recommendvideoList: [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ]
-
+    imageBaseUrl: '',
+    currentVideo: {},
+    requestCate: '',
+    status: 0,
+    recommendvideoList: [],
+    requestList: {
+      support: '/support/detail',
+      school: '/school/detail'
+    },
+    requestRecommendList: {
+      support: '/support/list',
+      school: '/school/list'
+    },
+    isShowShare: false,
   },
+  page: 0,
   //options(Object)
-  onLoad: function(options) {
-    
+  onLoad: function (options) {
+    // 获取七牛云地址
+    let imageBaseUrl = wx.getStorageSync('imageBaseUrl');
+
+    let {
+      id,
+      cate,
+      status
+    } = options
+    console.log(id, cate, status);
+    this.setData({
+      requestCate: cate,
+      imageBaseUrl,
+      status
+    })
+    this.initRequestDetail(id)
+    this.initRequestReconmmed()
+  },
+
+  // init request Detail
+  async initRequestDetail(id) {
+    let requestList = this.data.requestList
+    let requestCate = this.data.requestCate
+    const r = await request({
+      url: requestList[requestCate],
+      data: {
+        id: id
+      }
+    })
+    let currentVideo = r.data
+    console.log(currentVideo);
+    this.setData({
+      currentVideo
+    })
+  },
+
+  // init recommend video
+  async initRequestReconmmed() {
+    let requestRecommendList = this.data.requestRecommendList
+    let requestCate = this.data.requestCate
+    const r = await request({
+      url: requestRecommendList[requestCate],
+      data: {
+        status: this.data.status,
+        page: this.page
+      }
+    })
+    let recommendvideoList = r.data.data
+    console.log(r);
+    this.setData({
+      recommendvideoList
+    })
   },
 
   onReady: function () {
     this.queryMultipleNodes()
   },
 
-  onUnLoad: function() {
-    
+  onUnLoad: function () {
+
   },
 
-  onHide: function() {
-    
+  onHide: function () {
+
   },
 
   //声明节点查询的方法
@@ -47,7 +104,7 @@ Page({
       })
     })
   },
-  
+
   // scroll event
   handlescroll(e) {
     let {
@@ -57,13 +114,27 @@ Page({
       wx.setNavigationBarTitle({
         title: '其他推荐',
       });
-        
+
     } else {
       wx.setNavigationBarTitle({
         title: '视频详情',
       });
     }
-  }
+  },
+
+  // scroll to lower
+  handletolower(e) {
+    wx.showToast({
+      title: '没有更多内容了呦~',
+      icon: 'none',
+    })
+  },
+
+  // 查看分享
+  handleTapShare(e) {
+    this.setData({
+      isShowShare: true
+    })
+  },
 
 });
-  

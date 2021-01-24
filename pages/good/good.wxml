@@ -18,7 +18,7 @@
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handleVideotolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item imageBaseUrl="{{sitInfo.file_domain}}" videoDetail="{{item}}" />
+          <video-item imageBaseUrl="{{sitInfo.file_domain}}" videoDetail="{{item}}" requestCate="school" status="{{status}}"/>
         </block>
       </view>
     </scroll-view>

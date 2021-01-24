@@ -3,7 +3,7 @@
     <scroll-view class="swiper-scroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" scroll-top="{{top}}">
       <view style="padding-bottom:60rpx">
         <block wx:for="{{videoList}}" wx:key="index">
-          <video-item imageBaseUrl="{{imageBaseUrl}}" videoDetail="{{item}}"/>
+          <video-item imageBaseUrl="{{imageBaseUrl}}" videoDetail="{{item}}" requestCate="support" status="{{status}}"/>
         </block>
       </view>
     </scroll-view>

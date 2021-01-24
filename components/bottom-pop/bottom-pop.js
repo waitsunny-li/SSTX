@@ -38,12 +38,7 @@ Component({
     _isShowChange(newVal) {
       if (newVal) {
         this.createScaleAnimation('0')
-      } else {
-        // this.setData({
-        //   animationData: null
-        // })
       }
-      console.log('_isShowChange', newVal);
     },
 
     // handle close tap

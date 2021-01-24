@@ -1,4 +1,4 @@
-<navigator url="/pages/videodetail/videodetail?id={{item.id}}" hover-class="none" class="video-item">
+<navigator url="/pages/videodetail/videodetail?id={{videoDetail.id}}&cate={{requestCate}}&status={{status}}" hover-class="none" class="video-item">
   <view class="left-item">
     <image class="video-thumb" src="{{imageBaseUrl + videoDetail.image}}" mode="aspectFill" lazy-load="{{true}}"></image>
     <view class="time">4:29</view>
@@ -9,7 +9,9 @@
       {{videoDetail.content}}
     </view>
     <view class="looked-number">
-      {{videoDetail.pv}}次观看
+      {{filter.numberText(videoDetail.pv)}}次观看
     </view>
   </view>
 </navigator>
+
+<wxs module="filter" src="../../filter/numberText.wxs"></wxs>

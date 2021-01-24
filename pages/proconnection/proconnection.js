@@ -221,13 +221,15 @@ Page({
       const r = await this.scrollToLowerRequest(current)
       this.setData({
         cateList: this.data.proCateList,
-        proList: r.data.data
+        proList: r.data.data,
+        currentCateIndex: this.data.proCateIndex
       })
     } else {
       const r = await this.scrollToLowerRequest(current)
       this.setData({
         cateList: this.data.conCateList,
-        conList: r.data.data
+        conList: r.data.data,
+        currentCateIndex: this.data.conCateIndex
       })
     }
     this.setData({

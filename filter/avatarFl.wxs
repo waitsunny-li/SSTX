@@ -1,0 +1,21 @@
+/*
+ * @Author: liweilong
+ * @Date: 2021-01-23 15:49:43
+ */
+// 对从服务器拿到的链接进行检查，如果包含http：使用，否者，添加七牛云域名
+function avatarFl(imgUrl, imgBaseUrl) {
+  var substrImgUrl = ''
+  for (var i = 0; i < 4; i++) {
+    substrImgUrl += imgUrl[i]
+  }
+  if (substrImgUrl === 'http') {
+    return imgUrl
+  } else {
+    return imgBaseUrl + '/' + imgUrl
+  }
+}
+
+
+module.exports = {
+  avatarFl: avatarFl
+}

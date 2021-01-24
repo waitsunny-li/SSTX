@@ -3,7 +3,7 @@
     <block wx:if="{{userInfo.nickName}}">
       <view class="ava-wrap">
         <view class="ara-image">
-          <image class="" src="{{userInfo.avatarUrl}}" lazy-load="{{true}}"/>
+          <image class="" src="{{filter.avatarFl(userInfo.avatarUrl)}}" lazy-load="{{true}}"/>
         </view>
         <view class="name-wrap">
           <navigator hover-class="none" url="/pages/basicinfo/basicinfo" class="name">
@@ -164,4 +164,7 @@
 </scroll-view>
 
 <login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleGetUserInfo"/>
+
+<wxs module="filter" src="../../filter/avatarFl.wxs" />
+
 

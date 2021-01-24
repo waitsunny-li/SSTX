@@ -28,6 +28,10 @@ Component({
         type: Number,
         value: 0
       },
+      status: {
+        type: Number,
+        value: 0
+      }
     },
 
     /**

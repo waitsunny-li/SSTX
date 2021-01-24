@@ -1,17 +1,17 @@
 <scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
   <!-- video -->
   <view class="video-wrap">
-    <video class="video-content" src="http://qmwnl3x8o.hn-bkt.clouddn.com/361de70d-77d9-4659-bb77-477d63b140f5.mp4" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror=""></video>
+    <video class="video-content" src="{{imageBaseUrl + currentVideo.file}}" initial-time="0" autoplay="{{false}}" loop="{{false}}" muted="{{false}}" direction="0" bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror=""></video>
   </view>
   <view class="video-desc">
-    <view class="title">儒家文化视频</view>
+    <view class="title">{{currentVideo.title}}</view>
     <view class="detail">
-      <view class="play-number">1.3万次播放</view>
+      <view class="play-number">{{filter.numberText(currentVideo.pv)}}次播放</view>
       <view class="dianzan">
         <text class="iconfont icon-dianzan"></text>
         <text class="number">939</text>
       </view>
-      <view class="share">
+      <view class="share" bind:tap="handleTapShare">
         <view class="text">分享给朋友</view>
         <text class="iconfont icon-fenxiang1"></text>
       </view>
@@ -22,8 +22,26 @@
     <view class="recommend-title">其他推荐</view>
     <view class="recommend-content">
       <block wx:for="{{recommendvideoList}}" wx:key="id">
-        <video-item />
+        <video-item imageBaseUrl="{{imageBaseUrl}}" videoDetail="{{item}}" requestCate="{{requestCate}}" status="{{status}}"/>
       </block>
     </view>
   </view>
 </scroll-view>
+
+<!-- 分享弹框 -->
+<bottom-pop isShow="{{isShowShare}}">
+  <view class="bottom-inner">
+    <view class="look-tel">
+      <view class="look-item">
+        <text class="iconfont icon-ai-moments"></text>
+        <view class="title-icon-text">生成图片</view>
+      </view>
+      <button open-type="share" class="look-item">
+        <text class="iconfont icon-ai-connection"></text>
+        <view class="title-icon-text">转发给好友或群聊天</view>
+      </button>
+    </view>
+  </view>
+</bottom-pop>
+
+<wxs module="filter" src="../../filter/numberText.wxs"></wxs>
