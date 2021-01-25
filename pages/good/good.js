@@ -80,12 +80,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const {
+      currentIndex
+    } = options
+    if (currentIndex) {
+      this.setData({
+        currentIndex
+      })
+    }
     // 获取小程序基本信息
     const sitInfo = wx.getStorageSync('sitInfo')
     this.setData({
       sitInfo
     })
-    
+
     // 获取定位的信息
     let procityObj = wx.getStorageSync('procityObj')
     if (procityObj) {

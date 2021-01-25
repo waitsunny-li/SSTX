@@ -34,6 +34,12 @@
   display: flex;
   align-items: center;
 }
+.video-desc .detail .active .iconfont {
+  color: var(--themeColor) !important;
+}
+.video-desc .detail .active .number {
+  color: var(--themeColor) !important;
+}
 .video-desc .detail .dianzan {
   width: 30%;
   height: 100%;

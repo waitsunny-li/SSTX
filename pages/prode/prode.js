@@ -27,7 +27,15 @@ Page({
     idList: [],
     isShowConnect: false,
     isShowShare: false,
+
+    // 是否点赞或关注
+    isGood: false,
+    isCollected: false,
+
+    sitInfo: {},
+    currentId: '',
   },
+  isShare: false,
   //options(Object)
   onLoad: function (options) {
     // init value
@@ -46,10 +54,17 @@ Page({
     let currentIdIndex = this.idReturnIndex(id, idList)
     // 发送请求详情
     this.requestProDetail(id)
+    this.requestIscollected(id)
     this.setData({
       currentIdIndex,
       idList
     })
+
+    const sitInfo = wx.getStorageSync('sitInfo');
+    this.setData({
+      sitInfo
+    })
+      
   },
 
   // get project detail
@@ -78,11 +93,124 @@ Page({
         lookAllList,
         seenAvaList
       })
+      this.requestIscollected(id)
+      this.requestIsGood(id)
     } else {
       console.log(r.msg);
     }
   },
 
+  // is good ?
+  async requestIsGood(id) {
+    const r = await request({
+      url: '/project/isZan',
+      data: {
+        id: id
+      }
+    })
+    let isGood = Boolean(r.code)
+    this.setData({
+      isGood
+    })
+  },
+
+  // is collected?
+  async requestIscollected(id) {
+    const r = await request({
+      url: '/project/isSubscribe',
+      data: {
+        id: id
+      }
+    })
+    let isCollected = Boolean(r.code)
+    this.setData({
+      isCollected
+    })
+  },
+
+  // good event
+  async handleGoodTap(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    const detailList = this.data.detailList
+    const current = this.data.current
+    let r
+    try {
+      r = await request({
+        url: '/project/doZan',
+        data: {
+          id: id
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+    let {
+      status
+    } = r.data
+    if (status) { // 点赞成功
+      detailList[current].zan_num++
+      wx.showToast({
+        title: r.msg,
+        icon: 'success',
+      })
+      this.setData({
+        isGood: true
+      })
+    } else { // 取消点赞
+      detailList[current].zan_num--
+      wx.showToast({
+        title: r.msg,
+        icon: 'none',
+      })
+      this.setData({
+        isGood: false
+      })
+    }
+    this.setData({
+      detailList
+    })
+  },
+
+  // collect event
+  async handleCollectTap(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    let r
+    try {
+      r = await request({
+        url: '/project/doSubscribe',
+        data: {
+          id: id
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+    let {
+      status
+    } = r.data
+    console.log(r);
+    if (status) { // 关注成功
+      wx.showToast({
+        title: r.msg,
+        icon: 'success',
+      })
+      this.setData({
+        isCollected: true
+      })
+    } else { // 取消关注
+      wx.showToast({
+        title: r.msg,
+        icon: 'none',
+      })
+      this.setData({
+        isCollected: false
+      })
+    }
+  },
 
   // swiper animationfinish end
   handleSwiperChange(event) {
@@ -108,6 +236,7 @@ Page({
     } else { // 向上滑动
       --currentIdIndex
       seenAvaList = lookAllList[currentIdIndex]
+      this.requestProDetail(idList[currentIdIndex])
     }
     this.setData({
       detailList,
@@ -116,6 +245,7 @@ Page({
     })
 
   },
+
 
   handleTransiton(event) {
     const {
@@ -152,9 +282,30 @@ Page({
 
   // 分享
   onShareAppMessage(e) {
-    console.log(e)
+    let currentId = this.data.currentId
+    request({
+      url: '/user/share',
+      data: {
+        id: currentId,
+        type: 0
+      }
+    }).then(res => {
+      console.log(res);
+      let code = res.code
+      if (code == 1) {
+        // wx.showToast({
+        //   title: res.msg,
+        //   icon: 'success',
+        // })
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'error',
+        })
+      }
+    })
   },
-  
+
   // 查看联系电话
   handleLookConnect(e) {
     this.setData({
@@ -164,14 +315,18 @@ Page({
 
   // 查看分享
   handleTapShare(e) {
+    const {id} = e.currentTarget.dataset
     this.setData({
+      currentId: id,
       isShowShare: true
     })
   },
 
   handleCallTelTap(e) {
     console.log(e)
-    const {tel} =  e.currentTarget.dataset
+    const {
+      tel
+    } = e.currentTarget.dataset
     wx.makePhoneCall({
       phoneNumber: tel,
     })

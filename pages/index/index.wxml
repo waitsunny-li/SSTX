@@ -101,21 +101,21 @@
             </view>
           </view>
         </block>
-        <view class="more-data">
+        <navigator url="/pages/good/good?currentIndex=4" hover-class="none" class="more-data">
           <text class="iconfont icon-chakangengduoshuju"></text>
-        </view>
+        </navigator>
       </view>
     </scroll-view>
   </view>
   <!-- good list end -->
   <!-- good bottom nav begin -->
   <view class="good-bottom-nav">
-    <viwe class="nav-item">
+    <navigator url="/pages/good/good" class="nav-item" hover-class="none">
       <image src="/icons/nav1.png"></image>
-    </viwe>
-    <viwe class="nav-item">
+    </navigator>
+    <navigator url="/pages/good/good?currentIndex=1" class="nav-item" hover-class="none">
       <image src="/icons/nav2.png"></image>
-    </viwe>
+    </navigator>
   </view>
   <!-- good bottom nav end -->
   <view style="width: 100vw; height: 60rpx"></view>

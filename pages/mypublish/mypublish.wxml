@@ -1,14 +1,13 @@
 <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroldl" enhanced="{{true}}" bounces="{{true}}">
   <view class="top-header">
     <view class="top-wrap">
-      <image class="logo" src="/icons/logo.png"></image>
-      <image class="bo-logo" src="/icons/logo-text.png"></image>
+      <image class="logo" src="{{sitInfo.file_domain + sitInfo.logo}}"></image>
     </view>
   </view>
   <view class="header-title-top">{{headerTitle}}</view>
   <viwe class="art-content">
     <block wx:for="{{itemList}}" wx:key="id">
-      <project-item isShowIcon="{{false}}"  wx:if="{{cateIndex == 0}}" projectItme="{{item}}"/>
+      <project-item isShowIcon="{{false}}" wx:if="{{cateIndex == 0}}" projectItme="{{item}}"/>
       <connection-item connectionObj="{{item}}" isShowIcon="{{false}}" wx:else/>
     </block>
     <view class="blank" wx:if="{{isTotal}}">

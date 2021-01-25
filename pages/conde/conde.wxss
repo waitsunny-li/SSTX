@@ -41,6 +41,12 @@
   display: flex;
   justify-content: space-between;
 }
+.art-content .art-header .icon-group .active .iconfont {
+  color: var(--themeColor) !important;
+}
+.art-content .art-header .icon-group .active .text {
+  color: var(--themeColor) !important;
+}
 .art-content .art-header .icon-group .icon {
   width: 160rpx;
   height: 100%;
@@ -198,6 +204,12 @@
 .art-content .who-wrap .whoseen {
   font-size: 28rpx;
   color: #3561A4;
+}
+.art-content .who-wrap .active .iconfont {
+  color: var(--themeColor) !important;
+}
+.art-content .who-wrap .active .number {
+  color: var(--themeColor) !important;
 }
 .art-content .who-wrap .dianzan {
   height: 100%;

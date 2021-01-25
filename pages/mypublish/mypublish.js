@@ -17,7 +17,8 @@ Page({
     cateIndex: 0,
     itemList: [],
     currentUrls: ['/user/myProjectList', '/user/myContactsList'],
-    isTotal: false
+    isTotal: false,
+    sitInfo: {}
   },
   page: 1,
   isScrollLower: false,
@@ -36,9 +37,12 @@ Page({
     this.requestUrl(this.data.currentUrls[cate]).catch(err => {
       console.log(err);
     })
+    const sitInfo = wx.getStorageSync('sitInfo');
+      
     this.setData({
       cateIndex: cate,
-      headerTitle: title
+      headerTitle: title,
+      sitInfo
     })
 
   },

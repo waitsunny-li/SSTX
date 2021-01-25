@@ -3,8 +3,8 @@
   <view class="hade-ava-wrap">
     <view class="hade-ava" bind:tap="handleUploadAvatarTap">
       <text class="iconfont icon-camera"></text>
-      <image class="ava" src="{{avatar}}"></image>
-      <input type="text" name="uploadAvatar" hidden/>
+      <image class="ava" src="{{filter.avatarFl(originalAvatar, imageBaseUrl)}}"></image>
+      
     </view>
   </view>
   <view class="form-content">
@@ -52,3 +52,5 @@
     </form>
   </view>
 </view>
+
+<wxs module="filter" src="../../filter/avatarFl.wxs"></wxs>

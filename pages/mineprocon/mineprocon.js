@@ -24,7 +24,7 @@ Page({
       // 足迹
       track: '/user/myHistoryList',
       // 分享
-      share: ''
+      share: '/user/myShareList'
     },
     currentUrl: '',
 
@@ -78,6 +78,7 @@ Page({
   async requestProCon(url) {
     // 防止触发连续两次请求，由于点击tabtitle时，swiper也触发了一次
     if (this.isrequest) {
+      console.log('hhhh');
       return;
     } else {
       this.isrequest = true
@@ -88,7 +89,7 @@ Page({
           page: this.page
         }
       })
-      console.log('我是请求', this.data.cateIndex);
+      console.log(r);
       if (this.data.cateIndex == 0) {
         // let proList = this.data.proList.concat(r.data.data)
         let proList = r.data.data

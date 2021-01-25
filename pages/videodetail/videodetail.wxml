@@ -7,9 +7,9 @@
     <view class="title">{{currentVideo.title}}</view>
     <view class="detail">
       <view class="play-number">{{filter.numberText(currentVideo.pv)}}次播放</view>
-      <view class="dianzan">
+      <view class="dianzan {{isGood ? 'active' : ''}}" bind:tap="handleGoodTap" data-id="{{currentVideo.id}}">
         <text class="iconfont icon-dianzan"></text>
-        <text class="number">939</text>
+        <text class="number">{{currentVideo.zan}}</text>
       </view>
       <view class="share" bind:tap="handleTapShare">
         <view class="text">分享给朋友</view>

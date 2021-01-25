@@ -87,7 +87,7 @@ Component({
           nickname: nickName
         }
       })
-      console.log(data);
+      userInfo.is_subscribe = data.is_subscribe
       wx.setStorageSync('token', data.token);
       wx.hideLoading();
       wx.setStorageSync('userInfo', userInfo);

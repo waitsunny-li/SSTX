@@ -15,15 +15,10 @@ Page({
     requestCate: '',
     status: 0,
     recommendvideoList: [],
-    requestList: {
-      support: '/support/detail',
-      school: '/school/detail'
-    },
-    requestRecommendList: {
-      support: '/support/list',
-      school: '/school/list'
-    },
+    
     isShowShare: false,
+
+    isGood: false
   },
   page: 0,
   //options(Object)
@@ -48,10 +43,9 @@ Page({
 
   // init request Detail
   async initRequestDetail(id) {
-    let requestList = this.data.requestList
     let requestCate = this.data.requestCate
     const r = await request({
-      url: requestList[requestCate],
+      url: '/' + requestCate + '/detail',
       data: {
         id: id
       }
@@ -61,14 +55,78 @@ Page({
     this.setData({
       currentVideo
     })
+    this.requestIsGood(id)
+  },
+
+  // is good?
+  async requestIsGood(id) {
+    let requestCate = this.data.requestCate
+    let r
+    try {
+      r = await request({
+        url: '/' + requestCate + '/isZan',
+        data: {
+          id: id
+        }
+      })
+    } catch(e) {
+      console.log(e);
+    }
+    let isGood = Boolean(r.code)
+    console.log(isGood);
+    this.setData({
+      isGood
+    })
+  },
+
+  // good event
+  async handleGoodTap(e) {
+    const currentVideo = this.data.currentVideo
+    let requestCate = this.data.requestCate
+    const {
+      id
+    } = e.currentTarget.dataset
+    let r
+    try {
+      r = await request({
+        url: '/' + requestCate + '/doZan',
+        data: {
+          id: id
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+    const {status} = r.data
+    if (status) { // 点赞成功
+      currentVideo.zan++
+      wx.showToast({
+        title: r.msg,
+        icon: 'success',
+      })
+      this.setData({
+        isGood: true
+      })
+    } else { // 取消点赞
+      currentVideo.zan--
+      wx.showToast({
+        title: r.msg,
+        icon: 'none',
+      })
+      this.setData({
+        isGood: false
+      })
+    }
+    this.setData({
+      currentVideo
+    })
   },
 
   // init recommend video
   async initRequestReconmmed() {
-    let requestRecommendList = this.data.requestRecommendList
     let requestCate = this.data.requestCate
     const r = await request({
-      url: requestRecommendList[requestCate],
+      url: '/' + requestCate + '/list',
       data: {
         status: this.data.status,
         page: this.page

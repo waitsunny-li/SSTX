@@ -26,7 +26,13 @@ Page({
     isUp: false,
     idList: [],
     isShowConnect: false,
-    isShowShare: false
+    isShowShare: false,
+
+    // 是否点赞或关注
+    isGood: false,
+    isCollected: false,
+
+    sitInfo: {},
   },
   //options(Object)
   onLoad: function (options) {
@@ -51,6 +57,11 @@ Page({
       currentIdIndex,
       idList
     })
+    
+    const sitInfo = wx.getStorageSync('sitInfo');
+    this.setData({
+      sitInfo
+    })
   },
 
   // get connection detail
@@ -69,7 +80,6 @@ Page({
         id
       }
     })
-    console.log(r, look);
     if (r.code == 1) {
       detailList[this.data.current] = r.data
       let seenAvaList = look.data
@@ -79,8 +89,121 @@ Page({
         lookAllList,
         seenAvaList
       })
+      this.requestIscollected(id)
+      this.requestIsGood(id)
     } else {
       console.log(r.msg);
+    }
+  },
+
+   // is good ?
+   async requestIsGood(id) {
+    const r = await request({
+      url: '/contacts/isZan',
+      data: {
+        id: id
+      }
+    })
+    let isGood = Boolean(r.code)
+    this.setData({
+      isGood
+    })
+  },
+
+  // is collected?
+  async requestIscollected(id) {
+    const r = await request({
+      url: '/contacts/isSubscribe',
+      data: {
+        id: id
+      }
+    })
+    let isCollected = Boolean(r.code)
+    this.setData({
+      isCollected
+    })
+  },
+
+  // good event
+  async handleGoodTap(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    const detailList = this.data.detailList
+    const current = this.data.current
+    let r
+    try {
+      r = await request({
+        url: '/contacts/doZan',
+        data: {
+          id: id
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+    let {
+      status
+    } = r.data
+    if (status) { // 点赞成功
+      detailList[current].zan_num++
+      wx.showToast({
+        title: r.msg,
+        icon: 'success',
+      })
+      this.setData({
+        isGood: true
+      })
+    } else { // 取消点赞
+      detailList[current].zan_num--
+      wx.showToast({
+        title: r.msg,
+        icon: 'none',
+      })
+      this.setData({
+        isGood: false
+      })
+    }
+    this.setData({
+      detailList
+    })
+  },
+
+  // collect event
+  async handleCollectTap(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    let r
+    try {
+      r = await request({
+        url: '/contacts/doSubscribe',
+        data: {
+          id: id
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+    let {
+      status
+    } = r.data
+    if (status) { // 关注成功
+      wx.showToast({
+        title: r.msg,
+        icon: 'success',
+      })
+      this.setData({
+        isCollected: true
+      })
+    } else { // 取消关注
+      wx.showToast({
+        title: r.msg,
+        icon: 'none',
+      })
+      this.setData({
+        isCollected: false
+      })
     }
   },
 
@@ -104,11 +227,11 @@ Page({
       } else {
         currentIdIndex++
       }
-      console.log(currentIdIndex);
       this.requestConDetail(idList[currentIdIndex])
     } else { // 向上滑动
       --currentIdIndex
       seenAvaList = lookAllList[currentIdIndex]
+      this.requestConDetail(idList[currentIdIndex])
     }
     this.setData({
       detailList,

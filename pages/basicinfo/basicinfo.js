@@ -31,8 +31,9 @@ Page({
     sexIndex: 2,
     nickname: '',
     mobile: '17333283006',
+    originalAvatar: '',
     avatar: '',
-    uploadAvatar: '',
+    imageBaseUrl: '',
 
     poptype: '',
     popmsg: '',
@@ -44,12 +45,20 @@ Page({
   onLoad: function (options) {
     // 获取缓存中的当前位置信息，如果有
     let procityObj = wx.getStorageSync('procityObj')
+    let imageBaseUrl = wx.getStorageSync('imageBaseUrl');
+
     if (procityObj) {
       this.setData({
         procityIndex: procityObj.procityIndex,
         provinceName: procityObj.procityName[0],
         cityName: procityObj.procityName[1],
         objectCityArray: procityObj.objectCityArray
+      })
+    }
+
+    if (imageBaseUrl) {
+      this.setData({
+        imageBaseUrl
       })
     }
 
@@ -62,7 +71,7 @@ Page({
       nickname: vipUserInfo.nickname,
       // mobile: vipUserInfo.mobile,
       sexIndex: vipUserInfo.gender,
-      avatar: vipUserInfo.avatar
+      originalAvatar: vipUserInfo.avatar
     })
   },
 
@@ -93,7 +102,7 @@ Page({
           'Content-Type': 'multipart/form-data'
         }
       })
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       this.setData({
         poptype: 'error',
@@ -103,10 +112,10 @@ Page({
     let data = JSON.parse(result.data)
     console.log(data);
     this.setData({
-      avatar: tempFilePaths[0],
-      uploadAvatar: data.key
+      avatar: data.key,
+      originalAvatar: tempFilePaths[0]
     })
-   
+
   },
 
   // sex change
@@ -130,10 +139,9 @@ Page({
   async handleSendCode(e) {
     const r = await request({
       url: '/sms/send',
-      method: 'post',
       data: {
         mobile: this.data.mobile,
-        event: 'realname'
+        event: 'edituserinfo'
       }
     })
     if (r.code == 1) {
@@ -183,9 +191,10 @@ Page({
       value
     } = e.detail
     value.address = this.data.provinceName + '/' + this.data.cityName
+    value.avatar = this.data.avatar
     console.log(value);
     const r = await request({
-      url: '',
+      url: '/user/EditUserInfo',
       method: 'post',
       data: value
     })
@@ -194,13 +203,17 @@ Page({
         title: '保存成功',
         icon: 'success',
         success: () => {
-          console.log('回调');
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
         }
       })
     } else {
       this.setData({
         poptype: 'error',
-        popmsg: r.data.msg
+        popmsg: r.msg
       })
     }
   }

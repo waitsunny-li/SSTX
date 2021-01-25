@@ -4,8 +4,7 @@
       <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" enable-back-to-top="{{true}}">
         <view class="top-header">
           <view class="top-wrap">
-            <image class="logo" src="/icons/logo.png"></image>
-            <image class="bo-logo" src="/icons/logo-text.png"></image>
+            <image class="logo" src="{{sitInfo.file_domain + sitInfo.logo}}" lazy-load="{{true}}"></image>
           </view>
         </view>
         <view class="top-header-line"></view>
@@ -13,11 +12,11 @@
           <view class="art-header">
             <view class="title">企业/个人需求信息</view>
             <view class="icon-group">
-              <view class="icon">
-                <text class="iconfont icon-star-full"></text>
-                <view class="text">关注</view>
+              <view class="icon {{isCollected ? 'active' : ''}}" bind:tap="handleCollectTap" data-id="{{item.id}}">
+                <text class="iconfont icon-star-full "></text>
+                <view class="text ">关注</view>
               </view>
-              <view class="icon" bind:tap="handleTapShare">
+              <view class="icon" bind:tap="handleTapShare" data-id="{{item.id}}">
                 <text class="iconfont icon-fenxiang1"></text>
                 <view class="text share-text">分享</view>
               </view>
@@ -27,12 +26,12 @@
           <view class="user-header">
             <view class="left-user">
               <view class="ava">
-                <image class="ava-img" src="{{item.user.avatar}}"></image>
+                <image class="ava-img" src="{{filter.avatarFl(item.user.avatar, sitInfo.file_domain)}}"></image>
               </view>
               <view class="name-wrap">
                 <view class="username">{{item.user.nickname}}</view>
                 <view class="star">
-                  <star width="{{240}}" number="{{7}}" size="{{25}}" />
+                  <star width="{{240}}" number="{{item.level}}" size="{{25}}" />
                 </view>
               </view>
             </view>
@@ -98,8 +97,8 @@
           <!-- who seen me -->
           <view class="who-wrap">
             <view class="whoseen">谁看过</view>
-            <view class="dianzan">
-              <text class="iconfont icon-dianzan"></text>
+            <view class="dianzan {{isGood ? 'active' : ''}}" bind:tap="handleGoodTap" data-id="{{item.id}}">
+              <text class="iconfont icon-dianzan "></text>
               <text class="number">{{item.zan_num}}</text>
             </view>
           </view>
@@ -107,7 +106,7 @@
           <view class="ava-img-wrap">
             <block wx:for="{{seenAvaList}}" wx:key="index">
               <view class="ava-item-img">
-                <image class="img" src="{{item.avatar}}" lazy-load="{{true}}"></image>
+                <image class="img" src="{{filter.avatarFl(item.avatar, sitInfo.file_domain)}}" lazy-load="{{true}}"></image>
               </view>
             </block>
           </view>
@@ -148,3 +147,5 @@
     </view>
   </view>
 </bottom-pop>
+
+<wxs module="filter" src="../../filter/avatarFl.wxs"></wxs>

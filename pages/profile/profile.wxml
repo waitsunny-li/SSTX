@@ -1,13 +1,13 @@
 <scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}">
   <view class="profile-header">
-    <block wx:if="{{userInfo.nickName}}">
+    <block wx:if="{{vipUserInfo.nickname}}">
       <view class="ava-wrap">
         <view class="ara-image">
-          <image class="" src="{{filter.avatarFl(userInfo.avatarUrl)}}" lazy-load="{{true}}"/>
+          <image class="" src="{{filter.avatarFl(vipUserInfo.avatar, imageBaseUrl)}}" lazy-load="{{true}}"/>
         </view>
         <view class="name-wrap">
           <navigator hover-class="none" url="/pages/basicinfo/basicinfo" class="name">
-            <text class="n">昵称：{{userInfo.nickName}}</text>
+            <text class="n">昵称：{{vipUserInfo.nickname}}</text>
             <text class="iconfont icon-bianji"></text>
           </navigator>
           <view class="auth-wrap" wx:if="{{vipUserInfo.verification.realname}}">
@@ -50,7 +50,7 @@
   <!-- publish number begin -->
   <view class="pub-check">
     <navigator url="/pages/mineprocon/mineprocon?cb=pubsuccess&title=发布成功" hover-class="none" class="left-pub">
-      <view class="number">12</view>
+      <view class="number">{{vipUserInfo.publish_num}}</view>
       <view class="text-bo">发布成功</view>
     </navigator>
     <view class="line"></view>

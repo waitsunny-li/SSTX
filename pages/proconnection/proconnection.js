@@ -320,7 +320,6 @@ Page({
     if (this.data.cateIndex == 0) {
       let proList = this.data.proList
       let idList = sliceArrayTen(returnIdArry(proList))
-      
       wx.navigateTo({
         url: '/pages/prode/prode?id=' + id + '&ids=' + idList
       })

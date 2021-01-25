@@ -14,7 +14,8 @@ Page({
     isAuth: false,
     userInfo: {},
     isShowLogin: false,
-    vipUserInfo: {}
+    vipUserInfo: {},
+    imageBaseUrl: ''
   },
   //options(Object)
   onLoad: function (options) {
@@ -22,6 +23,11 @@ Page({
       if (err == 401) {
         console.log('用户请登录');
       }
+    })
+
+    const imageBaseUrl = wx.getStorageSync('imageBaseUrl');
+    this.setData({
+      imageBaseUrl
     })
   },
   // 获取会员信息
