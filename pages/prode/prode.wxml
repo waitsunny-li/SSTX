@@ -126,17 +126,18 @@
       </button>
       <view class="look-item">
         <text class="iconfont icon-ai-connection"></text>
-        <view class="title-icon-text" bind:tap="handleCallTelTap" data-tel="17333283006">善天下客服电话：13000000000</view>
+        <view class="title-icon-text" bind:tap="handleCallTelTap" data-tel="17333283006">
+          善天下客服电话：13000000000
+        </view>
       </view>
     </view>
   </view>
 </bottom-pop>
-
 <!-- 分享弹框 -->
 <bottom-pop isShow="{{isShowShare}}">
   <view class="bottom-inner">
     <view class="look-tel">
-      <view class="look-item">
+      <view class="look-item" bind:tap="handleImgCodeTap">
         <text class="iconfont icon-ai-moments"></text>
         <view class="title-icon-text">生成图片</view>
       </view>
@@ -147,5 +148,15 @@
     </view>
   </view>
 </bottom-pop>
-
+<!-- 保存二维码图片 -->
+<bottom-pop isShow="{{isShowImgCode}}">
+  <view class="imgCode">
+    <image class="img" src="{{imgCodeUrl}}"  />
+    <view class="desc">保存图片，分享到朋友圈吧</view>
+    <view class="save-btn" bind:tap="handleSaveImgTap">
+      <text class="iconfont icon-xiazai"></text>
+      <view class="btn-text">保存</view>
+    </view>
+  </view>
+</bottom-pop>
 <wxs module="filter" src="../../filter/avatarFl.wxs"></wxs>

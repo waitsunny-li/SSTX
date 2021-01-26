@@ -22,7 +22,6 @@ export const chooseOneImg = option => {
   })
 }
 
-
 // wx-login
 export const wxLogin = () => {
   return new Promise((resolve, reject) => {
@@ -71,6 +70,37 @@ export const showModal = option => {
         } else {
           reject()
         }
+      }
+    })
+  })
+}
+
+// downfile img
+export const downLoadFile = option => {
+  return new Promise((resolve, reject) => {
+    wx.downloadFile({
+      url: option.url,
+      header: option.header,
+      success: (result) => {
+        resolve(result)
+      },
+      fail: (error) => {
+        reject(error)
+      }
+    })
+  })
+}
+
+// save Img to photo
+export const saveImgToPhoto = option => {
+  return new Promise((resolve, reject) => {
+    wx.saveImageToPhotosAlbum({
+      filePath: option.filePath,
+      success: (result) => {
+        resolve(result)
+      },
+      fail: (error) => {
+        reject(error)
       }
     })
   })

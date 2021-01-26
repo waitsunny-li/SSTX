@@ -97,8 +97,6 @@
   }
 }
 
-
-
 .bottom-inner {
   .title {
     width: 100%;
@@ -135,6 +133,45 @@
         margin-left: 30rpx;
         padding: 0;
       }
+    }
+  }
+}
+
+.imgCode {
+  width: 100%;
+  padding-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .img {
+    width: 45vw;
+    height: 45vw * 1.25;
+    box-shadow: 0 0 5rpx rgba(0.4, 0.4, 0.4, 0.3);
+  }
+
+  .desc {
+    margin: 30rpx 0;
+    color: #414040;
+    font-size: 26rpx;
+  }
+
+  .save-btn {
+    width: 35vw;
+    height: 70rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--themeColor);
+    border-radius: 40rpx;
+
+    .iconfont, .btn-text {
+      color: #ffffff;
+      font-size: 30rpx;
+    }
+
+    .btn-text {
+      margin-left: 20rpx;
     }
   }
 }

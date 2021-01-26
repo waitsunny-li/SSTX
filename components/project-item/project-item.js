@@ -3,6 +3,7 @@
  * @Date: 2021-01-06 17:09:21
  */
 // components/project-item/project-item.js
+import {countDown} from '../../utils/util'
 Component({
   /**
    * 组件的属性列表
@@ -15,6 +16,10 @@ Component({
     projectItme: {
       type: Object,
       value: {}
+    },
+    objectThumb: {
+      type: String,
+      value: ''
     }
   },
 
@@ -22,7 +27,11 @@ Component({
    * 组件的初始数据
    */
   data: {
+    residueTime: 0,
+  },
 
+  attached: function() {
+    countDown(this.data.projectItme.endtime, this)
   },
 
   /**

@@ -19,6 +19,10 @@ Component({
     connectionObj: {
       type: Object,
       value: {}
+    },
+    connectionThumb: {
+      type: String,
+      value: ''
     }
   },
 

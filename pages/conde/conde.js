@@ -5,6 +5,12 @@
 import {
   request
 } from '../../request/index'
+import {
+  downLoadFile,
+  saveImgToPhoto
+} from '../../utils/asyncWx'
+const app = getApp();
+
 //Page Object
 Page({
   data: {
@@ -33,6 +39,8 @@ Page({
     isCollected: false,
 
     sitInfo: {},
+    // 显示保存二维码图片
+    isShowImgCode: false,
   },
   //options(Object)
   onLoad: function (options) {
@@ -57,7 +65,7 @@ Page({
       currentIdIndex,
       idList
     })
-    
+
     const sitInfo = wx.getStorageSync('sitInfo');
     this.setData({
       sitInfo
@@ -96,8 +104,8 @@ Page({
     }
   },
 
-   // is good ?
-   async requestIsGood(id) {
+  // is good ?
+  async requestIsGood(id) {
     const r = await request({
       url: '/contacts/isZan',
       data: {
@@ -285,6 +293,60 @@ Page({
   handleTapShare(e) {
     this.setData({
       isShowShare: true
+    })
+  },
+
+  // listen create img
+  async handleImgCodeTap(e) {
+    let r
+    wx.showLoading({
+      title: '图片加载中~',
+    })
+    try {
+      r = await request({
+        url: '/user/shareQrcode'
+      })
+    } catch (e) {
+      console.log(e);
+      wx.hideLoading()
+    }
+    wx.hideLoading()
+    let imgCodeUrl = app.globalData.baseUrl + r.data
+    this.setData({
+      imgCodeUrl,
+      isShowImgCode: true,
+      isShowShare: false
+    })
+  },
+
+  // listen save img to photo
+  async handleSaveImgTap(e) {
+    wx.showLoading({
+      title: '正在保存~'
+    })
+    let lp = await downLoadFile({
+      url: this.data.imgCodeUrl,
+      header: {
+        'Content-Type': 'image/jpeg'
+      }
+    })
+    saveImgToPhoto({
+      filePath: lp.tempFilePath
+    }).then(res => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '保存成功'
+      })
+      this.setData({
+        isShowImgCode: false
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '保存失败'
+      })
+      this.setData({
+        isShowImgCode: false
+      })
     })
   },
 

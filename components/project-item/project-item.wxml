@@ -5,7 +5,7 @@
       <text class="iconfont icon-icon--"></text>
     </view>
     <view class="default-img">
-      <image class="" src="" mode="aspectFill" lazy-load="true"/>
+      <image class="" src="{{objectThumb}}" mode="aspectFill" lazy-load="true"/>
     </view>
   </view>
   <view class="right-item">
@@ -13,7 +13,7 @@
     <view class="title-section">
       <view class="title">{{projectItme.title}}</view>
       <view class="time">
-        倒计时：{{projectItme.endtime}}
+        倒计时：{{residueTime}}
       </view>
     </view>
     <!-- desc -->

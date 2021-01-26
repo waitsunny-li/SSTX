@@ -48,7 +48,6 @@ Page({
   onLoad: function (options) {
     // 缓存中不存在procity时要获取定位的位置信息
     if (!wx.getStorageSync('procity')) {
-      console.log('jjj');
       app.getUserLocation(function (res) {
         // 获取精确的地理位置
         qqmapsdk.reverseGeocoder({

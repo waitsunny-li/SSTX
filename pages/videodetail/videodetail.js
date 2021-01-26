@@ -5,6 +5,11 @@
 import {
   request
 } from '../../request/index'
+import {
+  downLoadFile,
+  saveImgToPhoto
+} from '../../utils/asyncWx'
+const app = getApp();
 //Page Object
 Page({
   data: {
@@ -15,10 +20,12 @@ Page({
     requestCate: '',
     status: 0,
     recommendvideoList: [],
-    
+
     isShowShare: false,
 
-    isGood: false
+    isGood: false,
+    // 显示保存二维码图片
+    isShowImgCode: false,
   },
   page: 0,
   //options(Object)
@@ -69,7 +76,7 @@ Page({
           id: id
         }
       })
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
     let isGood = Boolean(r.code)
@@ -97,7 +104,9 @@ Page({
     } catch (e) {
       console.log(e);
     }
-    const {status} = r.data
+    const {
+      status
+    } = r.data
     if (status) { // 点赞成功
       currentVideo.zan++
       wx.showToast({
@@ -192,6 +201,60 @@ Page({
   handleTapShare(e) {
     this.setData({
       isShowShare: true
+    })
+  },
+
+  // listen create img
+  async handleImgCodeTap(e) {
+    let r
+    wx.showLoading({
+      title: '图片加载中~',
+    })
+    try {
+      r = await request({
+        url: '/user/shareQrcode'
+      })
+    } catch (e) {
+      console.log(e);
+      wx.hideLoading()
+    }
+    wx.hideLoading()
+    let imgCodeUrl = app.globalData.baseUrl + r.data
+    this.setData({
+      imgCodeUrl,
+      isShowImgCode: true,
+      isShowShare: false
+    })
+  },
+
+  // listen save img to photo
+  async handleSaveImgTap(e) {
+    wx.showLoading({
+      title: '正在保存~'
+    })
+    let lp = await downLoadFile({
+      url: this.data.imgCodeUrl,
+      header: {
+        'Content-Type': 'image/jpeg'
+      }
+    })
+    saveImgToPhoto({
+      filePath: lp.tempFilePath
+    }).then(res => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '保存成功'
+      })
+      this.setData({
+        isShowImgCode: false
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '保存失败'
+      })
+      this.setData({
+        isShowImgCode: false
+      })
     })
   },
 

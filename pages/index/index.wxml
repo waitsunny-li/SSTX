@@ -78,12 +78,12 @@
   <view class="project-connection-wrap">
     <block wx:if="{{currentIndex == 0}}">
       <block wx:for="{{proconList}}" wx:key="id">
-        <project-item bind:tap="handleProConToDetail" projectItme="{{item}}" data-id="{{item.id}}"/>
+        <project-item bind:tap="handleProConToDetail" projectItme="{{item}}" data-id="{{item.id}}" objectThumb="{{sitInfo.file_domain + sitInfo.object_thumb}}" />
       </block>
     </block>
     <block wx:else>
       <block wx:for="{{proconList}}" wx:key="id">
-        <connection-item bind:tap="handleProConToDetail" connectionObj="{{item}}" data-id="{{item.id}}"/>
+        <connection-item bind:tap="handleProConToDetail" connectionObj="{{item}}" data-id="{{item.id}}" connectionThumb="{{sitInfo.file_domain + sitInfo.connection_thumb}}"/>
       </block>
     </block>
   </view>

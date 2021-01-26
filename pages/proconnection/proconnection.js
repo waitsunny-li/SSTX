@@ -5,7 +5,10 @@
 import {
   request
 } from '../../request/index'
-import {returnIdArry, sliceArrayTen} from '../../utils/util'
+import {
+  returnIdArry,
+  sliceArrayTen
+} from '../../utils/util'
 // pages/project/project.js
 Page({
   /**
@@ -40,16 +43,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let procityObj = wx.getStorageSync('procityObj')
-    if (procityObj) {
-      this.setData({
-        procityIndex: procityObj.procityIndex,
-        provinceName: procityObj.procityName[0],
-        cityName: procityObj.procityName[1],
-        objectCityArray: procityObj.objectCityArray
-      })
-    }
+    let sitinfo = wx.getStorageSync('sitInfo');
+    this.setData({
+      procityIndex: procityObj.procityIndex,
+      provinceName: procityObj.procityName[0],
+      cityName: procityObj.procityName[1],
+      objectCityArray: procityObj.objectCityArray,
+      sitinfo
+    })
 
     // get prolist
     this.initRequest().catch(err => {
@@ -264,7 +266,7 @@ Page({
 
   // scroll pro lower
   async handleSwiperProLower(e) {
-    if(this.isScrollLower) {
+    if (this.isScrollLower) {
       return;
     }
     this.isScrollLower = true
@@ -289,7 +291,7 @@ Page({
 
   // scroll con lower
   async handleSwiperConLower(e) {
-    if(this.isScrollLower) {
+    if (this.isScrollLower) {
       return;
     }
     this.isScrollLower = true
@@ -314,9 +316,11 @@ Page({
 
   // 跳转详情
   handleProConToDetail(e) {
-    const {id} = e.currentTarget.dataset
+    const {
+      id
+    } = e.currentTarget.dataset
     console.log(id);
-    
+
     if (this.data.cateIndex == 0) {
       let proList = this.data.proList
       let idList = sliceArrayTen(returnIdArry(proList))
@@ -331,5 +335,5 @@ Page({
       })
     }
   },
-  
+
 })

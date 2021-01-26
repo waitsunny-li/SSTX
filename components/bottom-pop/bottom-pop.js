@@ -38,6 +38,8 @@ Component({
     _isShowChange(newVal) {
       if (newVal) {
         this.createScaleAnimation('0')
+      } else {
+        this.createScaleAnimation('-500rpx')
       }
     },
 
@@ -57,7 +59,7 @@ Component({
         timingFunction: 'linear',
         delay: 0,
       });
-      console.log(animation)
+      
       this.animation = animation
       setTimeout(() => {
         animation.bottom(bottom).step();
