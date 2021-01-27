@@ -105,9 +105,12 @@
   margin-left: 10rpx;
   color: #3561A4;
   font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .art-content .user-header .right-desc {
-  width: 380rpx;
+  width: 420rpx;
   height: 90rpx;
   display: flex;
   flex-direction: column;

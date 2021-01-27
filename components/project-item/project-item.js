@@ -3,7 +3,6 @@
  * @Date: 2021-01-06 17:09:21
  */
 // components/project-item/project-item.js
-import {countDown} from '../../utils/util'
 Component({
   /**
    * 组件的属性列表
@@ -28,10 +27,6 @@ Component({
    */
   data: {
     residueTime: 0,
-  },
-
-  attached: function() {
-    countDown(this.data.projectItme.endtime, this)
   },
 
   /**

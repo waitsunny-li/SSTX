@@ -22,12 +22,12 @@ Page({
     recommendvideoList: [],
 
     isShowShare: false,
-
     isGood: false,
     // 显示保存二维码图片
     isShowImgCode: false,
   },
   page: 0,
+  currentId: '',
   //options(Object)
   onLoad: function (options) {
     // 获取七牛云地址
@@ -38,7 +38,6 @@ Page({
       cate,
       status
     } = options
-    console.log(id, cate, status);
     this.setData({
       requestCate: cate,
       imageBaseUrl,
@@ -58,7 +57,6 @@ Page({
       }
     })
     let currentVideo = r.data
-    console.log(currentVideo);
     this.setData({
       currentVideo
     })
@@ -80,7 +78,6 @@ Page({
       console.log(e);
     }
     let isGood = Boolean(r.code)
-    console.log(isGood);
     this.setData({
       isGood
     })
@@ -199,6 +196,10 @@ Page({
 
   // 查看分享
   handleTapShare(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    this.currentId = id
     this.setData({
       isShowShare: true
     })
@@ -212,7 +213,13 @@ Page({
     })
     try {
       r = await request({
-        url: '/user/shareQrcode'
+        url: '/user/shareQrcode',
+        data: {
+          type: 2,
+          status: this.data.status,
+          request_cate: this.data.requestCate,
+          id: this.currentId
+        }
       })
     } catch (e) {
       console.log(e);

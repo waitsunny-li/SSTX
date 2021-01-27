@@ -27,7 +27,7 @@ Page({
       share: '/user/myShareList'
     },
     currentUrl: '',
-
+    sitInfo: {},
     cateIndex: 0,
     // project
     proList: [],
@@ -44,12 +44,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     let {
       title,
       cb
     } = options
-    console.log(cb);
+    let sitInfo = wx.getStorageSync('sitInfo');
     this.requestProCon(this.data.navigationObj[cb]).catch(err => {
       console.log(err);
     })
@@ -58,7 +57,8 @@ Page({
       title
     })
     this.setData({
-      currentUrl: this.data.navigationObj[cb]
+      currentUrl: this.data.navigationObj[cb],
+      sitInfo
     })
   },
 

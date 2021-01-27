@@ -3,7 +3,9 @@
  * @Date: 2021-01-12 12:12:58
  */
 
-import { request } from "../../request/index"
+import {
+  request
+} from "../../request/index"
 
 // pages/modifytel/modifytel.js
 Page({
@@ -16,71 +18,84 @@ Page({
     isSend: false,
     timeIndex: 0,
     mobile: '',
-    newmobile: '',
-
+    oldmobile: '',
+    sitInfo: {},
     poptype: '',
     popmsg: '',
   },
+  newmobile: '',
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let {mobile} = options
+    let sitInfo = wx.getStorageSync('sitInfo');
+    let {
+      mobile
+    } = options
     let start = mobile.substr(0, 3)
     let end = mobile.substr(mobile.length - 4)
-    let newmobile = start + '****' + end
+    let oldmobile = start + '****' + end
     this.setData({
-      mobile: newmobile
+      sitInfo,
+      oldmobile
     })
   },
 
   // new mobile blur
   handleNewMBlur(e) {
-    const {value} = e.detail
-    this.setData({
-      newmobile: value
-    })
+    const {
+      value
+    } = e.detail
+    this.newmobile = value
   },
   // send code 
   async handleSendCode(e) {
-    let newmobile = this.data.newmobile
-    if ((/^1[34578]\d{9}$/.test(newmobile))) {
+    let newmobile = this.newmobile
+    const r = await request({
+      url: '/sms/send',
+      data: {
+        mobile: newmobile,
+        event: 'changemobile'
+      }
+    })
+    if (r.code == 1) {
       this.sendCode(60)
-      const r = await request({
-        url: '/sms/send',
-        method: 'post',
-        data: {
-          mobile,
-          event: 'realname'
-        }
+      wx.showToast({
+        title: '发送成功',
+        icon: 'success',
       })
     } else {
       this.setData({
         poptype: 'error',
-        popmsg: '手机号格式错误！'
+        popmsg: r.msg
       })
     }
+
   },
 
   // func send
   sendCode(time) {
     let times = time
-    if (this.data.timeIndex) return;
+    let timeIndex = this.data.timeIndex
+    console.log(this.data.timeIndex);
+    if (timeIndex) return;
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 1500,
       mask: true,
     });
-    let timeIndex = setInterval(() => {
+    timeIndex = setInterval(() => {
       times--
       if (times < 0) {
         times = '发送验证码'
-        clearInterval(this.data.timeIndex)
+        clearInterval(timeIndex)
+        timeIndex = 0
         this.setData({
           times,
-          isSend: false
+          isSend: false,
+          timeIndex
         })
       } else {
         this.setData({
@@ -96,34 +111,30 @@ Page({
 
   // form submit
   async handleFormSubmit(e) {
-    const {value} = e.detail
-    console.log(value);
+    const {
+      value
+    } = e.detail
     const r = await request({
-      url: '',
-      method: 'post',
+      url: '/user/changemobile',
       data: value
     })
+    console.log(r);
     if (r.code == 1) {
       wx.showToast({
         title: '修改成功！',
         icon: 'success',
-        duration: 1500,
-        mask: false,
         success: (result) => {
-          console.log('jjjj');
-          let vipUserInfo = wx.getStorageSync('vipUserInfo')
-          vipUserInfo.mobile = value.newmobile
-          wx.setStorageSync('vipUserInfo', vipUserInfo);
-            
-          wx.navigateBack({
-            delta: 1
-          })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
         },
       })
     } else {
       this.setData({
         poptype: 'error',
-        popmsg: r.data.data.msg
+        popmsg: r.msg
       })
     }
   }

@@ -16,7 +16,7 @@
                 <text class="iconfont icon-star-full"></text>
                 <view class="text">关注</view>
               </view>
-              <view class="icon" bind:tap="handleTapShare">
+              <view class="icon" bind:tap="handleTapShare" data-id="{{item.id}}">
                 <text class="iconfont icon-fenxiang1"></text>
                 <view class="text share-text">分享</view>
               </view>
@@ -76,7 +76,7 @@
               </view>
             </view>
             <!-- look coonnertion -->
-            <view class="look-conection" bind:tap="handleLookConnect">查看联系方式</view>
+            <view class="look-conection" bind:tap="handleLookConnect" data-id="{{item.id}}">查看联系方式</view>
           </view>
           <!-- who seen me -->
           <view class="who-wrap">

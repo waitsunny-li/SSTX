@@ -74,21 +74,20 @@ Page({
   // send code 
   async handleSendCode(e) {
     let mobile = this.data.mobile
-    console.log(mobile);
-    if ((/^1[34578]\d{9}$/.test(mobile))) {
+    const r = await request({
+      url: '/sms/send',
+      data: {
+        mobile,
+        event: 'realname'
+      }
+    })
+
+    if (r.code == 1) {
       this.sendCode(60)
-      const r = await request({
-        url: '/sms/send',
-        method: 'post',
-        data: {
-          mobile,
-          event: 'realname'
-        }
-      })
     } else {
       this.setData({
         poptype: 'error',
-        popmsg: '手机号格式错误！'
+        popmsg: r.msg,
       })
     }
 
@@ -97,21 +96,25 @@ Page({
   // func send
   sendCode(time) {
     let times = time
-    if (this.data.timeIndex) return;
+    let timeIndex = this.data.timeIndex
+    console.log(this.data.timeIndex);
+    if (timeIndex) return;
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 1500,
       mask: true,
     });
-    let timeIndex = setInterval(() => {
+    timeIndex = setInterval(() => {
       times--
       if (times < 0) {
         times = '发送验证码'
-        clearInterval(this.data.timeIndex)
+        clearInterval(timeIndex)
+        timeIndex = 0
         this.setData({
           times,
-          isSend: false
+          isSend: false,
+          timeIndex
         })
       } else {
         this.setData({

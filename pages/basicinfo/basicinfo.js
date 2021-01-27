@@ -30,7 +30,7 @@ Page({
     sexList: ['女', '男', '未选择'],
     sexIndex: 2,
     nickname: '',
-    mobile: '17333283006',
+    mobile: ' ',
     originalAvatar: '',
     avatar: '',
     imageBaseUrl: '',
@@ -69,7 +69,7 @@ Page({
     const vipUserInfo = wx.getStorageSync('vipUserInfo');
     this.setData({
       nickname: vipUserInfo.nickname,
-      // mobile: vipUserInfo.mobile,
+      mobile: vipUserInfo.mobile,
       sexIndex: vipUserInfo.gender,
       originalAvatar: vipUserInfo.avatar
     })
@@ -149,7 +149,7 @@ Page({
     } else {
       this.setData({
         poptype: 'error',
-        popmsg: '手机号格式错误！'
+        popmsg: r.msg
       })
     }
   },
@@ -157,21 +157,25 @@ Page({
   // func send
   sendCode(time) {
     let times = time
-    if (this.data.timeIndex) return;
+    let timeIndex = this.data.timeIndex
+    console.log(this.data.timeIndex);
+    if (timeIndex) return;
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 1500,
       mask: true,
     });
-    let timeIndex = setInterval(() => {
+    timeIndex = setInterval(() => {
       times--
       if (times < 0) {
         times = '发送验证码'
-        clearInterval(this.data.timeIndex)
+        clearInterval(timeIndex)
+        timeIndex = 0
         this.setData({
           times,
-          isSend: false
+          isSend: false,
+          timeIndex
         })
       } else {
         this.setData({

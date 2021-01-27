@@ -1,7 +1,7 @@
 <swiper class="procon-swiper" vertical="{{true}}" bindchange="handleSwiperChange" bindanimationfinish="handleAnimationEnd" current="{{current}}" circular="{{false}}" bindtransition="handleTransiton">
   <block wx:for="{{detailList}}" wx:key="index">
     <swiper-item class="pro-swiper-item" item-id="">
-      <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" enable-back-to-top="{{true}}">
+      <scroll-view class="proconscroll" scroll-y="true" enable-back-to-top="{{true}}" lower-threshold="50" enhanced="{{true}}" bounces="{{true}}" enable-back-to-top="{{true}}">
         <view class="top-header">
           <view class="top-wrap">
             <image class="logo" src="{{sitInfo.file_domain + sitInfo.logo}}" lazy-load="{{true}}"></image>
@@ -38,7 +38,9 @@
             <view class="right-desc" slot="right">
               <view class="number-wrap">
                 倒计时：
-                <text class="number">{{endtime}}</text>
+                <view class="number">
+                  <count-down endTime="{{item.endtime}}"/>
+                </view>
               </view>
               <view class="number-wrap">
                 关注人数：
@@ -151,7 +153,7 @@
 <!-- 保存二维码图片 -->
 <bottom-pop isShow="{{isShowImgCode}}">
   <view class="imgCode">
-    <image class="img" src="{{imgCodeUrl}}"  />
+    <image class="img" src="{{imgCodeUrl}}" />
     <view class="desc">保存图片，分享到朋友圈吧</view>
     <view class="save-btn" bind:tap="handleSaveImgTap">
       <text class="iconfont icon-xiazai"></text>

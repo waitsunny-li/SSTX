@@ -60,25 +60,26 @@ Component({
         index,
       })
       this.setData({
-        currentIndex: index
+        currentIndex: index,
+        scrollLeft: 0
       })
     },
 
-    // scroll lower
-    handleToLower(e) {
-      console.log('滚动底部');
-      let currentIndex = ++this.data.currentIndex
-      if (currentIndex > 2) {
-        currentIndex = 0
-      }
-      this.triggerEvent('changeTitle', {
-        index: currentIndex
-      })
-      this.setData({
-        currentIndex,
-        scrollLeft: 0
-      })
-    }
+    // // scroll lower
+    // handleToLower(e) {
+    //   console.log('滚动底部');
+    //   let currentIndex = ++this.data.currentIndex
+    //   if (currentIndex > 2) {
+    //     currentIndex = 0
+    //   }
+    //   this.triggerEvent('changeTitle', {
+    //     index: currentIndex
+    //   })
+    //   this.setData({
+    //     currentIndex,
+    //     scrollLeft: 0
+    //   })
+    // }
 
   }
 })

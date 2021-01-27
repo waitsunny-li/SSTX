@@ -13,7 +13,7 @@
     <view class="title-section">
       <view class="title">{{projectItme.title}}</view>
       <view class="time">
-        倒计时：{{residueTime}}
+        倒计时：<count-down endTime="{{projectItme.endtime}}"/>
       </view>
     </view>
     <!-- desc -->

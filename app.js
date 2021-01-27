@@ -95,7 +95,6 @@ App({
         }
       }
     })
-
   },
 
   onLaunch: function () {

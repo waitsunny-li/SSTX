@@ -25,10 +25,9 @@ Page({
       {},
       {},
       {},
-      {},
+      {}, 
     ],
     lookAllList: [],
-    currentIdIndex: 0,
     current: 0,
     isUp: false,
     idList: [],
@@ -40,14 +39,14 @@ Page({
     isCollected: false,
 
     sitInfo: {},
-    currentId: '',
     // 显示保存二维码图片
     isShowImgCode: false,
   },
   isShare: false,
+  currentId: '',
+  currentIdIndex: 0,
   //options(Object)
   onLoad: function (options) {
-    residueTime(1611849600)
     // init value
     const {
       id,
@@ -224,7 +223,7 @@ Page({
 
   // swiper animationfinish end
   handleSwiperChange(event) {
-    let currentIdIndex = this.data.currentIdIndex
+    let currentIdIndex = this.currentIdIndex
     let lookAllList = this.data.lookAllList
     let detailList = this.data.detailList
     let idList = this.data.idList
@@ -248,9 +247,9 @@ Page({
       seenAvaList = lookAllList[currentIdIndex]
       this.requestProDetail(idList[currentIdIndex])
     }
+    this.currentIdIndex = currentIdIndex
     this.setData({
       detailList,
-      currentIdIndex,
       seenAvaList
     })
 
@@ -292,15 +291,13 @@ Page({
 
   // 分享
   onShareAppMessage(e) {
-    let currentId = this.data.currentId
     request({
       url: '/user/share',
       data: {
-        id: currentId,
+        id: this.currentId,
         type: 0
       }
     }).then(res => {
-      console.log(res);
       let code = res.code
       if (code == 1) {
         // wx.showToast({
@@ -328,8 +325,8 @@ Page({
     const {
       id
     } = e.currentTarget.dataset
+    this.currentId = id
     this.setData({
-      currentId: id,
       isShowShare: true
     })
   },
@@ -340,12 +337,16 @@ Page({
     wx.showLoading({
       title: '图片加载中~',
     })
+    console.log(this.currentId);
     try {
       r = await request({
-        url: '/user/shareQrcode'
+        url: '/user/shareQrcode',
+        data: {
+          type: 0,
+          id: this.currentId
+        }
       })
     } catch (e) {
-      console.log(e);
       wx.hideLoading()
     }
     wx.hideLoading()

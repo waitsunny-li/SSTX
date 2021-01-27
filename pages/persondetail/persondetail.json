@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "bottom-pop": "/components/bottom-pop/bottom-pop"
+  },
   "navigationBarTitleText": "本期人物",
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black"

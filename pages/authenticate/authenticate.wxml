@@ -8,7 +8,8 @@
     <!-- tel -->
     <view class="input-wrap">
       <text class="label" space="emsp">手机号</text>
-      <input type="number" name="mobile" value="" bindblur="handleTelBlur" placeholder="请输入手机号" />
+      <input type="number" name="mobile" value=""
+      bindinput="handleTelBlur" placeholder="请输入手机号" />
     </view>
     <view class="input-wrap">
       <text class="label" space="nbsp">验证码</text>

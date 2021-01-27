@@ -1,0 +1,6 @@
+/* components/count-down/count-down.wxss */
+.time {
+  font-size: 24rpx;
+  color: var(--themeColor);
+  display: inline;
+}

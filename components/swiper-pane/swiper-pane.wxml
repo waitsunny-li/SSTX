@@ -16,10 +16,10 @@
   </view>
   <!-- 底部滚动 -->
   <view class="swiper_art_wrap">
-    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}" bindscrolltolower="handleToLower" scroll-left="{{scrollLeft}}" bindscrolltoupper="handleToUpper">
+    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}" scroll-left="{{scrollLeft}}" bindscrolltoupper="handleToUpper">
       <view class="roll" style="width: {{swiperVideoList.length * 340 }}px">
         <block wx:for="{{swiperVideoList}}" wx:key="id">
-          <navigator class="video-item-desc">
+          <navigator class="video-item-desc" url="/pages/videodetail/videodetail?id={{item.id}}&cate=support&status={{0}}" hover-class="none">
             <image class="video-item-image" src="{{uploadBaseUrl + item.image}}" mode="aspectFill" lazy-load="true" />
             <view class="video-desc">
               <view class="name">{{item.title}}</view>

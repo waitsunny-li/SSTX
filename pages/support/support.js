@@ -154,8 +154,6 @@ Page({
     } catch (e) {
       console.log(e);
     }
-    console.log(this.page);
-
     videoList = r.data.data
     this.setData({
       currentIndex,
@@ -166,7 +164,6 @@ Page({
 
   // srcorll lower
   async handleVideoToLower(e) {
-    console.log('滚到到底');
     this.page++
     let r = await request({
       url: '/support/list',
@@ -176,7 +173,6 @@ Page({
         }
     })
     console.log(this.page);
-    let videoList = this.data.videoList.concat(r.data.data)
     this.setData({
       videoList
     })
@@ -199,8 +195,6 @@ Page({
     if (r.code == 1) {
       videoList = r.data.data
     }
-    console.log(this.page);
-
     this.setData({
       currentIndex: current,
       videoList,

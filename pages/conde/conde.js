@@ -27,7 +27,6 @@ Page({
       {},
     ],
     lookAllList: [],
-    currentIdIndex: 0,
     current: 0,
     isUp: false,
     idList: [],
@@ -42,6 +41,8 @@ Page({
     // 显示保存二维码图片
     isShowImgCode: false,
   },
+  currentId: '',
+  currentIdIndex: 0,
   //options(Object)
   onLoad: function (options) {
     // init value
@@ -217,7 +218,7 @@ Page({
 
   // swiper animationfinish end
   handleSwiperChange(event) {
-    let currentIdIndex = this.data.currentIdIndex
+    let currentIdIndex = this.currentIdIndex
     let lookAllList = this.data.lookAllList
     let detailList = this.data.detailList
     let idList = this.data.idList
@@ -241,9 +242,9 @@ Page({
       seenAvaList = lookAllList[currentIdIndex]
       this.requestConDetail(idList[currentIdIndex])
     }
+    this.currentIdIndex = currentIdIndex
     this.setData({
       detailList,
-      currentIdIndex,
       seenAvaList
     })
 
@@ -283,7 +284,16 @@ Page({
   },
 
   // 查看联系电话
-  handleLookConnect(e) {
+  async handleLookConnect(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    const r = await request({
+      url: '/contacts/lookTel',
+      data: {
+        id: id
+      }
+    })
     this.setData({
       isShowConnect: true
     })
@@ -291,6 +301,11 @@ Page({
 
   // 查看分享
   handleTapShare(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    this.currentId = id
+    console.log(this.currentId);
     this.setData({
       isShowShare: true
     })
@@ -304,7 +319,11 @@ Page({
     })
     try {
       r = await request({
-        url: '/user/shareQrcode'
+        url: '/user/shareQrcode',
+        data: {
+          type: 1,
+          id: this.currentId
+        }
       })
     } catch (e) {
       console.log(e);

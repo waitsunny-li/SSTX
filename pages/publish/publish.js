@@ -4,12 +4,12 @@
  */
 
 import {
-  request
+  request,
+  uploadFile
 } from '../../request/index'
 import pop from '../../utils/pop'
 import {
   chooseOneImg,
-  uploadFile,
   showModal
 } from '../../utils/asyncWx'
 import {
@@ -76,23 +76,23 @@ Page({
     poptype: '',
     popmsg: '',
   },
-  baseUrl: app.globalData.baseUrl,
+  baseUrl: '',
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let sitInfo = wx.getStorageSync('sitInfo');
+    this.baseUrl = sitInfo.file_domain
     // 如果有 获取缓存中的procityObj, 填充到地区中
     getCacheLocationInfo.apply(this, null)
-
 
     // 保存当前位置信息到地区选择表单中
     const addressArray = [this.data.provinceName, this.data.cityName]
     this.setData({
       needAddress: addressArray,
-      connectionAddress: addressArray
+      connectionAddress: addressArray,
     })
 
-    console.log(app.globalData.uploadBaseUrl);
   },
 
   /**
@@ -218,7 +218,8 @@ Page({
   // look img
   handleLookImg(e) {
     let urls = []
-    urls[0] = this.baseUrl + this.data.group_image
+    urls[0] = this.data.group_image
+    console.log(urls[0]);
     wx.previewImage({
       current: urls[0],
       urls,

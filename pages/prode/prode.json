@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "star": "/components/star/star",
-    "bottom-pop": "/components/bottom-pop/bottom-pop"
+    "bottom-pop": "/components/bottom-pop/bottom-pop",
+    "count-down": "/components/count-down/count-down"
   },
   "navigationBarTitleText": "需求详情"
 }

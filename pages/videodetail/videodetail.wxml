@@ -11,7 +11,7 @@
         <text class="iconfont icon-dianzan"></text>
         <text class="number">{{currentVideo.zan}}</text>
       </view>
-      <view class="share" bind:tap="handleTapShare">
+      <view class="share" bind:tap="handleTapShare" data-id="{{currentVideo.id}}">
         <view class="text">分享给朋友</view>
         <text class="iconfont icon-fenxiang1"></text>
       </view>

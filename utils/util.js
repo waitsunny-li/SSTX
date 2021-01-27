@@ -2,21 +2,6 @@
  * @Author: liweilong
  * @Date: 2021-01-04 12:26:31
  */
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
-
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
-}
 // const procity = ['北京', '北京市']
 export const addressTransIndexArray = (provinceList, cityList, procity) => {
   let proIndex, cityIndex, cityArry, proName, cityName
@@ -92,31 +77,4 @@ export const sliceArrayTen = (arry, value) => {
   let leftArry = arry.slice(index - (10 - rightLen), index)
   let newArr = rightSlice.concat(leftArry)
   return newArr
-}
-
-// 倒计时天时分钟秒
-export const countDown = (endTime, that) => { //倒计时函数
-  let newTime = new Date().getTime();
-  let remainTime = endTime * 1000 - newTime;
-  let obj = null;
-  let t = '';
-  // 如果活动未结束，对时间进行处理
-  if (remainTime > 0) {
-    let time = remainTime / 1000;
-    // 获取天、时、分、秒
-    let day = parseInt(time / (60 * 60 * 24));
-    let hou = parseInt(time % (60 * 60 * 24) / 3600);
-    let min = parseInt(time % (60 * 60 * 24) % 3600 / 60);
-    let sec = parseInt(time % (60 * 60 * 24) % 3600 % 60);
-    obj = formatNumber(day) + '天' + formatNumber(hou) + ':' + formatNumber(min) + ':' + formatNumber(sec)
-  }
-  t = setTimeout(function () {
-    that.setData({
-      residueTime: obj
-    });
-    countDown(endTime, that)
-  }, 1000)
-  if (remainTime <= 0) {
-    clearTimeout(t);
-  }
 }
