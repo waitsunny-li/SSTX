@@ -63,7 +63,14 @@ Component({
       })
     },
 
+    handleGetUserInfo(e) {
+      console.log(e);
+      console.log(e.detail.signature);
+    },
+
     async handleGetUserInfo(e) {
+      const {signature} = e.detail
+      if (!signature) return;
       const userInfo = e.detail.userInfo
       const {
         avatarUrl,

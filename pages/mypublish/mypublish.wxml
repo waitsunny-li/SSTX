@@ -7,8 +7,8 @@
   <view class="header-title-top">{{headerTitle}}</view>
   <viwe class="art-content">
     <block wx:for="{{itemList}}" wx:key="id">
-      <project-item isShowIcon="{{false}}" wx:if="{{cateIndex == 0}}" projectItme="{{item}}"/>
-      <connection-item connectionObj="{{item}}" isShowIcon="{{false}}" wx:else/>
+      <project-item isShowIcon="{{false}}" wx:if="{{cateIndex == 0}}" projectItme="{{item}}" data-id="{{item.id}}" objectThumb="{{sitInfo.file_domain + sitInfo.object_thumb}}" bind:tap="handleProConToDetail"/>
+      <connection-item connectionObj="{{item}}" isShowIcon="{{false}}" data-id="{{item.id}}" connectionThumb="{{sitInfo.file_domain + sitInfo.connection_thumb}}" bind:tap="handleProConToDetail" wx:else/>
     </block>
     <view class="blank" wx:if="{{isTotal}}">
       我是有底线的哦~

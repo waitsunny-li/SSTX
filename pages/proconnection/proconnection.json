@@ -3,7 +3,8 @@
     "title-tab": "/components/title-tab/title-tab",
     "province-city": "/components/province-city/province-city",
     "project-item": "/components/project-item/project-item",
-    "connection-item": "/components/connection-item/connection-item"
+    "connection-item": "/components/connection-item/connection-item",
+    "login-pop": "/components/login-pop/login-pop"
   },
   "navigationBarTitleText": "项目人脉库",
   "navigationBarBackgroundColor": "#e1211f",

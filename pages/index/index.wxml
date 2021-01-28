@@ -1,123 +1,123 @@
-<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="50" bindscroll="handlescroll" enhanced="{{true}}" bounces="{{true}}">
-  <!-- logo begin -->
-  <view class="top-logo">
-    <view class="title-text">礼义仁智信</view>
-    <view class="log-img">
-      <image class="logo-img" mode="aspectFill" src="{{sitInfo.file_domain + sitInfo.logo}}" />
+<scroll-view class="indexscroll" scroll-y="true" enable-back-to-top="{{true}}" bindscrolltolower="handletolower" lower-threshold="0" enhanced="{{true}}" bounces="{{true}}" scroll-anchoring="{{true}}" bindscroll="handlescroll" refresher-triggered="{{isRefresher}}">
+    <!-- logo begin -->
+    <view class="top-logo">
+      <view class="title-text">礼义仁智信</view>
+      <view class="log-img">
+        <image class="logo-img" mode="aspectFill" src="{{sitInfo.file_domain + sitInfo.logo}}" lazy-load="{{true}}"/>
+      </view>
+      <view class="title-text">弘扬正能量</view>
     </view>
-    <view class="title-text">弘扬正能量</view>
-  </view>
-  <!-- logo end -->
-  <!-- index banner begin -->
-  <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
-    <block wx:for="{{bannerList}}" wx:key="id">
-      <swiper-item class="index-swiper-item">
-        <navigator class="index-swiper-navigator">
-          <image src="{{sitInfo.file_domain + item.image}}" mode="aspectFill" lazy-load="true" />
-        </navigator>
-      </swiper-item>
-    </block>
-  </swiper>
-  <!-- index banner end -->
-  <!-- dynamic beign -->
-  <swiper-title titleList="{{noticeList}}" tel="{{sitInfo.phone}}"/>
-  <!-- dynamic end -->
-  <!-- publish begin -->
-  <view class="publish-support">
-    <view hover-class="none" class="item-wrap" bind:tap="handlePubProPage">
-      <text class="iconfont icon-fabu"></text>
-      <view class="title">发布需求</view>
-      <view class="desc">(寻求帮助)</view>
-    </view>
-    <view class="item-wrap" bind:tap="handlePubConPage">
-      <text class="iconfont icon-ai-connection"></text>
-      <view class="title">提供人脉</view>
-      <view class="desc">(为家乡建设做贡献)</view>
-    </view>
-  </view>
-  <!-- publish end -->
-  <!-- connection begin -->
-  <swiper-pane swiperVideoList="{{swiperVideoList}}" uploadBaseUrl="{{sitInfo.file_domain}}" bind:changeTitle="handleSwiperTitle"/>
-  <!-- connection end -->
-  <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
-    <!-- location begin -->
-    <view class="pro-city">
-      <province-city bind:locationEvent="listenLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}">
-        <view class="register-number" slot="right">
-          <view class="on-line number-wrap">
-            在线人数：
-            <text class="number">{{sitInfo.online}}</text>
-          </view>
-          <view class="number-wrap">
-            注册人数：
-            <text class="number">{{sitInfo.register}}</text>
-          </view>
-        </view>
-      </province-city>
-    </view>
-    <!-- location end -->
-    <!-- title tab begin -->
-    <view class="title-tab-wrap">
-      <title-tab width="480rpx" ext-class="default" currentIndex="{{currentIndex}}" bind:cateChange="handleCateChange"></title-tab>
-      <view class="project-connection">
-        <view class="item" bind:tap="handleTapProCate">
-          <text class="iconfont icon-xiangmu"></text>
-          <view class="text">项目库</view>
-        </view>
-        |
-        <view class="item" bind:tap="handleTapConCate">
-          <text class="iconfont icon-ai-connection"></text>
-          <view class="text">人脉库</view>
-        </view>
+    <!-- logo end -->
+    <!-- index banner begin -->
+    <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#ffffff" circular="true" autoplay="true">
+      <block wx:for="{{bannerList}}" wx:key="id">
+        <swiper-item class="index-swiper-item">
+          <navigator class="index-swiper-navigator">
+            <image src="{{sitInfo.file_domain + item.image}}" mode="aspectFill" lazy-load="{{true}}" />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- index banner end -->
+    <!-- dynamic beign -->
+    <swiper-title titleList="{{noticeList}}" tel="{{sitInfo.phone}}" />
+    <!-- dynamic end -->
+    <!-- publish begin -->
+    <view class="publish-support">
+      <view hover-class="none" class="item-wrap" bind:tap="handlePubProPage">
+        <text class="iconfont icon-fabu"></text>
+        <view class="title">发布需求</view>
+        <view class="desc">(寻求帮助)</view>
+      </view>
+      <view class="item-wrap" bind:tap="handlePubConPage">
+        <text class="iconfont icon-ai-connection"></text>
+        <view class="title">提供人脉</view>
+        <view class="desc">(为家乡建设做贡献)</view>
       </view>
     </view>
-    <!-- title tab end -->
-  </view>
-  <view class="{{ishowcateps ? 'placehold-cate' : ''}}"></view>
-  <!-- project / connection item begin -->
-  <view class="project-connection-wrap">
-    <block wx:if="{{currentIndex == 0}}">
-      <block wx:for="{{proconList}}" wx:key="id">
-        <project-item bind:tap="handleProConToDetail" projectItme="{{item}}" data-id="{{item.id}}" objectThumb="{{sitInfo.file_domain + sitInfo.object_thumb}}" />
-      </block>
-    </block>
-    <block wx:else>
-      <block wx:for="{{proconList}}" wx:key="id">
-        <connection-item bind:tap="handleProConToDetail" connectionObj="{{item}}" data-id="{{item.id}}" connectionThumb="{{sitInfo.file_domain + sitInfo.connection_thumb}}"/>
-      </block>
-    </block>
-  </view>
-  <!-- good list begin -->
-  <view class="good-person-list">
-    <view class="left-title">善商榜</view>
-    <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
-      <view class="goodrool" style="width:{{goodList.length * 90}}px">
-        <block wx:for="{{goodList}}" wx:key="id">
-          <view class="good-item">
-            <image class="img" src="{{sitInfo.file_domain + item.avatar}}"></image>
-            <view class="good-name">
-              <text class="index">{{index + 1}}.</text>
-              {{item.name}}
+    <!-- publish end -->
+    <!-- connection begin -->
+    <swiper-pane swiperVideoList="{{swiperVideoList}}" uploadBaseUrl="{{sitInfo.file_domain}}" bind:changeTitle="handleSwiperTitle" />
+    <!-- connection end -->
+    <view class="top-cate-wrap {{ishowcateps ? 'catefixed' : ''}}">
+      <!-- location begin -->
+      <view class="pro-city">
+        <province-city bind:locationEvent="listenLocation" multiIndex="{{procityIndex}}" provinceName="{{provinceName}}" cityName="{{cityName}}" objectCityArray="{{objectCityArray}}">
+          <view class="register-number" slot="right">
+            <view class="on-line number-wrap">
+              在线人数：
+              <text class="number">{{sitInfo.online}}</text>
+            </view>
+            <view class="number-wrap">
+              注册人数：
+              <text class="number">{{sitInfo.register}}</text>
             </view>
           </view>
-        </block>
-        <navigator url="/pages/good/good?currentIndex=4" hover-class="none" class="more-data">
-          <text class="iconfont icon-chakangengduoshuju"></text>
-        </navigator>
+        </province-city>
       </view>
-    </scroll-view>
-  </view>
-  <!-- good list end -->
-  <!-- good bottom nav begin -->
-  <view class="good-bottom-nav">
-    <navigator url="/pages/good/good" class="nav-item" hover-class="none">
-      <image src="/icons/nav1.png"></image>
-    </navigator>
-    <navigator url="/pages/good/good?currentIndex=1" class="nav-item" hover-class="none">
-      <image src="/icons/nav2.png"></image>
-    </navigator>
-  </view>
-  <!-- good bottom nav end -->
-  <view style="width: 100vw; height: 60rpx"></view>
+      <!-- location end -->
+      <!-- title tab begin -->
+      <view class="title-tab-wrap">
+        <title-tab width="480rpx" ext-class="default" currentIndex="{{currentIndex}}" bind:cateChange="handleCateChange"></title-tab>
+        <view class="project-connection">
+          <view class="item" bind:tap="handleTapProCate">
+            <text class="iconfont icon-xiangmu"></text>
+            <view class="text">项目库</view>
+          </view>
+          |
+          <view class="item" bind:tap="handleTapConCate">
+            <text class="iconfont icon-ai-connection"></text>
+            <view class="text">人脉库</view>
+          </view>
+        </view>
+      </view>
+      <!-- title tab end -->
+    </view>
+    <view class="{{ishowcateps ? 'placehold-cate' : ''}}"></view>
+    <!-- project / connection item begin -->
+    <view class="project-connection-wrap">
+      <block wx:if="{{currentIndex == 0}}">
+        <block wx:for="{{proconList}}" wx:key="id">
+          <project-item bind:tap="handleProConToDetail" projectItme="{{item}}" data-id="{{item.id}}" objectThumb="{{sitInfo.file_domain + sitInfo.object_thumb}}" />
+        </block>
+      </block>
+      <block wx:else>
+        <block wx:for="{{proconList}}" wx:key="id">
+          <connection-item bind:tap="handleProConToDetail" connectionObj="{{item}}" data-id="{{item.id}}" connectionThumb="{{sitInfo.file_domain + sitInfo.connection_thumb}}" />
+        </block>
+      </block>
+    </view>
+    <!-- good list begin -->
+    <view class="good-person-list">
+      <view class="left-title">善商榜</view>
+      <scroll-view class="pane-scroll" scroll-x="true" scroll-y="false" enable-flex="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+        <view class="goodrool" style="width:{{goodList.length * 90}}px">
+          <block wx:for="{{goodList}}" wx:key="id">
+            <view class="good-item">
+              <image class="img" src="{{sitInfo.file_domain + item.avatar}}" lazy-load="{{true}}"></image>
+              <view class="good-name">
+                <text class="index">{{index + 1}}.</text>
+                {{item.name}}
+              </view>
+            </view>
+          </block>
+          <navigator url="/pages/good/good?currentIndex=4" hover-class="none" class="more-data">
+            <text class="iconfont icon-chakangengduoshuju"></text>
+          </navigator>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- good list end -->
+    <!-- good bottom nav begin -->
+    <view class="good-bottom-nav">
+      <navigator url="/pages/good/good" class="nav-item" hover-class="none">
+        <image src="/icons/nav1.png" lazy-load="{{true}}"></image>
+      </navigator>
+      <navigator url="/pages/good/good?currentIndex=1" class="nav-item" hover-class="none">
+        <image src="/icons/nav2.png"></image>
+      </navigator>
+    </view>
+    <!-- good bottom nav end -->
+    <view style="width: 100vw; height: 60rpx"></view>
 </scroll-view>
-<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleUserInfo" isShowClose="{{false}}"/>
+<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleUserInfo" isShowClose="{{false}}" />

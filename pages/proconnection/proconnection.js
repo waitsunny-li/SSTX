@@ -7,7 +7,8 @@ import {
 } from '../../request/index'
 import {
   returnIdArry,
-  sliceArrayTen
+  sliceArrayTen,
+  testLogin
 } from '../../utils/util'
 // pages/project/project.js
 Page({
@@ -20,20 +21,22 @@ Page({
     cityName: '北京市',
     objectCityArray: [],
 
-    cateList: ['高端人脉协助', '项目合作', '其他'],
-    currentCateIndex: 0,
+    cateList: ['高端人脉协助', '项目合作', '其他', '全部'],
+    currentCateIndex: 3,
     cateIndex: 0,
 
     // project
-    proCateList: ['高端人脉协助', '项目合作', '其他'],
-    proCateIndex: 0,
+    proCateList: ['高端人脉协助', '项目合作', '其他', '全部'],
+    proCateIndex: 3,
     proList: [],
 
     // connection
-    conCateList: ['工程类', '招商类', '其他'],
-    conCateIndex: 0,
+    conCateList: ['工程类', '招商类', '其他', '全部'],
+    conCateIndex: 3,
     conList: [],
-    top: 0
+    top: 0,
+    isShowLogin: false,
+    sitinfo: {}
   },
   page: 1,
   // is scroll to lower
@@ -45,20 +48,20 @@ Page({
   onLoad: function (options) {
     let procityObj = wx.getStorageSync('procityObj')
     let sitinfo = wx.getStorageSync('sitInfo');
-    this.setData({
-      procityIndex: procityObj.procityIndex,
-      provinceName: procityObj.procityName[0],
-      cityName: procityObj.procityName[1],
-      objectCityArray: procityObj.objectCityArray,
-      sitinfo
-    })
+    if (procityObj && sitinfo) {
+      this.setData({
+        procityIndex: procityObj.procityIndex,
+        provinceName: procityObj.procityName[0],
+        cityName: procityObj.procityName[1],
+        objectCityArray: procityObj.objectCityArray,
+        sitinfo
+      })
+    }
 
     // get prolist
     this.initRequest().catch(err => {
-      if (err == 401) {
-        console.log('请登录');
-      }
-      console.log(err);
+      wx.hideLoading();
+      console.log(this.data.procityIndex);
     })
   },
 
@@ -69,7 +72,6 @@ Page({
       title: '加载中',
       mask: true,
     });
-
     let proPromiseData = await request({
       url: '/project/list',
       data: {
@@ -84,17 +86,14 @@ Page({
         address: address
       }
     })
+    let proList = proPromiseData.data.data
+    let conList = conPromiseData.data.data
     wx.hideLoading();
     this.setData({
-      proList: proPromiseData.data.data,
-      conList: conPromiseData.data.data
+      proList,
+      conList,
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -112,6 +111,8 @@ Page({
     this.setData({
       cateIndex
     })
+
+    testLogin(this)
   },
 
   // handle cate change
@@ -210,7 +211,6 @@ Page({
     }
 
   },
-
 
   // swiper change
   async handleSwiperChange(event) {
@@ -312,6 +312,11 @@ Page({
       })
     }
     this.isScrollLower = false
+  },
+
+  // login success event
+  handleGetUserInfo(e) {
+    this.initRequest()
   },
 
   // 跳转详情

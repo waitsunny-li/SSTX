@@ -13,10 +13,10 @@
           <view class="auth-wrap" wx:if="{{vipUserInfo.verification.realname}}">
             <view class="t">实名认证用户</view>
           </view>
-          <navigator hover-class="none" url="/pages/authenticate/authenticate" class="auth-wrap" wx:else>
+          <view class="auth-wrap" bind:tap="handleGoAuth" wx:else>
             <view class="t">我的实名认证</view>
             <text class="iconfont icon-bianji"></text>
-          </navigator>
+          </view>
         </view>
       </view>
       <!-- 信用 -->
@@ -37,12 +37,12 @@
       <view class="auth">
         <view class="title-left">实名认证</view>
         <view class="right-info">
-          <view class="info" wx:if="{{vipUserInfo.verification.realname}}">尊敬的用户，您已实名认证</view>
+          <view class="info" wx:if="{{vipUserInfo.verification.realname == 1}}">尊敬的用户，您已实名认证</view>
           <view class="info" wx:else>您暂未实名认证</view>
-          <navigator url="/pages/authenticate/authenticate" class="go-cread" hover-class="none" wx:if="{{!vipUserInfo.verification.realname}}">
+          <view class="go-cread" bind:tap="handleGoAuth" wx:if="{{vipUserInfo.verification.realname != 1}}">
             <view class="go-text">立即认证</view>
             <text class="iconfont icon-jiantou12"></text>
-          </navigator>
+          </view>
         </view>
       </view>
     </view>

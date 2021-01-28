@@ -26,7 +26,7 @@
         新手机号：
       </view>
       <view class="input">
-        <input class="" type="number" placeholder="请输入新手机号" name="mobile" bindblur="handleNewMBlur"/>
+        <input class="" type="number" placeholder="请输入新手机号" name="mobile" bindinput="handleNewMBlur"/>
       </view>
     </view>
     <view class="input-wrap">

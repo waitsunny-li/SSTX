@@ -86,7 +86,6 @@ Component({
   methods: {
     bindMultiPickerChange: function (e) {
       let [pro, cit] = e.detail.value
-      console.log(this.data.objectCityArray);
       let provinceObj = this.data.objectCityArray[0][pro]
       let cityObj = this.data.objectCityArray[1][cit]
 
@@ -134,8 +133,6 @@ Component({
         city,
         province
       })
-      console.log(this.data.objectCityArray);
-
     }
   }
 })

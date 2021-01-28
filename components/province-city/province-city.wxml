@@ -5,7 +5,7 @@
       <view class="head-title">地区：</view>
     </block>
     <view class="select-wrap">
-      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{[11, 0]}}" range="{{objectCityArray}}" range-key="name" class="picker-wrap">
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{objectCityArray}}" range-key="name" class="picker-wrap">
         <view class="picker">
           {{provinceName}}
           <text class="iconfont icon-jiantou12"></text>

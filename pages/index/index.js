@@ -8,7 +8,8 @@ import {
 import QQMapWX from '../../utils/qqmap-wx-jssdk.min'
 import {
   addressTransIndexArray,
-  returnIdArry
+  returnIdArry,
+  testLogin
 } from '../../utils/util'
 //获取应用实例
 let app = getApp();
@@ -26,7 +27,6 @@ Page({
     cityName: '北京市',
     objectCityArray: [],
 
-    cateTop: 0,
     ishowcateps: false,
     bannerList: [],
     noticeList: [],
@@ -42,10 +42,14 @@ Page({
     proconList: [],
     goodList: [],
 
-    isShowLogin: false
+    isShowLogin: false,
+    isRefresher: true,
   },
+  start: 0,
+  cateTop: 0,
   //options(Object)
   onLoad: function (options) {
+    let self = this
     // 缓存中不存在procity时要获取定位的位置信息
     if (!wx.getStorageSync('procity')) {
       app.getUserLocation(function (res) {
@@ -61,46 +65,51 @@ Page({
               province,
               city
             } = resLoc.result.address_component
-            console.log(province, city)
             wx.setStorageSync('procity', [province, city]);
+            self.getLocationInfo()
           }
         });
       })
     }
+    this.getLocationInfo()
+    
+    // get content of theme
+    this.requestTheme()
+  },
+  onReady: function () {
+    this.queryMultipleNodes()
+  },
+  onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+    testLogin(this)
+  },
 
+  // 获取当前的定位信息
+  async getLocationInfo() {
     // 获取定位的信息转化为下标列值，方便地址选择,并设置地区选择框的值
     const provinceList = wx.getStorageSync('province');
     const cityList = wx.getStorageSync('city')
     const procity = wx.getStorageSync('procity')
     if (provinceList && cityList && procity) {
       let procityObj = addressTransIndexArray(provinceList, cityList, procity)
-      console.log(procityObj)
       this.setData({
         procityIndex: procityObj.procityIndex,
         provinceName: procityObj.procityName[0],
         cityName: procityObj.procityName[1],
-        objectCityArray: procityObj.objectCityArray
+        objectCityArray: procityObj.objectCityArray,
       })
       wx.setStorageSync('procityObj', procityObj);
     }
-
-    this.requestTheme().catch(err => {
-      console.log(err);
-      if (err == 401) {
-        this.setData({
-          isShowLogin: true
-        })
-      }
-    })
-  },
-  onReady: function () {
-    this.queryMultipleNodes()
   },
 
   // 首页的所有请求
   async requestTheme() {
     let address = [this.data.provinceName, this.data.cityName]
-    console.log('requestTheme');
     let getSiteDataPromise = request({
       url: '/index/getSite',
     })
@@ -130,9 +139,8 @@ Page({
     let bannerData = await bannerDataPromise
     let noticeData = await noticeDataPromise
     let supportBannerDataList = await supportBannerPromise
-    let projectDataList = await projectDataPromise
     let goodListDataList = await goodListDataPromise
-
+    let projectDataList = await projectDataPromise
     wx.setStorageSync('imageBaseUrl', siteInfoData.data.file_domain);
     wx.setStorageSync('sitInfo', siteInfoData.data)
     this.setData({
@@ -140,9 +148,10 @@ Page({
       bannerList: bannerData.data,
       noticeList: noticeData.data,
       swiperVideoList: supportBannerDataList.data.data,
-      proconList: projectDataList.data.data,
-      goodList: goodListDataList.data.data
+      goodList: goodListDataList.data.data,
+      proconList: projectDataList.data.data
     })
+    return 1
   },
 
   //声明节点查询的方法
@@ -151,27 +160,8 @@ Page({
     query.select('.top-cate-wrap').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
     query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
     query.exec((res) => {
-      this.setData({
-        cateTop: res[0].top
-      })
+      this.cateTop = res[0].top
     })
-  },
-
-  onShow: function () {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      })
-    }
-
-    const userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo);
-    if (!userInfo) {
-      this.setData({
-        isShowLogin: true
-      })
-    }
   },
 
   // 各界支持
@@ -231,7 +221,6 @@ Page({
           address: option.address || ''
         }
       })
-      console.log('项目', r.data.data);
       if (r.code == 1) {
         this.setData({
           proconList: r.data.data
@@ -247,7 +236,6 @@ Page({
         }
       })
       if (r.code == 1) {
-        console.log('人脉', r.data.data);
         this.setData({
           proconList: r.data.data
         })
@@ -262,11 +250,16 @@ Page({
     let {
       scrollTop
     } = e.detail
-    if (scrollTop > this.data.cateTop) {
+    let ishowcateps = this.data.ishowcateps
+    if (scrollTop > this.cateTop) {
+      // 防止多次调用this.setData（避免性能浪费）
+      if(ishowcateps) return;
       this.setData({
         ishowcateps: true
       })
     } else {
+      // 防止多次调用this.setData（避免性能浪费）
+      if(!ishowcateps) return;
       this.setData({
         ishowcateps: false
       })
@@ -278,17 +271,14 @@ Page({
 
   },
 
-  handleClickPub(e) {
-    console.log('点击发布');
-  },
-
   /**
    * 
    * 项目、人脉跳转 
    */
   handleProConToDetail(e) {
-    const {id} = e.currentTarget.dataset
-    console.log(id);
+    const {
+      id
+    } = e.currentTarget.dataset
     let proconList = this.data.proconList
     let idList = returnIdArry(proconList)
     if (this.data.currentIndex == 0) {
@@ -296,7 +286,6 @@ Page({
         url: '/pages/prode/prode?id=' + id + '&ids=' + idList
       })
     } else {
-      console.log('人脉：');
       wx.navigateTo({
         url: '/pages/conde/conde?id=' + id + '&ids=' + idList
       })
@@ -337,5 +326,20 @@ Page({
   // 登录成功回调
   handleUserInfo(e) {
     this.requestTheme()
+  },
+
+  async handleRresherPull(e) {
+    let address = [this.data.provinceName, this.data.cityName]
+    let projectData= await request({
+      url: '/project/list',
+      data: {
+        type: this.data.currentIndex,
+        address: address.join('/')
+      }
+    })
+    this.setData({
+      isRefresher: false,
+      proconList: projectData.data.data
+    })
   }
 });

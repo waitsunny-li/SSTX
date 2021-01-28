@@ -26,9 +26,7 @@ Page({
       {},
       {},
     ],
-    lookAllList: [],
     current: 0,
-    isUp: false,
     idList: [],
     isShowConnect: false,
     isShowShare: false,
@@ -43,6 +41,9 @@ Page({
   },
   currentId: '',
   currentIdIndex: 0,
+  lookAllList: [],
+  isUp: false,
+
   //options(Object)
   onLoad: function (options) {
     // init value
@@ -76,7 +77,7 @@ Page({
   // get connection detail
   async requestConDetail(id) {
     let detailList = this.data.detailList
-    let lookAllList = this.data.lookAllList
+    let lookAllList = this.lookAllList
     const r = await request({
       url: '/contacts/detail',
       data: {
@@ -95,7 +96,6 @@ Page({
       lookAllList[this.data.current] = look.data
       this.setData({
         detailList,
-        lookAllList,
         seenAvaList
       })
       this.requestIscollected(id)
@@ -183,6 +183,8 @@ Page({
     const {
       id
     } = e.currentTarget.dataset
+    const detailList = this.data.detailList
+    const current = this.data.current
     let r
     try {
       r = await request({
@@ -198,20 +200,24 @@ Page({
       status
     } = r.data
     if (status) { // 关注成功
+      detailList[current].subscribe_num++
       wx.showToast({
         title: r.msg,
         icon: 'success',
       })
       this.setData({
-        isCollected: true
+        isCollected: true,
+        detailList
       })
     } else { // 取消关注
+      detailList[current].subscribe_num--
       wx.showToast({
         title: r.msg,
         icon: 'none',
       })
       this.setData({
-        isCollected: false
+        isCollected: false,
+        detailList
       })
     }
   },
@@ -219,10 +225,10 @@ Page({
   // swiper animationfinish end
   handleSwiperChange(event) {
     let currentIdIndex = this.currentIdIndex
-    let lookAllList = this.data.lookAllList
+    let lookAllList = this.lookAllList
     let detailList = this.data.detailList
     let idList = this.data.idList
-    let isUp = this.data.isUp
+    let isUp = this.isUp
     let seenAvaList
     const {
       current
@@ -256,13 +262,9 @@ Page({
       dy: dy
     } = event.detail
     if (dy > 0) { // 向下滑动
-      this.setData({
-        isUp: false
-      })
+      isUp = false
     } else { // 向上滑动
-      this.setData({
-        isUp: true
-      })
+      isUp = true
     }
   },
 
@@ -288,14 +290,20 @@ Page({
     const {
       id
     } = e.currentTarget.dataset
+    const detailList = this.data.detailList
+    const current = this.data.current
     const r = await request({
       url: '/contacts/lookTel',
       data: {
         id: id
       }
     })
+    if (r.code == 1) {
+      detailList[current].num++
+    }
     this.setData({
-      isShowConnect: true
+      isShowConnect: true,
+      detailList
     })
   },
 

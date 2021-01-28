@@ -5,7 +5,7 @@
 import {
   request
 } from '../../request/index'
-let app = getApp();
+import {testLogin} from '../../utils/util'
 // pages/support/support.js
 Page({
 
@@ -40,12 +40,6 @@ Page({
     top: 0
   },
   page: 1,
-  // page_0: 1,
-  // page_1: 1,
-  // page_2: 1,
-  // videoList_0: [],
-  // videoList_2: [],
-  // videoList_3: [],
 
   /**
    * 生命周期函数--监听页面加载
@@ -63,49 +57,10 @@ Page({
       this.setData({
         imageBaseUrl: wx.getStorageSync('imageBaseUrl'),
         videoList,
-      }).catch(error => {
-        console.log(error);
       })
     }
-
-    init().catch(err => {
-      if (err == 401) {
-        wx.setStorageSync('userInfo', '');
-        this.setData({
-          isShowLogin: true
-        })
-      }
-    })
-
+    init()
   },
-
-  // 初次获取数据
-  // async requestInit() {
-  //   const r0promise = request({
-  //     url: '/support/list',
-  //     data: {
-  //       status: 0,
-  //       page: 1
-  //     }
-  //   })
-  //   const r1promise = request({
-  //     url: '/support/list',
-  //     data: {
-  //       status: 1,
-  //       page: 1
-  //     }
-  //   })
-  //   const r2promise = request({
-  //     url: '/support/list',
-  //     data: {
-  //       status: 2,
-  //       page: 1
-  //     }
-  //   })
-  //   let videoList0 = await r0promise
-  //   let videoList1 = await r1promise
-  //   let videoList2 = await r2promise
-  // },
 
   /**
    * 生命周期函数--监听页面显示
@@ -117,6 +72,7 @@ Page({
         selected: 1
       })
     }
+    testLogin(this)
   },
 
   // 重新登录后，重新拉取数据

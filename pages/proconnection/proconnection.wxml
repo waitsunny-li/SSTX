@@ -20,7 +20,7 @@
     <swiper-item class="procon-swiper-time" item-id="">
       <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}"  bindscrolltolower="handleSwiperProLower" scroll-top="{{top}}">
         <block wx:for="{{proList}}" wx:key="index">
-          <project-item projectItme="{{item}}" bind:tap="handleProConToDetail" data-id="{{item.id}}" objectThumb="{{sitInfo.file_domain + sitInfo.object_thumb}}" />
+          <project-item projectItme="{{item}}" bind:tap="handleProConToDetail" data-id="{{item.id}}" objectThumb="{{sitinfo.file_domain + sitinfo.object_thumb}}" />
         </block>
         <view style="width:100vw;height:40rpx"></view>
       </scroll-view>
@@ -28,7 +28,7 @@
     <swiper-item class="procon-swiper-time" item-id="">
       <scroll-view class="proscroll" scroll-y="true" enable-back-to-top="{{true}}" enhanced="{{true}}" bounces="{{true}}" scroll-top="{{top}}" bindscrolltolower="handleSwiperConLower">
         <block wx:for="{{conList}}" wx:key="index">
-          <connection-item connectionObj="{{item}}" bind:tap="handleProConToDetail" data-id="{{item.id}}" connectionThumb="{{sitInfo.file_domain + sitInfo.connection_thumb}}"/>
+          <connection-item connectionObj="{{item}}" bind:tap="handleProConToDetail" data-id="{{item.id}}" connectionThumb="{{sitinfo.file_domain + sitinfo.connection_thumb}}"/>
         </block>
         <view style="width:100vw;height:40rpx"></view>
       </scroll-view>
@@ -36,3 +36,5 @@
   </swiper>
 </view>
 <!-- project content beign -->
+
+<login-pop isShow="{{isShowLogin}}" bind:getUserInfo="handleGetUserInfo" isShowClose="{{false}}"/>

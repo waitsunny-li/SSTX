@@ -137,6 +137,7 @@ Page({
     const {
       index
     } = e.currentTarget.dataset
+    
     let r
     try {
       r = await chooseOneImg({
@@ -147,6 +148,10 @@ Page({
     }
     let tempFilePaths = r.tempFilePaths
     cardImgList[index].url = tempFilePaths[0]
+    wx.showLoading({
+      title: '图片上传中~',
+      mask: true,
+    })
     let result = await uploadFile({
       filePath: tempFilePaths[0],
       name: 'file',
@@ -157,7 +162,6 @@ Page({
         'Content-Type': 'multipart/form-data'
       }
     })
-    console.log(result);
     wx.hideLoading()
     let data = JSON.parse(result.data)
 

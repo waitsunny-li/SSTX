@@ -10,6 +10,7 @@
   align-items: center;
   padding-bottom: env(safe-area-inset-bottom);
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .tab-bar .pub-wrap {
   position: fixed;

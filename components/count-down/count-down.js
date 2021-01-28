@@ -22,10 +22,6 @@ Component({
     residueTime: ''
   },
 
-  attached: function () {
-    console.log(this.data.endTime);
-  },
-
   /**
    * 组件的方法列表
    */

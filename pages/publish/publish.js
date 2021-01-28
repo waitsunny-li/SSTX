@@ -250,19 +250,15 @@ Page({
     })
     if (r.code == 1) {
       pop.success(r.msg)
+      this.setData({
+        group_image: ''
+      })
     } else {
       this.setData({
         popmsg: r.msg,
         poptype: 'error'
       })
     }
-  },
-
-  // 人脉表单重置
-  handleConReset(e) {
-    this.setData({
-      group_image: ''
-    })
   },
 
   // swiper change 

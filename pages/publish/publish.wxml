@@ -106,7 +106,7 @@
           <!-- btn -->
           <view class="btn-wrap">
             <button class="submit" type="primary" formType="submit">提交</button>
-            <button class="reset" formType="reset">重置</button>
+            <view style="width:100vw;height:120rpx"></view>
           </view>
         </form>
       </view>
@@ -208,7 +208,7 @@
             <!-- photo -->
             <view class="radio-photo-input">
               <view class="label">
-                <text space="emsp">有无合影：</text>
+                <text space="emsp">相关材料：</text>
                 <text class="iconfont icon-required"></text>
               </view>
               <radio-group class="radio-group" name="photo">
@@ -307,7 +307,7 @@
           <!-- btn -->
           <view class="btn-wrap">
             <button class="submit" type="primary" formType="submit">提交审核</button>
-            <button class="reset" formType="reset" bind:tap="handleConReset">重置</button>
+            <view style="width:100vw;height:120rpx"></view>
           </view>
         </form>
       </view>

@@ -4,7 +4,9 @@
  */
 
 import { request } from "../../request/index"
-
+import {
+  returnIdArry
+} from '../../utils/util'
 // pages/mypublish/mypublish.js
 Page({
 
@@ -12,7 +14,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cateTop: 0,
     headerTitle: '',
     cateIndex: 0,
     itemList: [],
@@ -22,7 +23,7 @@ Page({
   },
   page: 1,
   isScrollLower: false,
-
+  cateTop: 0,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -90,9 +91,7 @@ Page({
     query.select('.art-content').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
     query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
     query.exec((res) => {
-      this.setData({
-        cateTop: res[0].top
-      })
+      this.cateTop = res[0].top
     })
   },
 
@@ -101,7 +100,7 @@ Page({
     let {
       scrollTop
     } = e.detail
-    if (scrollTop > this.data.cateTop) {
+    if (scrollTop > this.cateTop) {
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#970d0d',
@@ -120,6 +119,25 @@ Page({
     console.log(e);
     this.page++
     this.requestUrl(this.data.currentUrls[this.data.cateIndex])
-  }
+  },
+
+  // project and connetion detail 
+  handleProConToDetail(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    let itemList = this.data.itemList
+    let idList = returnIdArry(itemList)
+    if (this.data.cateIndex == 0) {
+      wx.navigateTo({
+        url: '/pages/prode/prode?id=' + id + '&ids=' + idList
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/conde/conde?id=' + id + '&ids=' + idList
+      })
+    }
+
+  },
 
 })

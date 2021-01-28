@@ -13,7 +13,6 @@ const app = getApp();
 //Page Object
 Page({
   data: {
-    cateTop: 0,
     navigationTitle: '',
     imageBaseUrl: '',
     currentVideo: {},
@@ -28,6 +27,7 @@ Page({
   },
   page: 0,
   currentId: '',
+  cateTop: 0,
   //options(Object)
   onLoad: function (options) {
     // 获取七牛云地址
@@ -163,9 +163,7 @@ Page({
     query.select('.recommend-title').boundingClientRect() // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
     query.selectViewport().scrollOffset() // 这段代码的意思是获取页面滑动位置的查询请求
     query.exec((res) => {
-      this.setData({
-        cateTop: res[0].top
-      })
+      this.cateTop = res[0].top
     })
   },
 
@@ -174,7 +172,7 @@ Page({
     let {
       scrollTop
     } = e.detail
-    if (scrollTop > this.data.cateTop) {
+    if (scrollTop > this.cateTop) {
       wx.setNavigationBarTitle({
         title: '其他推荐',
       });

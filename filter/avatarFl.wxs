@@ -8,7 +8,7 @@ function avatarFl(imgUrl, imgBaseUrl) {
   for (var i = 0; i < 4; i++) {
     substrImgUrl += imgUrl[i]
   }
-  if (substrImgUrl === 'http') {
+  if (substrImgUrl === 'http' || substrImgUrl === 'wxfi') {
     return imgUrl
   } else {
     return imgBaseUrl + '/' + imgUrl

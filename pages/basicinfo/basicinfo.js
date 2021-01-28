@@ -91,6 +91,10 @@ Page({
     }
     let tempFilePaths = r.tempFilePaths
     let result
+    wx.showLoading({
+      title: '图片上传中~',
+      mask: true,
+    })
     try {
       result = await uploadFile({
         filePath: tempFilePaths[0],
@@ -109,8 +113,8 @@ Page({
         popmsg: e
       })
     }
+    wx.hideLoading();
     let data = JSON.parse(result.data)
-    console.log(data);
     this.setData({
       avatar: data.key,
       originalAvatar: tempFilePaths[0]
@@ -196,7 +200,6 @@ Page({
     } = e.detail
     value.address = this.data.provinceName + '/' + this.data.cityName
     value.avatar = this.data.avatar
-    console.log(value);
     const r = await request({
       url: '/user/EditUserInfo',
       method: 'post',

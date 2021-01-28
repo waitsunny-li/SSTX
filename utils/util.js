@@ -2,6 +2,7 @@
  * @Author: liweilong
  * @Date: 2021-01-04 12:26:31
  */
+import {request} from '../request/index'
 // const procity = ['北京', '北京市']
 export const addressTransIndexArray = (provinceList, cityList, procity) => {
   let proIndex, cityIndex, cityArry, proName, cityName
@@ -46,7 +47,6 @@ export const getCacheLocationInfo = function () {
   }
 }
 
-
 // 获取数组数据，并返回只含有id的数组
 export const returnIdArry = arryList => {
   let newarry = []
@@ -77,4 +77,23 @@ export const sliceArrayTen = (arry, value) => {
   let leftArry = arry.slice(index - (10 - rightLen), index)
   let newArr = rightSlice.concat(leftArry)
   return newArr
+}
+
+// 检测用户是否处于登录状态，否：重新登录
+export const testLogin = (self, resolve, reject) => {
+  // 发送请求
+  request({
+    url: '/user/isLogin'
+  }).then(res => {
+    if (res.code == 1) {
+      resolve && resolve()
+    } else {
+      self.setData({
+        isShowLogin: true
+      })
+      reject && reject()
+    }
+  }).catch(err => {
+    console.log(err);
+  })
 }

@@ -9,7 +9,6 @@ import {
   downLoadFile,
   saveImgToPhoto
 } from '../../utils/asyncWx'
-import {residueTime} from '../../utils/util'
 const app = getApp();
 
 //Page Object
@@ -27,9 +26,7 @@ Page({
       {},
       {}, 
     ],
-    lookAllList: [],
     current: 0,
-    isUp: false,
     idList: [],
     isShowConnect: false,
     isShowShare: false,
@@ -45,6 +42,9 @@ Page({
   isShare: false,
   currentId: '',
   currentIdIndex: 0,
+  lookAllList: [],
+  isUp: false,
+
   //options(Object)
   onLoad: function (options) {
     // init value
@@ -79,7 +79,7 @@ Page({
   // get project detail
   async requestProDetail(id) {
     let detailList = this.data.detailList
-    let lookAllList = this.data.lookAllList
+    let lookAllList = this.lookAllList
     const r = await request({
       url: '/project/detail',
       data: {
@@ -99,7 +99,6 @@ Page({
       lookAllList[this.data.current] = look.data
       this.setData({
         detailList,
-        lookAllList,
         seenAvaList
       })
       this.requestIscollected(id)
@@ -187,6 +186,8 @@ Page({
     const {
       id
     } = e.currentTarget.dataset
+    const detailList = this.data.detailList
+    const current = this.data.current
     let r
     try {
       r = await request({
@@ -201,22 +202,25 @@ Page({
     let {
       status
     } = r.data
-    console.log(r);
     if (status) { // 关注成功
+      detailList[current].subscribe_num++
       wx.showToast({
         title: r.msg,
         icon: 'success',
       })
       this.setData({
-        isCollected: true
+        isCollected: true,
+        detailList
       })
     } else { // 取消关注
+      detailList[current].subscribe_num--
       wx.showToast({
         title: r.msg,
         icon: 'none',
       })
       this.setData({
-        isCollected: false
+        isCollected: false,
+        detailList
       })
     }
   },
@@ -224,10 +228,10 @@ Page({
   // swiper animationfinish end
   handleSwiperChange(event) {
     let currentIdIndex = this.currentIdIndex
-    let lookAllList = this.data.lookAllList
+    let lookAllList = this.lookAllList
     let detailList = this.data.detailList
     let idList = this.data.idList
-    let isUp = this.data.isUp
+    let isUp = this.isUp
     let seenAvaList
     const {
       current
@@ -262,13 +266,9 @@ Page({
       dy: dy
     } = event.detail
     if (dy > 0) { // 向下滑动
-      this.setData({
-        isUp: false
-      })
+      this.isUp = false
     } else { // 向上滑动
-      this.setData({
-        isUp: true
-      })
+      this.isUp = true
     }
   },
 

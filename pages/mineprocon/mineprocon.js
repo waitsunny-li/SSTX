@@ -5,6 +5,9 @@
 import {
   request
 } from '../../request/index'
+import {
+  returnIdArry
+} from '../../utils/util'
 // pages/project/project.js
 Page({
 
@@ -212,5 +215,23 @@ Page({
       this.isrequest = false
     }
 
+  },
+
+  // project and connection tap event
+  handleProConToDetail(e) {
+    const {
+      id
+    } = e.currentTarget.dataset
+    let proIdList = returnIdArry(this.data.proList)
+    let conIdList = returnIdArry(this.data.conList)
+    if (this.data.cateIndex == 0) {
+      wx.navigateTo({
+        url: '/pages/prode/prode?id=' + id + '&ids=' + proIdList
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/conde/conde?id=' + id + '&ids=' + conIdList
+      })
+    }
   }
 })

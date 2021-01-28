@@ -46,7 +46,7 @@
 <!-- 保存二维码图片 -->
 <bottom-pop isShow="{{isShowImgCode}}">
   <view class="imgCode">
-    <image class="img" src="{{imgCodeUrl}}"  />
+    <image class="img" src="{{imgCodeUrl}}" lazy-load="{{true}}" />
     <view class="desc">保存图片，分享到朋友圈吧</view>
     <view class="save-btn" bind:tap="handleSaveImgTap">
       <text class="iconfont icon-xiazai"></text>
